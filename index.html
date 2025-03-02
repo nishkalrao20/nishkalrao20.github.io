@@ -2,6 +2,16 @@
 layout: default
 ---
 
+{% include mathjax.html %}
+
+Welcome to my personal website!
+Posts are in chronological order. You can also <a
+href="https://nishkalrao20.github.io/categories/">browse by category</a>.
+
+<head>
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+</head>
+
 <div class="posts">
   {% for post in site.posts %}
     <article class="post">
@@ -15,4 +25,4 @@ layout: default
       <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
     </article>
   {% endfor %}
-</div>
+      </div>
