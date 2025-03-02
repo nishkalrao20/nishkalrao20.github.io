@@ -16,9 +16,8 @@ uses [Jekyll Now](https://github.com/barryclark/jekyll-now), a
 [Jekyll](https://jekyllrb.com/) theme by Barry Clark.
 Images appearing on the site are my own (unless otherwise specified),
 and made with LaTeX.
-<a rel="license"
+<br/>Work on this site is licensed under a <a rel="license"
+href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC A-NC-SA 4.0 International License</a><a rel="license"
 href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img
 alt="Creative Commons License" style="border-width:0"
-src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br
-/>Work on this site is licensed under a <a rel="license"
-href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC A-NC-SA 4.0 International License</a>.
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>.
