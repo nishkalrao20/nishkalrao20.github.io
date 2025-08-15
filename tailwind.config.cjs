@@ -1,14 +1,7 @@
 module.exports = {
-  content: ["./src/**/*.{astro,js,ts,jsx,tsx,mdx}"],
+  content: ["./src/**/*.{astro,html,js,ts,jsx,tsx,md,mdx}"],
   theme: {
-    extend: {
-      fontFamily: {
-        serif: ['"Source Serif 4"', 'serif'],
-        mono: ['"IBM Plex Mono"', 'monospace'],
-      },
-    },
+    extend: {},
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-  ],
-}
+  plugins: [],
+};
