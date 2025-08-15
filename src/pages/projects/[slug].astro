@@ -4,7 +4,6 @@ import { siteConfig } from '../../config';
 export async function getStaticPaths() {
   const files = await Astro.glob('../../contents/projects/*.md');
 
-  // files is an object mapping path -> module
   return Object.entries(files).map(([path, mod]) => {
     const slug = path.split('/').pop().replace('.md', '');
     return { params: { slug } };
