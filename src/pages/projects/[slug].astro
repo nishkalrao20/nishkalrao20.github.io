@@ -1,21 +1,38 @@
 ---
-const all = Object.fromEntries(Object.entries(await Astro.glob('../../content/projects/*.md')).map(([path, mod])=>{
-  const slug = path.split('/').pop().replace('.md','');
-  return [slug, mod];
-}));
+import { siteConfig } from '../../config';
+
+export async function getStaticPaths() {
+  const files = await Astro.glob('../../contents/projects/*.md');
+
+  // files is an object mapping path -> module
+  return Object.entries(files).map(([path, mod]) => {
+    const slug = path.split('/').pop().replace('.md', '');
+    return { params: { slug } };
+  });
+}
+
+const files = await Astro.glob('../../contents/*.md');
+const all = Object.fromEntries(
+  Object.entries(files).map(([path, mod]) => {
+    const slug = path.split('/').pop().replace('.md', '');
+    return [slug, mod];
+  })
+);
+
 const { slug } = Astro.params;
 const project = all[slug];
-if(!project) {
-  throw new Error('Project not found');
-}
+
 ---
-<html>
+<!doctype html>
+<html lang="en">
   <head>
-    <title>{project.frontmatter.title} — {Astro.site?.title}</title>
+    <meta charset="utf-8" />
+    <title>{project.frontmatter?.title ?? slug} — {Astro.site?.title}</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
   </head>
   <body>
-    <main class="prose lg:prose-xl">
-      <h1>{project.frontmatter.title}</h1>
+    <main class="prose lg:prose-xl p-6">
+      <h1>{project.frontmatter?.title}</h1>
       <article>
         <Component src={project} />
       </article>
