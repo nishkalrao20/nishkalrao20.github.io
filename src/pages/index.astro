@@ -1,7 +1,4 @@
-// src/pages/index.astro
-import "../styles/global.css";
-import { siteConfig } from "../config";
-
+---
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import About from "../components/About.astro";
@@ -11,40 +8,10 @@ import Education from "../components/Education.astro";
 import Footer from "../components/Footer.astro";
 import { siteConfig } from "../config";
 import "../styles/global.css";
-
-function hexToRgb(hex) {
-  if (!hex) return "14,165,164";
-  const h = hex.replace("#", "");
-  const bigint = parseInt(h.length === 3 ? h.split('').map(c=>c+c).join('') : h, 16);
-  const r = (bigint >> 16) & 255;
-  const g = (bigint >> 8) & 255;
-  const b = bigint & 255;
-  return `${r},${g},${b}`;
-}
-const accentRgb = hexToRgb(siteConfig.accentColor || "#0ea5a4");
 ---
 
-<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>{siteConfig.title ?? "My site"}</title>
-  </head>
-  <body class="antialiased">
-    <!-- HERO with gradient that follows pointer -->
-    <section
-      id="hero"
-      class="min-h-screen flex items-center justify-center"
-      /* provide CSS variables from siteConfig (accent and rgb) */
-      style={`--accent: ${siteConfig.accentColor}; --accent-rgb: ${accentRgb};`}
-    >
-      <div class="hero-inner max-w-4xl mx-auto p-8 text-center">
-        <h1 class="text-5xl md:text-7xl font-bold">{siteConfig.title}</h1>
-        {siteConfig.tagline && <p class="mt-6 text-xl text-gray-700">{siteConfig.tagline}</p>}
-      </div>
-    </section>
-
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
@@ -53,47 +20,20 @@ const accentRgb = hexToRgb(siteConfig.accentColor || "#0ea5a4");
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css?family=Source+Serif+4:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
       rel="stylesheet"
     />
     <title>{siteConfig.name} - {siteConfig.title}</title>
-
-    <About />
-    <Projects />
-    <Experience />
-    <Education />
-
-    <script type="module">
-      (function () {
-        const hero = document.getElementById("hero");
-        if (!hero) return;
-
-        const getPointer = (e) => {
-          if (e.touches && e.touches[0]) return { x: e.touches[0].clientX, y: e.touches[0].clientY };
-          return { x: e.clientX, y: e.clientY };
-        };
-
-        const update = (clientX, clientY) => {
-          const rect = hero.getBoundingClientRect();
-          const x = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width)) * 100;
-          const y = Math.max(0, Math.min(1, (clientY - rect.top) / rect.height)) * 100;
-          hero.style.setProperty("--mx", x + "%");
-          hero.style.setProperty("--my", y + "%");
-        };
-
-        const onMove = (e) => {
-          const p = getPointer(e);
-          update(p.x, p.y);
-        };
-
-        hero.addEventListener("mousemove", onMove);
-        hero.addEventListener("touchmove", onMove, { passive: true });
-
-        hero.style.setProperty("--mx", "50%");
-        hero.style.setProperty("--my", "50%");
-
-        // window.addEventListener('beforeunload', () => { hero.removeEventListener('mousemove', onMove) });
-      })();
-    </script>
+  </head>
+  <body>
+    <Header />
+    <section>
+      <Hero />
+      <About />
+      <Projects />
+      <Experience />
+      <Education />
+    </section>
+    <Footer />
   </body>
 </html>
