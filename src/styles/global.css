@@ -1,16 +1,5 @@
 @import "tailwindcss";
 
-:root{
-  --font-serif: "Source Serif 4", serif;
-  --font-mono: "IBM Plex Mono", monospace;
-}
-
-html, body {
-  font-family: var(--font-serif);
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-}
-
-.code, code, pre {
-  font-family: var(--font-mono);
+body {
+  font-family: 'Noto Sans', serif;
 }
