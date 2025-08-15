@@ -1,39 +1,49 @@
 ---
-import { siteConfig } from '../../config';
 
 export async function getStaticPaths() {
-  const files = await Astro.glob('../../contents/*.md');
+  // Use Vite's glob import (eager true so we get modules at build time)
+  const modules = import.meta.glob('../../contents/*.md', { eager: true });
 
-  return Object.entries(files).map(([path, mod]) => {
-    const slug = path.split('/').pop().replace('.md', '');
+  return Object.keys(modules).map((path) => {
+    const slug = path.split('/').pop().replace(/\.mdx?$/, '').replace(/\.md$/, '');
     return { params: { slug } };
   });
 }
 
-const files = await Astro.glob('../../contents/*.md');
+const modules = import.meta.glob('../../contents/*.md', { eager: true });
+
 const all = Object.fromEntries(
-  Object.entries(files).map(([path, mod]) => {
-    const slug = path.split('/').pop().replace('.md', '');
+  Object.entries(modules).map(([path, mod]) => {
+    const slug = path.split('/').pop().replace(/\.mdx?$/, '').replace(/\.md$/, '');
     return [slug, mod];
   })
 );
 
+// slug from route
 const { slug } = Astro.params;
 const project = all[slug];
 
+if (!project) {
+  throw new Error(`Project "${slug}" not found. Ensure src/contents/${slug}.md exists.`);
+}
+
+const ProjectContent = project.default;
+const meta = project.frontmatter ?? {};
 ---
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>{project.frontmatter?.title ?? slug} — {Astro.site?.title}</title>
+    <title>{meta.title ?? slug} — {Astro.site?.title}</title>
+    <meta name="description" content={meta.summary ?? meta.description ?? Astro.site?.description ?? ''} />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
   </head>
   <body>
     <main class="prose lg:prose-xl p-6">
-      <h1>{project.frontmatter?.title}</h1>
+      <h1>{meta.title ?? slug}</h1>
+      <p class="text-sm text-gray-600">{meta.date}</p>
       <article>
-        <Component src={project} />
+        <ProjectContent />
       </article>
     </main>
   </body>
