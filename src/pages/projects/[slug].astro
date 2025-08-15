@@ -1,0 +1,24 @@
+---
+const all = Object.fromEntries(Object.entries(await Astro.glob('../../content/projects/*.md')).map(([path, mod])=>{
+  const slug = path.split('/').pop().replace('.md','');
+  return [slug, mod];
+}));
+const { slug } = Astro.params;
+const project = all[slug];
+if(!project) {
+  throw new Error('Project not found');
+}
+---
+<html>
+  <head>
+    <title>{project.frontmatter.title} — {Astro.site?.title}</title>
+  </head>
+  <body>
+    <main class="prose lg:prose-xl">
+      <h1>{project.frontmatter.title}</h1>
+      <article>
+        <Component src={project} />
+      </article>
+    </main>
+  </body>
+</html>
