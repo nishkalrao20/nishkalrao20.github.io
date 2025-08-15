@@ -1,38 +1,47 @@
 export const siteConfig = {
-  name: "Ryan Fitzgerald",
-  title: "Senior Software Engineer",
-  description: "Portfolio website of Ryan Fitzgerald",
+  name: "Nishkal Rao",
+  title: "Graduate Researcher",
+  description: "Personal Website",
   accentColor: "#1d4ed8",
   social: {
-    email: "your-email@example.com",
+    email: "nishkal.rao@students.iiserpune.ac.in",
     linkedin: "https://linkedin.com/in/yourprofile",
-    twitter: "https://x.com/rfitzio",
-    github: "https://github.com/RyanFitzgerald",
+    twitter: "https://x.com/nishkalrao",
+    github: "https://github.com/nishkalrao20",
   },
   aboutMe:
-    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem quos asperiores nihil consequatur tempore cupiditate architecto natus commodi corrupti quas quasi facere est, dignissimos odit nam veniam sapiente ut, vitae eligendi ipsum dolor, nostrum ullam impedit! Corrupti ratione mollitia temporibus necessitatibus, consectetur reiciendis recusandae id, dolorum quaerat, vero pariatur. Ratione!",
-  skills: ["Javascript", "React", "Node.js", "Python", "AWS", "Docker"],
+    "IISER Pune BS-MS 5th year Master's Student. Interested in unraveling the cosmos and beyond.",
+  skills: ["Gravitational Waves", "General Relativity", "Quantum Foundations", "Black Hole Decoherences", "Ringdowns", "Mathematical Physics"],
   projects: [
     {
-      name: "AI Dev Roundup Newsletter",
+      name: "Quasi-Local Black Hole Horizons",
       description:
-        "One concise email. Five minutes. Every Tuesday. Essential AI news & trends, production-ready libraries, powerful AI tools, and real-world code examples",
-      link: "https://aidevroundup.com/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
+        "By introducing the notion of a quasi-local isolated horizon, we can construct the spacetime in the vicinity of a black hole horizon. This approach overcomes the limitations of event horizons and provides a natural framework for investigating near-horizon phenomena, which includes perturbative analyses of tidal deformability and post-merger dynamics.",
+      skills: ["General Relativity", "Isolated Horizons"],
     },
     {
-      name: "Chrome Extension Mastery: Build Full-Stack Extensions with React & Node.js",
+      name: "Comprehensive analysis of time-domain Overlapping Gravitational Wave Transients",
       description:
-        "Master the art of building production-ready, full-stack Chrome Extensions using modern web technologies and best practices",
-      link: "https://fullstackextensions.com/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
+        "Addressing challenges of overlapping compact binary coalescences in future gravitational wave detectors. Developing techniques for identification and characterization to enhance parameter estimation accuracy. Gained expertise in matched filtering (PyCBC), unmodeled analysis (cWB), and Bayesian parameter estimation (bilby).",
+      skills: ["Gravitational Wave Analysis"],
     },
     {
-      name: "ExtensionKit",
+      name: "Post-merger emission of non-circular binary mergers",
       description:
-        "Kit to jump-start your Chrome extension projects with a variety of battle-tested starter templates & examples",
-      link: "https://extensionkit.io/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
+        "Comprehensive study of non-circular encounters in the context of gravitational wave ringdowns, through fitting techniques and the reconstruction of waveforms that capture the physics of eccentric, non-circular mergers.",
+      skills: ["Gravitational Wave Analysis", "Ringdowns", "Numerical Relativity"],
+    },
+    {
+      name: "Quantum Superpositions: Entanglement and Decoherence through Black Holes",
+      description:
+        "Study of decoherence of stationary superpositions in any spacetime with a Killing horizon. Analysis of studies with black holes decohering quantum superpositions and extension further described in terms of the local two-point function of the quantum fields.",
+      skills: ["Black Hole Decoherence", "Quantum Field Theory", "General Relativity", "Cosmology", "Quantum Foundations"],
+    },
+    {
+      name: "On detectability of non-linear modes in ringdown through Parameter Estimation",
+      description:
+        "Implementation and testing quadratic mode injections, developing appropriate parameter estimation strategies and analysing the detectability of these modes.",
+      skills: ["Gravitational Wave Analysis", "Ringdowns"],
     },
   ],
   experience: [
@@ -69,23 +78,30 @@ export const siteConfig = {
   ],
   education: [
     {
-      school: "University Name",
-      degree: "Bachelor of Science in Computer Science",
-      dateRange: "2014 - 2018",
+      school: "Indian Institute of Science Education and Research (IISER) Pune",
+      degree: "BS-MS Dual Degree Program (Physics major, Mathematics minor)",
+      dateRange: "2021 - Present",
       achievements: [
-        "Graduated Magna Cum Laude with 3.8 GPA",
-        "Dean's List all semesters",
-        "President of Computer Science Club",
+        "GPA: 9.3/10",
+        "expected completion: july 2026",
       ],
     },
     {
-      school: "Online Platform",
-      degree: "Full Stack Development Certificate",
+      school: "Mount Carmel Central School",
+      degree: "Class XII CBSE All India Secondary School Examination 2021",
+      dateRange: "2021",
+      achievements: [
+        "Percentage: 97.2%",
+        "Physics: 98/100", "Mathematics: 99/100",
+      ],
+    },
+    {
+      school: "Sharada Vidyalaya",
+      degree: "Class X CBSE All India Secondary School Examination 2019",
       dateRange: "2019",
       achievements: [
-        "Completed 500+ hours of coursework",
-        "Built 10+ portfolio projects",
-        "Specialized in React and Node.js",
+        "Percentage: 97.4%",
+        "Science: 100/100",
       ],
     },
   ],
