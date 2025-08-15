@@ -2,17 +2,18 @@
 import { siteConfig } from "../config";
 ---
 
-<div
-  id="hero"
-  class="relative isolate overflow-hidden bg-white py-24 md:h-screen"
-  style={`--accent-color: ${siteConfig.accentColor}`}
->
-  <!-- Gradient overlay -->
-  <div
-    class="absolute inset-0 -z-10"
-    style={`background: radial-gradient(ellipse 800px 1200px at 0% 0%, ${siteConfig.accentColor}40 0%, ${siteConfig.accentColor}25 20%, ${siteConfig.accentColor}10 40%, rgba(255, 255, 255, 0.3) 70%, rgba(255, 255, 255, 0.8) 90%, white 100%)`}
-  >
-  </div>
+<div id="hero" class="relative isolate overflow-hidden bg-white py-24 md:h-screen"
+     style={`--accent-color: ${siteConfig.accentColor}; --mouse-x: 50%; --mouse-y: 20%`}>
+  <div class="absolute inset-0 -z-10 hero-bg"></div>
+
+  <style>
+    .hero-bg{
+      background: radial-gradient(1000px 1400px at var(--mouse-x) var(--mouse-y),
+                rgba(29,78,216,0.18) 0%, rgba(29,78,216,0.08) 25%,
+                rgba(255,255,255,0.6) 70%, white 100%);
+      transition: background-position 120ms linear;
+    }
+  </style>
   <svg
     aria-hidden="true"
     class="absolute inset-0 -z-10 size-full stroke-gray-200 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
@@ -294,7 +295,7 @@ import { siteConfig } from "../config";
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <path d="M8 21h8a5 5 0 0 0 5 -5v-3a3 3 0 0 0 -3 -3h-1v-2a5 5 0 0 0 -5 -5h-4a5 5 0 0 0 -5 5v8a5 5 0 0 0 5 5z" />
               <path d="M7 7m0 1.5a1.5 1.5 0 0 1 1.5 -1.5h3a1.5 1.5 0 0 1 1.5 1.5v0a1.5 1.5 0 0 1 -1.5 1.5h-3a1.5 1.5 0 0 1 -1.5 -1.5z" />
-              <path d="M7 14m0 1.5a1.5 1.5 0 0 1 1.5 -1.5h7a1.5 1.5 0 0 1 1.5 1.5v0a1.5 1.5 0 0 1 -1.5 1.5h-7a1.5 1.5 0 0 1 -1.5 -1.5z" />" />
+              <path d="M7 14m0 1.5a1.5 1.5 0 0 1 1.5 -1.5h7a1.5 1.5 0 0 1 1.5 1.5v0a1.5 1.5 0 0 1 -1.5 1.5h-7a1.5 1.5 0 0 1 -1.5 -1.5z" />
             </>
           </svg>
         </a>
@@ -332,3 +333,22 @@ import { siteConfig } from "../config";
     animation-delay: 0.6s;
   }
 </style>
+
+<script>
+  (function(){
+    const hero = document.getElementById('hero');
+    if(!hero) return;
+    const onMove = (e) => {
+      const rect = hero.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      hero.style.setProperty('--mouse-x', x + '%');
+      hero.style.setProperty('--mouse-y', y + '%');
+    };
+    hero.addEventListener('pointermove', onMove);
+    hero.addEventListener('pointerleave', () => {
+      hero.style.setProperty('--mouse-x','50%');
+      hero.style.setProperty('--mouse-y','20%');
+    });
+  })();
+</script>
