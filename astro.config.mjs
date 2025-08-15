@@ -6,10 +6,11 @@ import mdx from "@astrojs/mdx";
 export default defineConfig({
   site: 'https://nishkalrao20.github.io',
   base: '/',
-  integrations: [
+  integrations: {
     mdx({
       /rehypePlugins: [rehypeKatex],
     }),
+  },
   vite: {
     plugins: [tailwindcss()],
   },
