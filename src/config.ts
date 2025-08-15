@@ -16,8 +16,10 @@ export const siteConfig = {
   projects: [
     {
       name: "Quasi-Local Black Hole Horizons",
+      slug: "quasi-local-horizons",
       description:
         "By introducing the notion of a quasi-local isolated horizon, we can construct the spacetime in the vicinity of a black hole horizon. This approach overcomes the limitations of event horizons and provides a natural framework for investigating near-horizon phenomena, which includes perturbative analyses of tidal deformability and post-merger dynamics.",
+      contentPath: "/content/projects/quasi-local-horizons.md",
       skills: ["General Relativity", "Isolated Horizons"],
     },
     {
