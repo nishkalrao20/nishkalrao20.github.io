@@ -8,6 +8,7 @@ export const siteConfig = {
     github: "https://github.com/nishkalrao20",
     twitter: "https://x.com/nishkalrao",
     instagram: "https://instagram.com/nishkalrao",
+    blog: "https://nishkal20.wixsite.com/dream",
   },
   aboutMe:
     "IISER Pune BS-MS 5th year Master's Student. Interested in unraveling the cosmos and beyond.",
