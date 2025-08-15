@@ -2,7 +2,6 @@
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 
-// https://astro.build/config
 export default defineConfig({
   site: 'https://nishkalrao20.github.io',
   base: '/',
@@ -10,3 +9,14 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 });
+
+import rehypeKatex from "rehype-katex";
+
+export default {
+  integrations: [
+    // ...
+    mdx({
+      rehypePlugins: [rehypeKatex],
+    })
+  ]
+}
