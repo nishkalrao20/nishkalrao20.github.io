@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
-body {
-  font-family: 'Noto Sans', sans;
+:root{
+  --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+}
+
+html, body {
+  font-family: var(--font-serif);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+.code, code, pre {
+  font-family: var(--font-mono);
 }
