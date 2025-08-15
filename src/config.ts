@@ -44,37 +44,17 @@ export const siteConfig = {
         "Implementation and testing quadratic mode injections, developing appropriate parameter estimation strategies and analysing the detectability of these modes.",
       skills: ["Gravitational Wave Analysis", "Ringdowns"],
     },
-  ],
-  experience: [
     {
-      company: "Tech Company",
-      title: "Senior Software Engineer",
-      dateRange: "Jan 2022 - Present",
-      bullets: [
-        "Led development of microservices architecture serving 1M+ users",
-        "Reduced API response times by 40% through optimization",
-        "Mentored team of 5 junior developers",
-      ],
+      name: "Enhancing IMR Consistency Tests for Gravitational Wave Transients",
+      description:
+        "Enhancing inspiral-merger-ringdown (IMR) consistency tests for gravitational wave transients. Employing time-domain analyses, improving the algorithms, refining SNR thresholds, and investigating higher modes’ impact on general relativity tests.",
+      skills: ["Gravitational Wave Analysis"],
     },
     {
-      company: "Startup Inc",
-      title: "Full Stack Developer",
-      dateRange: "Jun 2020 - Dec 2021",
-      bullets: [
-        "Built and launched MVP product from scratch using React and Node.js",
-        "Implemented CI/CD pipeline reducing deployment time by 60%",
-        "Collaborated with product team to define technical requirements",
-      ],
-    },
-    {
-      company: "Digital Agency",
-      title: "Frontend Developer",
-      dateRange: "Aug 2018 - May 2020",
-      bullets: [
-        "Developed responsive web applications for 20+ clients",
-        "Improved site performance scores by 35% on average",
-        "Introduced modern JavaScript frameworks to legacy codebases",
-      ],
+      name: "Reconstruction of the Universe from the DESI Survey using Neural Networks",
+      description:
+        "Constructing high-resolution density and peculiar velocity field maps using DESI galaxy survey data and neural networks. Aim to facilitate velocity field reconstruction for cosmological analyses of dark matter and energy.",
+      skills: ["Cosmology", "Neural Networks", "Machine Learning"],
     },
   ],
   education: [
@@ -84,7 +64,7 @@ export const siteConfig = {
       dateRange: "2021 - Present",
       achievements: [
         "GPA: 9.3/10",
-        "expected completion: july 2026",
+        "Expected Completion: July 2026",
       ],
     },
     {
