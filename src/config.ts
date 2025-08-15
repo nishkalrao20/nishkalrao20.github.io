@@ -5,9 +5,9 @@ export const siteConfig = {
   accentColor: "#1d4ed8",
   social: {
     email: "nishkal.rao@students.iiserpune.ac.in",
-    linkedin: "https://linkedin.com/in/yourprofile",
-    twitter: "https://x.com/nishkalrao",
     github: "https://github.com/nishkalrao20",
+    twitter: "https://x.com/nishkalrao",
+    instagram: "https://instagram.com/nishkalrao",
   },
   aboutMe:
     "IISER Pune BS-MS 5th year Master's Student. Interested in unraveling the cosmos and beyond.",
