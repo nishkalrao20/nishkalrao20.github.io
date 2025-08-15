@@ -1,14 +1,15 @@
 import { defineConfig } from "astro/config";
+import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
-import tailwindcss from "@tailwindcss/vite";
+import rehypeKatex from "rehype-katex";
 
 export default defineConfig({
   site: "https://nishkalrao20.github.io",
   base: "/",
-  vite: {
-    plugins: [tailwindcss()],
-  },
   integrations: [
-    mdx(),
+    tailwind(),
+    mdx({
+      rehypePlugins: [rehypeKatex],
+    }),
   ],
 });
