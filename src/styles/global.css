@@ -1,46 +1,5 @@
 @import "tailwindcss";
 
-@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@200;300;400;600;700;800&display=swap');
-
-:root{
-  --accent: #0ea5a4;
-  --accent-rgb: 14,165,164;
-  --bg-1: #ffffff;
-  --bg-2: #f7f7f8;
-}
-
-html, body, #root {
-  font-family: 'Source Serif 4', ui-serif, Georgia, serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color-scheme: light;
-}
-
-.font-serif {
-  font-family: 'Source Serif 4', ui-serif, Georgia, serif;
-}
-
-#hero {
-  --mx: 50%;
-  --my: 50%;
-
-  background-image:
-    radial-gradient(600px circle at var(--mx) var(--my),
-      rgba(var(--accent-rgb), 0.18) 0%,
-      rgba(var(--accent-rgb), 0.10) 14%,
-      rgba(var(--accent-rgb), 0.05) 30%,
-      transparent 60%),
-    linear-gradient(180deg, var(--bg-1), var(--bg-2));
-
-  background-attachment: fixed;
-  transition: background-position 120ms linear, background 250ms ease;
-}
-
-#hero > .hero-inner {
-  position: relative;
-  z-index: 2;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  #hero { transition: none; }
+body {
+  font-family: "Source Serif VF", "Source Serif Display";
 }
