@@ -13,4 +13,12 @@
     "astro": "^5.12.3",
     "tailwindcss": "^4.1.11"
   }
+  "devDependencies": {
+    "@astrojs/mdx": "^3.0.0",
+    "remark-math": "^7.0.0",
+    "rehype-katex": "^6.0.0",
+    "katex": "^0.16.8",
+    "rehype-slug": "^6.1.0",
+    "rehype-autolink-headings": "^7.0.0"
+  }
 }
