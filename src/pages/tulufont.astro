@@ -1,0 +1,29 @@
+---
+import Header from '../components/Header.astro';
+import { siteConfig } from '../config';
+---
+<html>
+  <head>
+    <title>Tulu Font Story — {siteConfig.name}</title>
+  </head>
+  <body>
+    <Header />
+    <main class="max-w-4xl mx-auto p-8">
+      <h1 class="text-2xl font-bold mb-4">The Tulu Font Story</h1>
+      <p class="mb-4">I led the project to design and release a computerized font for the nearly extinct Tulu script. The font family and resources are hosted at <a href="https://www.thetulufont.in" target="_blank" rel="noopener" class="underline">{'theTuluFont.in'}</a>.</p>
+
+      <section class="mt-6">
+        <h2 class="text-lg font-medium">What I did</h2>
+        <ul class="list-disc ml-5 mt-3">
+          <li>Designed multiple font styles and variations.</li>
+          <li>Built the companion website for downloads and documentation.</li>
+          <li>Published a small book and engaged with the community at the World Tulu Convention.</li>
+        </ul>
+      </section>
+
+      <section class="mt-6">
+        <a class="inline-block px-4 py-2 border rounded font-mono" href="https://www.thetulufont.in" target="_blank" rel="noopener">Visit the font site</a>
+      </section>
+    </main>
+  </body>
+</html>
