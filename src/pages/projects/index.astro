@@ -1,0 +1,32 @@
+---
+import Header from '../../components/Header.astro';
+import { siteConfig } from '../../config';
+import '../../styles/global.css';
+
+const projects = siteConfig.projects ?? [];
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Projects — {siteConfig.name}</title>
+  </head>
+  <body style={`--accent: ${siteConfig.accentColor}`}>
+    <Header />
+    <main class="max-w-4xl mx-auto px-6 py-12">
+      <h1 class="text-3xl font-bold mb-6">Projects</h1>
+      <div class="grid gap-6">
+        {projects.map((p, i) => (
+          <a href={`/projects/${p.slug ?? p.name.toLowerCase().replace(/\s+/g,'-')}`} class="block p-6 rounded-lg border hover:shadow-sm">
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="text-lg font-mono">{p.name}</div>
+                <p class="mt-2 text-sm text-gray-600">{p.description?.slice(0,180)}</p>
+              </div>
+              <div class="text-xs text-gray-400">{p.date ?? ''}</div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </main>
+  </body>
+</html>
