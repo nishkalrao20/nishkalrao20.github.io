@@ -1,4 +1,9 @@
 @import "tailwindcss";
+@import "katex/dist/katex.min.css";
+
+body {
+  font-family: 'Noto Sans', serif;
+}
 
 body {
   font-family: 'Noto Sans', serif;
