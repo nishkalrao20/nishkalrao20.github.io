@@ -1,0 +1,24 @@
+---
+import Header from '../components/Header.astro';
+import { siteConfig } from '../config';
+---
+<html>
+  <head><title>CV — {siteConfig.name}</title></head>
+  <body>
+    <Header />
+    <main class="max-w-4xl mx-auto p-8">
+      <h1 class="text-2xl font-bold mb-4">Curriculum Vitae</h1>
+      <p class="mb-4">Download or view my CV:</p>
+      <a class="inline-block px-4 py-2 border rounded font-mono" href="/Nishkal_CurriculumVitae.pdf" target="_blank" rel="noopener">Open PDF (Download)</a>
+
+      <section class="mt-8 prose">
+        <h2>Quick highlights</h2>
+        <ul>
+          <li>BS-MS Dual Degree, IISER Pune — GPA 9.3/10 (expected July 2026)</li>
+          <li>DAAD WISE fellowship, KVPY etc.</li>
+        </ul>
+        <p class="mt-4 text-sm text-gray-600">Full CV downloadable as PDF.</p>
+      </section>
+    </main>
+  </body>
+</html>
