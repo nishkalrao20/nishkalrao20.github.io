@@ -19,6 +19,5 @@
     "rehype-katex": "^6.0.0",
     "katex": "^0.16.8",
     "rehype-slug": "^6.1.0",
-    "rehype-autolink-headings": "^7.0.0"
   }
 }
