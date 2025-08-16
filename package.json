@@ -14,7 +14,7 @@
     "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
-    "@astrojs/mdx": "^3.0.0",
+    "@astrojs/mdx": "^4.3.4",
     "remark-math": "^7.0.0",
     "rehype-katex": "^6.0.0",
     "katex": "^0.16.8",
