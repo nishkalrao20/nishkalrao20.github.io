@@ -1,40 +1,65 @@
 ---
+// src/components/About.astro
 import { siteConfig } from "../config";
+const skills = siteConfig.skills ?? [];
 ---
+<section id="about" class="max-w-4xl mx-auto px-6 py-12">
+  <div class="grid md:grid-cols-3 gap-8 items-start">
+    <div class="md:col-span-2">
+      <h2 class="text-3xl font-bold mb-4">About</h2>
+      <p class="text-lg text-gray-700 leading-relaxed">{siteConfig.aboutMe}</p>
 
-<section id="about" class="p-8 sm:p-12 md:p-16 lg:p-24">
-  <div>
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-      <div class="lg:col-span-4">
-        <h2
-          class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900"
-        >
-          About Me
-        </h2>
-        <div
-          class="w-[75px] h-[5px] mt-2 rounded-full"
-          style={`background-color: ${siteConfig.accentColor}`}
-        >
-        </div>
+      <div class="mt-6">
+        <h3 class="text-sm font-mono text-gray-500 mb-2">Highlights</h3>
+        <ul class="grid sm:grid-cols-2 gap-3">
+          <li class="p-3 border rounded">
+            <div class="text-xs text-gray-500">Institution</div>
+            <div class="font-medium">IISER Pune</div>
+          </li>
+          <li class="p-3 border rounded">
+            <div class="text-xs text-gray-500">Degree</div>
+            <div class="font-medium">BS-MS (Physics major)</div>
+          </li>
+          <li class="p-3 border rounded">
+            <div class="text-xs text-gray-500">Interests</div>
+            <div class="font-medium">Gravitational Waves, GR, QFT</div>
+          </li>
+          <li class="p-3 border rounded">
+            <div class="text-xs text-gray-500">Contact</div>
+            <div class="font-medium">{siteConfig.social?.email}</div>
+          </li>
+        </ul>
       </div>
 
-      <div class="lg:col-span-8 space-y-8">
-        <p class="text-lg sm:text-xl md:text-2xl leading-relaxed text-gray-600">
-          {siteConfig.aboutMe}
-        </p>
-
-        <div class="pt-4">
-          <div class="flex flex-wrap gap-3">
-            {
-              siteConfig.skills.map((skill) => (
-                <span class="px-3 sm:px-4 py-1.5 sm:py-2 bg-gray-100 text-gray-800 rounded-full text-sm sm:text-base md:text-lg font-medium hover:bg-gray-200 transition-colors duration-200">
-                  {skill}
-                </span>
-              ))
-            }
-          </div>
-        </div>
+      <div class="mt-6">
+        <a class="inline-block px-4 py-2 rounded font-mono border hover:bg-[var(--accent-color)] hover:text-white" href="/Nishkal_CurriculumVitae.pdf" target="_blank" rel="noopener">
+          Download CV
+        </a>
+        <a class="ml-3 inline-block px-4 py-2 rounded font-mono border hover:bg-[var(--accent-color)] hover:text-white" href="/tulu">
+          Tulu Font Story
+        </a>
       </div>
     </div>
+
+    <aside class="p-6 border rounded-md">
+      <h4 class="text-sm text-gray-500 mb-2 font-mono">Skills</h4>
+      <div class="flex flex-wrap gap-2">
+        {skills.map(s => (
+          <span class="text-xs font-medium px-2.5 py-1 rounded bg-gray-900 text-white">{s}</span>
+        ))}
+      </div>
+
+      <div class="mt-6">
+        <h4 class="text-sm text-gray-500 mb-2 font-mono">Education (summary)</h4>
+        <div class="text-sm">
+          {siteConfig.education?.map(e => (
+            <div class="mb-3">
+              <div class="font-medium">{e.school}</div>
+              <div class="text-xs text-gray-500">{e.degree} · {e.dateRange}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </aside>
   </div>
 </section>
