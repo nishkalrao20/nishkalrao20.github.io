@@ -5,8 +5,8 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 
 export default defineConfig({
-  site: 'https://nishkalrao20.github.io',
-  base: '/',
+  site: "https://nishkalrao20.github.io",
+  base: "/",
   vite: {
     plugins: [tailwindcss()],
   },
@@ -14,6 +14,10 @@ export default defineConfig({
     mdx({
       remarkPlugins: [remarkMath],
       rehypePlugins: [rehypeKatex],
-    })
-  ]
+    }),
+  ],
+  markdown: {
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [rehypeKatex],
+  },
 });
