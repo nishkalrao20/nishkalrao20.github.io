@@ -153,11 +153,32 @@ export const siteConfig: SiteConfig = {
 
   news: [
     {
-      date: "2025-07-10",
-      title: "Poster presentation - ICTS Summer School on Gravitational-Wave Astronomy",
-      description: "Presented a poster on my projects (poster PDF linked).",
-      url: "/posters/poster_presentation.pdf",
-      type: "poster",
+      date: "2025-07-01",
+      title: "ICTS Summer School on Gravitational-Wave Astronomy — Attended",
+      description: "ICTS-TIFR, Bangalore (July 2025). Summer school on GW astronomy and data analysis.",
+      url: "",
+      type: "school",
+    },
+    {
+      date: "2025-06-15",
+      title: "QIQG 2025: Quantum Information in Quantum Gravity — Participant",
+      description: "Perimeter Institute (online). Participated in workshops exploring foundations of quantum gravity.",
+      url: "",
+      type: "conference",
+    },
+    {
+      date: "2024-06-10",
+      title: "EOB@Work24 Conference — Presented",
+      description: "Theoretisch-Physikalisches Institut, FSU Jena. Presented a poster/talk on quasi-local horizons.",
+      url: "/posters/poster_presentation.pdf", // update if you place your poster here
+      type: "conference",
+    },
+    {
+      date: "2024-05-01",
+      title: "DAAD WISE Fellowship (FSU Jena) — Awarded",
+      description: "Three-month funded research internship award (Theoretisch-Physikalisches Institut, FSU Jena).",
+      url: "",
+      type: "award",
     },
   ],
 };
