@@ -156,7 +156,7 @@ export const siteConfig: SiteConfig = {
       date: "2025-07-01",
       title: "ICTS Summer School on Gravitational-Wave Astronomy — Attended",
       description: "ICTS-TIFR, Bangalore (July 2025). Summer school on GW astronomy and data analysis.",
-      url: "",
+      url: "/posters/poster_presentation.pdf",
       type: "school",
     },
     {
@@ -170,7 +170,7 @@ export const siteConfig: SiteConfig = {
       date: "2024-06-10",
       title: "EOB@Work24 Conference — Presented",
       description: "Theoretisch-Physikalisches Institut, FSU Jena. Presented a poster/talk on quasi-local horizons.",
-      url: "/posters/poster_presentation.pdf", // update if you place your poster here
+      url: "",
       type: "conference",
     },
     {
