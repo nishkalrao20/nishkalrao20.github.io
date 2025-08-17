@@ -10,16 +10,13 @@ const skills = siteConfig.skills ?? [];
 
       <div class="mt-6">
         <a class="inline-block px-4 py-2 rounded font-mono border hover:text-var(--accent-color)" href="/Nishkal_CurriculumVitae.pdf" target="_blank" rel="noopener">
-          Curriculum Vitae (Short)
-        </a>
-        <a class="inline-block px-4 py-2 rounded font-mono border hover:text-var(--accent-color)" href="/Nishkal_CurriculumVitae.pdf" target="_blank" rel="noopener">
-          Resume (Long)
+          Curriculum Vitae
         </a>
       </div>
     </div>
 
     <aside class="p-6 border rounded-md">
-      <h4 class="text-sm text-gray-500 mb-2 font-mono">Skills</h4>
+      <h4 class="text-sm text-gray-500 mb-2 font-mono">Interests</h4>
       <div class="flex flex-wrap gap-2">
         {skills.map(s => (
           <span class="text-xs font-medium px-2.5 py-1 rounded bg-gray-900 text-white">{s}</span>
