@@ -30,6 +30,10 @@ if (!project) {
 
 const ProjectContent = project.default;
 const meta = project.frontmatter ?? {};
+
+const formattedDate = meta.date
+  ? new Date(meta.date).toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })
+  : null;
 ---
 <!doctype html>
 <html lang="en">
@@ -41,7 +45,7 @@ const meta = project.frontmatter ?? {};
     <meta name="color-scheme" content="light dark" />
     <style>
       :root { --accent: #1d4ed8; }
-    
+
       /* project content container */
       .project-prose {
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Courier New", monospace;
@@ -49,7 +53,7 @@ const meta = project.frontmatter ?? {};
         line-height: 1.8;            /* increased line spacing for readability */
         font-size: 1.03rem;
       }
-    
+
       /* paragraphs & readable spacing */
       .project-prose p {
         margin-top: 0.9rem;
@@ -57,7 +61,7 @@ const meta = project.frontmatter ?? {};
         font-size: 1.08rem;
         letter-spacing: 0.0015em;
       }
-    
+
       /* headings */
       .project-prose h1,
       .project-prose h2,
@@ -67,20 +71,20 @@ const meta = project.frontmatter ?? {};
         line-height: 1.15;
         font-weight: 700;
       }
-    
+
       .project-prose h1 { font-size: 2.1rem; }
       .project-prose h2 { font-size: 1.6rem; }
-      .project-prose h3 { font-size: 1.25rem; } /* bigger than body so ### stand out */
-    
+      .project-prose h3 { font-size: 1.25rem !important; color: #0b1220; }
+
       /* lists */
       .project-prose ul, .project-prose ol {
         padding-left: 1.25rem;
         margin-top: 0.6rem;
         margin-bottom: 0.9rem;
       }
-    
+
       .project-prose li { margin-top: 0.35rem; }
-    
+
       /* code blocks & inline code */
       .project-prose pre {
         background: #0b1220;
@@ -96,56 +100,53 @@ const meta = project.frontmatter ?? {};
         padding: 0.12rem 0.3rem;
         border-radius: 4px;
       }
-    
-      /* katex tweaks (math blocks) */
+
       .project-prose .katex { font-size: 1.02rem; line-height: 1.35; }
       .project-prose .katex-display { margin: 1rem 0; }
-    
-      /* make skill pills match About section */
+
       .skill-pill {
         display:inline-block;
         font-family: ui-monospace, monospace;
-        padding: 0.25rem 0.65rem;
-        border-radius: 9999px;
-        background: #0f172a;    /* same dark pill */
+        padding: 0.25rem 0.6rem;
+        border-radius: 0.5rem;
+        background: #0f172a;
         color: #fff;
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         margin-right:0.35rem;
         margin-top:0.3rem;
+        font-weight: 600;
       }
-    
-      /* responsive tweaks */
-      @media (min-width: 768px) {
-        .project-prose p { font-size: 1.12rem; }
-        .project-prose h1 { font-size: 2.4rem; }
-        .project-prose h2 { font-size: 1.8rem; }
-        .project-prose h3 { font-size: 1.35rem; }
-      }
-    
-      /* --- Right-side reference / citation panel --- */
+
+      a.cite { color: inherit; text-decoration: underline dotted; cursor: pointer; }
+      a.cite.cite-active { color: #1d4ed8; /* blue when clicked */ }
+
       .ref-panel {
-        position: fixed;
-        right: 1.25rem;
-        top: 120px;
-        width: 280px;
-        max-height: 70vh;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 300px;
+        max-width: 40vw;
+        max-height: 60vh;
         overflow-y: auto;
         border-left: 1px solid rgba(15,23,42,0.06);
-        padding-left: 1rem;
-        background: rgba(255,255,255,0.6);
-        backdrop-filter: blur(6px);
+        padding: 1rem;
+        background: rgba(255,255,255,0.95);
+        box-shadow: 0 6px 20px rgba(2,6,23,0.06);
         font-family: ui-monospace, monospace;
-        font-size: 0.9rem;
-        display: none; /* hidden until a ref is clicked */
-        z-index: 60;
+        font-size: 0.95rem;
+        display: none; /* shown by JS */
+        z-index: 9999;
+        border-radius: 6px;
       }
       .ref-panel h4 { font-weight: 700; margin-bottom: .45rem; }
       .ref-entry { margin-bottom: .9rem; color: #111827; }
-    
-      /* small screens: hide panel */
+
       @media (max-width: 1024px) {
         .ref-panel { display: none !important; }
       }
+
+      .project-header { margin-top: 1.5rem; margin-bottom: 1rem; }
+
     </style>
   </head>
 
@@ -154,13 +155,15 @@ const meta = project.frontmatter ?? {};
 
     <main class="max-w-4xl mx-auto px-6 md:px-8 lg:px-12 py-10">
       
-      <header class="mb-6">
+      <header class="project-header mb-6">
         <h1 class="text-3xl md:text-4xl font-bold leading-tight">{meta.title}</h1>
-        {meta.date && <div class="project-meta">{meta.date}</div>}
+        {formattedDate && <div class="project-meta text-sm text-gray-600 mt-2">{formattedDate}</div>}
         {meta.skills && meta.skills.length > 0 && (
           <div class="flex flex-wrap gap-2 mt-3">
             {meta.skills.map(s => (
-              <span class="skill-pill">{s}</span>
+              <span class="px-2.5 sm:px-3 py-1 sm:py-1.5 bg-gray-900 text-white rounded-md sm:rounded-lg text-xs sm:text-sm font-medium">
+                {s}
+              </span>
             ))}
           </div>
         )}
@@ -180,25 +183,85 @@ const meta = project.frontmatter ?? {};
     (function(){
       const refPanel = document.getElementById('refPanel');
       const refContent = document.getElementById('refContent');
-  
+      let activeCite = null;
+
+      function showPanelForElement(el, htmlContent) {
+        if (!el) return;
+        refContent.innerHTML = htmlContent;
+        refPanel.style.display = 'block';
+        refPanel.setAttribute('aria-hidden', 'false');
+
+        const rect = el.getBoundingClientRect();
+        const panelRect = refPanel.getBoundingClientRect();
+        const scrollX = window.scrollX || window.pageXOffset;
+        const scrollY = window.scrollY || window.pageYOffset;
+
+        let left = rect.right + 12 + scrollX;
+        let top = rect.top + scrollY;
+
+        const viewportWidth = document.documentElement.clientWidth;
+        // estimate panel width (if 0 because not laid out yet, temporarily set width)
+        let panelWidth = refPanel.offsetWidth || 320;
+        if (left + panelWidth > viewportWidth - 12) {
+          // place to the left
+          left = Math.max(12 + scrollX, rect.left - panelWidth - 12 + scrollX);
+        }
+
+        const viewportHeight = document.documentElement.clientHeight;
+        const panelHeight = refPanel.offsetHeight || (viewportHeight * 0.5);
+        if (top + panelHeight > scrollY + viewportHeight - 12) {
+          // lift up a bit
+          top = Math.max(scrollY + 12, (scrollY + viewportHeight) - panelHeight - 12);
+        }
+
+        refPanel.style.left = left + 'px';
+        refPanel.style.top = top + 'px';
+      }
+
       document.addEventListener('click', function(e){
         const el = e.target.closest && e.target.closest('a.cite[data-ref]');
         if (!el) return;
         e.preventDefault();
         const id = el.getAttribute('data-ref');
-        // Find the reference block in the document: <div id="ref-r1" class="refdef">...</div>
         const def = document.getElementById('ref-' + id);
         if (!def) return;
-        // populate panel and show
-        refContent.innerHTML = def.innerHTML;
-        refPanel.style.display = 'block';
-        refPanel.setAttribute('aria-hidden', 'false');
-      });
-  
-      document.addEventListener('click', function(e){
-        if (!e.target.closest('.ref-panel') && !e.target.closest('a.cite[data-ref]')) {
+
+        // remove active class from previous citation
+        if (activeCite && activeCite !== el) {
+          activeCite.classList.remove('cite-active');
+        }
+        // toggle active state if same element clicked
+        if (el.classList.contains('cite-active')) {
+          el.classList.remove('cite-active');
           refPanel.style.display = 'none';
           refPanel.setAttribute('aria-hidden', 'true');
+          activeCite = null;
+          return;
+        }
+
+        el.classList.add('cite-active');
+        activeCite = el;
+
+        showPanelForElement(el, def.innerHTML);
+      });
+
+      document.addEventListener('click', function(e){
+        if (!e.target.closest('.ref-panel') && !e.target.closest('a.cite[data-ref]')) {
+          if (activeCite) activeCite.classList.remove('cite-active');
+          activeCite = null;
+          refPanel.style.display = 'none';
+          refPanel.setAttribute('aria-hidden', 'true');
+        }
+      });
+
+      window.addEventListener('scroll', function() {
+        if (refPanel.style.display === 'block' && activeCite) {
+          showPanelForElement(activeCite, refContent.innerHTML);
+        }
+      }, { passive: true });
+      window.addEventListener('resize', function() {
+        if (refPanel.style.display === 'block' && activeCite) {
+          showPanelForElement(activeCite, refContent.innerHTML);
         }
       });
     })();
