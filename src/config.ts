@@ -139,9 +139,14 @@ export const siteConfig: SiteConfig = {
   education: [
     {
       school: "Indian Institute of Science Education and Research (IISER) Pune",
-      degree: "BS–MS (Physics) — 5th year (Master's student)",
+      degree: "BS-MS (Physics Major, Mathematics Minor)",
       dateRange: "2021 — present",
-      achievements: ["Research in gravitational physics", "Teaching assistant"],
+    },
+    {
+      school: "Mount Carmel Central School",
+      degree: "Class XII CBSE",
+      dateRange: "2021",
+      achievements: ["Percentage: 97.2%", "Physics: 98/100", "Mathematics: 99/100"],
     },
     {
       school: "Sharada Vidyalaya",
@@ -153,32 +158,82 @@ export const siteConfig: SiteConfig = {
 
   news: [
     {
-      date: "2025-07-01",
-      title: "ICTS Summer School on Gravitational-Wave Astronomy — Attended",
-      description: "ICTS-TIFR, Bangalore (July 2025). Summer school on GW astronomy and data analysis.",
-      url: "/posters/poster_presentation.pdf",
-      type: "school",
+      date: "July 2025",
+      title: "ICTS Summer School on Gravitational-Wave Astronomy — ICTS-TIFR, Bangalore",
+      description:
+        "Attended ICTS Summer School on Gravitational-Wave Astronomy (July 2025). Participated in lectures and hands-on sessions on GW data analysis and modelling. Presented a poster summarizing work on non-circular binary merger ringdown and compiled detailed lecture notes.",
+      poster: "/assets/news/icts-2025-poster.pdf",
+      docs: "/assets/news/icts-2025-notes.pdf"
     },
+
     {
-      date: "2025-06-15",
-      title: "QIQG 2025: Quantum Information in Quantum Gravity — Participant",
-      description: "Perimeter Institute (online). Participated in workshops exploring foundations of quantum gravity.",
-      url: "",
-      type: "conference",
+      date: "Feb 25, 2025",
+      title: "Talk: 'Degeneracies between Overlapping and Lensing GWs' — LVK Lensing Group Meeting",
+      description:
+        "Presented work analysing degeneracies between overlapping gravitational-wave signals and lensing effects. Discussed identification strategies and implications for parameter inference."
     },
+
     {
-      date: "2024-06-10",
-      title: "EOB@Work24 Conference — Presented",
-      description: "Theoretisch-Physikalisches Institut, FSU Jena. Presented a poster/talk on quasi-local horizons.",
-      url: "",
-      type: "conference",
+      date: "June 2025",
+      title: "QIQG 2025 — Quantum Information in Quantum Gravity (Perimeter Institute)",
+      description:
+        "Attended QIQG 2025 (online). Participated in lectures and discussions bridging quantum information concepts with gravitational physics and quantum gravity research."
     },
+
     {
-      date: "2024-05-01",
-      title: "DAAD WISE Fellowship (FSU Jena) — Awarded",
-      description: "Three-month funded research internship award (Theoretisch-Physikalisches Institut, FSU Jena).",
-      url: "",
-      type: "award",
+      date: "Jan 2025",
+      title: "Masterclass by Edward Witten — Black Hole Thermodynamics (DESY / University of Hamburg)",
+      description:
+        "Invited masterclass covering black hole thermodynamics and related conceptual foundations. Attended lectures and discussion sessions led by Prof. Edward Witten."
     },
-  ],
+
+    {
+      date: "Jan 2025",
+      title: "A Hundred Years of Quantum Mechanics — Discussion Meeting (ICTS-TIFR)",
+      description:
+        "Participated in the centennial discussion meeting on foundational and modern developments in quantum mechanics hosted by ICTS-TIFR."
+    },
+
+    {
+      date: "June 2024",
+      title: "EOB@Work24 Conference — Theoretisch-Physikalisches Institut, FSU Jena",
+      description:
+        "Attended EOB@Work24. Engaged with researchers working on effective-one-body modelling and waveform systematics related to compact-binary mergers."
+    },
+
+    {
+      date: "July 2023",
+      title: "ICTS Summer School on Gravitational-wave Astronomy (2023)",
+      description:
+        "Attended ICTS Summer School on Gravitational-wave Astronomy (July 2023). Participated in lectures and practical sessions on GW data analysis and modelling."
+    },
+
+    {
+      date: "2024",
+      title: "DAAD WISE Fellowship — Research Internship (FSU Jena)",
+      description:
+        "Awarded DAAD WISE Fellowship for a three-month funded research internship at Theoretisch-Physikalisches Institut, Friedrich-Schiller-Universität Jena (Germany)."
+    },
+
+    {
+      date: "2022",
+      title: "NIUS Astrophysics Fellow (HBCSE)",
+      description:
+        "Selected as National Initiative on Undergraduate Sciences (NIUS) Astrophysics Fellow at HBCSE (2022)."
+    },
+
+    {
+      date: "2021",
+      title: "KVPY SB Fellowship (Kishore Vaigyanik Protsahan Yojana)",
+      description:
+        "Awarded KVPY SB Fellowship (2021) in recognition of strong performance in the Kishore Vaigyanik Protsahan Yojana program."
+    },
+
+    {
+      date: "2020",
+      title: "SX Fellowship (Department of Science & Technology)",
+      description:
+        "Awarded SX Fellowship (2020) from the Department of Science & Technology."
+    },
+  ]
 };
