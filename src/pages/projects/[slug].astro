@@ -1,4 +1,5 @@
 ---
+// src/pages/projects/[slug].astro
 import Header from '../../components/Header.astro';
 import { siteConfig } from '../../config';
 
@@ -31,9 +32,6 @@ if (!project) {
 const ProjectContent = project.default;
 const meta = project.frontmatter ?? {};
 
-const formattedDate = meta.date
-  ? new Date(meta.date).toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })
-  : null;
 ---
 <!doctype html>
 <html lang="en">
@@ -46,7 +44,7 @@ const formattedDate = meta.date
     <style>
       :root { --accent: #1d4ed8; }
 
-      /* project content container */
+      /* project content */
       .project-prose {
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Courier New", monospace;
         color: #0f172a;
@@ -72,11 +70,6 @@ const formattedDate = meta.date
         font-weight: 700;
       }
 
-      .project-prose h1 { font-size: 2.1rem; }
-      .project-prose h2 { font-size: 1.6rem; }
-      .project-prose h3 { font-size: 1.25rem !important; color: #0b1220; }
-
-      /* lists */
       .project-prose ul, .project-prose ol {
         padding-left: 1.25rem;
         margin-top: 0.6rem;
@@ -118,25 +111,27 @@ const formattedDate = meta.date
       }
 
       a.cite { color: inherit; text-decoration: underline dotted; cursor: pointer; }
-      a.cite.cite-active { color: #1d4ed8; /* blue when clicked */ }
+      a.cite.cite-active { color: var(--accent); /* blue when clicked */ }
 
       .ref-panel {
         position: absolute;
         left: 0;
         top: 0;
-        width: 300px;
-        max-width: 40vw;
+        width: 320px;
+        max-width: 42vw;
         max-height: 60vh;
         overflow-y: auto;
         border-left: 1px solid rgba(15,23,42,0.06);
         padding: 1rem;
-        background: rgba(255,255,255,0.95);
-        box-shadow: 0 6px 20px rgba(2,6,23,0.06);
+        background: rgba(255,255,255,0.85);   /* slightly translucent */
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        box-shadow: 0 10px 30px rgba(2,6,23,0.08);
         font-family: ui-monospace, monospace;
         font-size: 0.95rem;
         display: none; /* shown by JS */
         z-index: 9999;
-        border-radius: 6px;
+        border-radius: 8px;
       }
       .ref-panel h4 { font-weight: 700; margin-bottom: .45rem; }
       .ref-entry { margin-bottom: .9rem; color: #111827; }
@@ -146,6 +141,37 @@ const formattedDate = meta.date
       }
 
       .project-header { margin-top: 1.5rem; margin-bottom: 1rem; }
+
+      #references {
+        max-width: 640px;
+        margin: 2rem auto 4rem;
+        padding: 0 1rem;
+      }
+      #references h2 {
+        font-size: 1.125rem;
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+      }
+      #references ol {
+        list-style: decimal;
+        margin-left: 1.25rem;
+        color: #374151;
+      }
+      #references ol li {
+        margin-bottom: 0.8rem;
+      }
+      .ref-list-btn {
+        display:block;
+        width:100%;
+        text-align:left;
+        padding:0;
+        border:0;
+        background:transparent;
+        font-family: ui-monospace, monospace;
+        color: inherit;
+        cursor:pointer;
+      }
+      .ref-list-btn:hover { text-decoration: underline; color: var(--accent); }
 
     </style>
   </head>
@@ -157,7 +183,6 @@ const formattedDate = meta.date
       
       <header class="project-header mb-6">
         <h1 class="text-3xl md:text-4xl font-bold leading-tight">{meta.title}</h1>
-        {formattedDate && <div class="project-meta text-sm text-gray-600 mt-2">{formattedDate}</div>}
         {meta.skills && meta.skills.length > 0 && (
           <div class="flex flex-wrap gap-2 mt-3">
             {meta.skills.map(s => (
@@ -172,6 +197,11 @@ const formattedDate = meta.date
       <article class="project-prose">
         <ProjectContent />
       </article>
+
+      <section id="references" aria-labelledby="references-heading" class="hidden">
+        <h2 id="references-heading">References</h2>
+        <ol id="referencesList"></ol>
+      </section>
     </main>
 
   <aside id="refPanel" class="ref-panel" aria-hidden="true">
@@ -192,7 +222,6 @@ const formattedDate = meta.date
         refPanel.setAttribute('aria-hidden', 'false');
 
         const rect = el.getBoundingClientRect();
-        const panelRect = refPanel.getBoundingClientRect();
         const scrollX = window.scrollX || window.pageXOffset;
         const scrollY = window.scrollY || window.pageYOffset;
 
@@ -200,17 +229,14 @@ const formattedDate = meta.date
         let top = rect.top + scrollY;
 
         const viewportWidth = document.documentElement.clientWidth;
-        // estimate panel width (if 0 because not laid out yet, temporarily set width)
         let panelWidth = refPanel.offsetWidth || 320;
         if (left + panelWidth > viewportWidth - 12) {
-          // place to the left
           left = Math.max(12 + scrollX, rect.left - panelWidth - 12 + scrollX);
         }
 
         const viewportHeight = document.documentElement.clientHeight;
         const panelHeight = refPanel.offsetHeight || (viewportHeight * 0.5);
         if (top + panelHeight > scrollY + viewportHeight - 12) {
-          // lift up a bit
           top = Math.max(scrollY + 12, (scrollY + viewportHeight) - panelHeight - 12);
         }
 
@@ -246,7 +272,7 @@ const formattedDate = meta.date
       });
 
       document.addEventListener('click', function(e){
-        if (!e.target.closest('.ref-panel') && !e.target.closest('a.cite[data-ref]')) {
+        if (!e.target.closest('.ref-panel') && !e.target.closest('a.cite[data-ref]') && !e.target.closest('.ref-list-btn')) {
           if (activeCite) activeCite.classList.remove('cite-active');
           activeCite = null;
           refPanel.style.display = 'none';
@@ -264,6 +290,42 @@ const formattedDate = meta.date
           showPanelForElement(activeCite, refContent.innerHTML);
         }
       });
+
+      function buildReferencesList() {
+        const defs = Array.from(document.querySelectorAll('[id^="ref-"]'));
+        if (!defs.length) return;
+
+        const referencesSection = document.getElementById('references');
+        const listEl = document.getElementById('referencesList');
+        listEl.innerHTML = '';
+
+        referencesSection.classList.remove('hidden');
+
+        defs.forEach((def, idx) => {
+          const li = document.createElement('li');
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'ref-list-btn';
+          btn.setAttribute('aria-label', `Open reference ${idx + 1}`);
+          btn.innerHTML = def.innerHTML;
+
+          btn.addEventListener('click', function(ev) {
+            ev.preventDefault();
+            if (activeCite) { activeCite.classList.remove('cite-active'); activeCite = null; }
+            showPanelForElement(btn, def.innerHTML);
+          });
+
+          li.appendChild(btn);
+          listEl.appendChild(li);
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', buildReferencesList);
+      } else {
+        buildReferencesList();
+      }
+
     })();
   </script>
   </body>
