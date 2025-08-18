@@ -3,7 +3,6 @@ import Header from '../../components/Header.astro';
 import { siteConfig } from '../../config';
 
 import '../../styles/global.css';
----
 
 export async function getStaticPaths() {
   const modules = import.meta.glob('../../contents/*.{md,mdx}', { eager: true });
@@ -33,6 +32,7 @@ const ProjectContent = project.default;
 const meta = project.frontmatter ?? {};
 
 ---
+
 <!doctype html>
 <html lang="en">
   <head>
