@@ -13,31 +13,60 @@ const accent = siteConfig.accentColor ?? "#1d4ed8";
 
       <div class="lg:col-span-8">
         <div class="space-y-6">
-          {news.map((item) => (
-            <article class="rounded-2xl border border-gray-200 p-5 bg-white/60 shadow-sm">
-              <a class="block" href={item.program ?? item.url ?? '#'} target={item.program ? "_blank" : "_self"} rel="noopener">
-                <div class="flex items-start gap-4">
-                  <div class="flex-1">
-                    <h3 class="text-lg font-semibold font-mono">{item.title}</h3>
-                    <p class="text-sm text-gray-600 mt-1">{item.description}</p>
-                    <div class="text-xs text-gray-500 mt-3 font-mono">
-                      {item.date}
+          {news.map((item) => {
+            const href = item.program ?? item.url ?? null;
+            const linkProps = href && href.startsWith('http') ? { href, target: "_blank", rel: "noopener noreferrer" } : { href };
+            return (
+              <article
+                class="rounded-2xl border border-gray-200 p-5 bg-white/60 shadow-sm transition-all duration-250"
+                key={item.title}
+              >
+                <a {...(href ? linkProps : {})} class="block">
+                  <div class="flex items-start gap-4">
+                    <div class="flex-1">
+                      <h3 class="text-lg font-semibold font-mono">{item.title}</h3>
+                      <p class="text-sm text-gray-600 mt-1">{item.description}</p>
+                      <div class="text-xs text-gray-500 mt-3 font-mono">
+                        {item.date}
+                      </div>
+                    </div>
+
+                    <div class="flex-shrink-0 flex flex-col items-end gap-2">
+                      {item.poster ? (
+                        <a href={item.poster} target="_blank" rel="noopener noreferrer" aria-label="Open poster" class="inline-flex items-center gap-2 text-xs font-mono px-2 py-1 rounded bg-gray-100 hover:bg-gray-200">
+                          <!-- document icon -->
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <path d="M14 2v6h6"/>
+                          </svg>
+                          <span class="hidden sm:inline">Poster</span>
+                        </a>
+                      ) : null}
+
+                      {item.docs ? (
+                        <a href={item.docs} target="_blank" rel="noopener noreferrer" aria-label="Open notes" class="inline-flex items-center gap-2 text-xs font-mono px-2 py-1 rounded border hover:bg-gray-50">
+                          <!-- drive / doc icon -->
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <path d="M7 10l5-5 5 5"/>
+                            <path d="M12 3v12"/>
+                          </svg>
+                          <span class="hidden sm:inline">Notes</span>
+                        </a>
+                      ) : null}
                     </div>
                   </div>
-
-                  <div class="flex-shrink-0 flex flex-col items-end gap-2">
-                    {item.poster ? (
-                      <a href={item.poster} target="_blank" rel="noopener" class="text-xs font-mono px-3 py-1 rounded bg-gray-900 text-white">Poster</a>
-                    ) : null}
-
-                    {item.docs ? (
-                      <a href={item.docs} target="_blank" rel="noopener" class="text-xs font-mono px-3 py-1 rounded border">Notes</a>
-                    ) : null}
-                  </div>
-                </div>
-              </a>
-            </article>
-          ))}
+                </a>
+                <style>
+                  article:hover {
+                    background: rgba(255,255,255,0.95);
+                    box-shadow: 0 8px 28px rgba(2,6,23,0.06);
+                    transform: translateY(-4px);
+                  }
+                </style>
+              </article>
+            );
+          })}
         </div>
       </div>
     </div>
