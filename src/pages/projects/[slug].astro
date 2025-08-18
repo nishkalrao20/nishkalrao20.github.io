@@ -1,44 +1,15 @@
 ---
-// src/pages/projects/[slug].astro
 import Header from '../../components/Header.astro';
 import { siteConfig } from '../../config';
 
 import '../../styles/global.css';
-
-export async function getStaticPaths() {
-  const modules = import.meta.glob('../../contents/*.{md,mdx}', { eager: true });
-  return Object.keys(modules).map((path) => {
-    const slug = path.split('/').pop().replace(/\.mdx?$/, '').replace(/\.md$/, '');
-    return { params: { slug } };
-  });
-}
-
-const modules = import.meta.glob('../../contents/*.{md,mdx}', { eager: true });
-
-const all = Object.fromEntries(
-  Object.entries(modules).map(([path, mod]) => {
-    const slug = path.split('/').pop().replace(/\.mdx?$/, '').replace(/\.md$/, '');
-    return [slug, mod];
-  })
-);
-
-const { slug } = Astro.params;
-const project = all[slug];
-
-if (!project) {
-  throw new Error(`Project "${slug}" not found. Ensure src/contents/${slug}.md exists.`);
-}
-
-const ProjectContent = project.default;
-const meta = project.frontmatter ?? {};
-
 ---
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>{meta.title ?? slug} — {Astro.site?.title}</title>
-    <meta name="description" content={meta.summary ?? meta.description ?? Astro.site?.description ?? ''} />
+    <title>{meta?.title ?? Astro.params.slug} — {Astro.site?.title}</title>
+    <meta name="description" content={meta?.summary ?? meta?.description ?? Astro.site?.description ?? ''} />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
     <style>
@@ -110,8 +81,24 @@ const meta = project.frontmatter ?? {};
         font-weight: 600;
       }
 
-      a.cite { color: inherit; text-decoration: underline dotted; cursor: pointer; }
-      a.cite.cite-active { color: var(--accent); /* blue when clicked */ }
+      /* citation base + small transition so hover is visible */
+      a.cite {
+        color: inherit;
+        text-decoration: underline dotted;
+        cursor: pointer;
+        transition: color 160ms ease, text-decoration-color 160ms ease;
+      }
+      a.cite.cite-active { color: var(--accent);}
+      a.cite:hover,
+      a.cite:focus {
+        color: var(--accent);
+        text-decoration-color: var(--accent);
+        outline: none;
+      }
+      a.cite:focus-visible {
+        box-shadow: 0 0 0 4px rgba(29,78,216,0.12);
+        border-radius: 4px;
+      }
 
       .ref-panel {
         position: absolute;
@@ -123,13 +110,13 @@ const meta = project.frontmatter ?? {};
         overflow-y: auto;
         border-left: 1px solid rgba(15,23,42,0.06);
         padding: 1rem;
-        background: rgba(255,255,255,0.85);   /* slightly translucent */
+        background: rgba(255,255,255,0.85);
         backdrop-filter: blur(6px);
         -webkit-backdrop-filter: blur(6px);
         box-shadow: 0 10px 30px rgba(2,6,23,0.08);
         font-family: ui-monospace, monospace;
         font-size: 0.95rem;
-        display: none; /* shown by JS */
+        display: none;
         z-index: 9999;
         border-radius: 8px;
       }
@@ -144,8 +131,8 @@ const meta = project.frontmatter ?? {};
 
       #references {
         max-width: 640px;
-        margin: 2rem auto 4rem;
-        padding: 0 1rem;
+        margin: 2rem 0 4rem;
+        padding: 0 1rem 0 0;
       }
       #references h2 {
         font-size: 1.125rem;
@@ -252,11 +239,9 @@ const meta = project.frontmatter ?? {};
         const def = document.getElementById('ref-' + id);
         if (!def) return;
 
-        // remove active class from previous citation
         if (activeCite && activeCite !== el) {
           activeCite.classList.remove('cite-active');
         }
-        // toggle active state if same element clicked
         if (el.classList.contains('cite-active')) {
           el.classList.remove('cite-active');
           refPanel.style.display = 'none';
