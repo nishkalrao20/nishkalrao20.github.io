@@ -32,7 +32,6 @@ import { siteConfig } from "../config";
         <path d="M.5 200V.5H200" fill="none"></path>
       </pattern>
 
-      <!-- Existing programming symbols pattern; added subtle LaTeX / GR tokens below -->
       <pattern
         id="programming-symbols"
         x="0"
@@ -122,14 +121,13 @@ import { siteConfig } from "../config";
           transform="rotate(8)">;</text
         >
 
-        <!-- subtle LaTeX / General Relativity symbols (kept small and low-contrast visually) -->
         <text
           x="30"
           y="120"
           fill={siteConfig.accentColor}
           font-family="monospace"
           font-size="14"
-          transform="rotate(-20)">\(G_{\mu\nu}\)</text
+          transform="rotate(-20)">\(G_{\\mu\\nu}\)</text
         >
         <text
           x="120"
@@ -137,7 +135,7 @@ import { siteConfig } from "../config";
           fill={siteConfig.accentColor}
           font-family="monospace"
           font-size="16"
-          transform="rotate(8)">\(\mathcal{R}\)</text
+          transform="rotate(8)">\(\\mathcal{R}\)</text
         >
         <text
           x="320"
@@ -145,7 +143,7 @@ import { siteConfig } from "../config";
           fill={siteConfig.accentColor}
           font-family="monospace"
           font-size="12"
-          transform="rotate(-12)">\(\nabla\)</text
+          transform="rotate(-12)">\(\\nabla\)</text
         >
         <text
           x="260"
@@ -153,7 +151,7 @@ import { siteConfig } from "../config";
           fill={siteConfig.accentColor}
           font-family="monospace"
           font-size="12"
-          transform="rotate(14)">\(\partial_t\)</text
+          transform="rotate(14)">\(\\partial_t\)</text
         >
         <text
           x="190"
@@ -174,7 +172,6 @@ import { siteConfig } from "../config";
       </pattern>
     </defs>
 
-    <!-- tiled pattern layers; first is small-programming pattern -->
     <rect
       fill="url(#programming-symbols)"
       width="100%"
