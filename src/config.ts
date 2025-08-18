@@ -69,7 +69,7 @@ export const siteConfig: SiteConfig = {
       label: "Master's Thesis",
       description:
         "Construction and analysis of quasi-local isolated horizons for near-horizon spacetime models.",
-      skills: ["General Relativity"],
+      skills: ["General Relativity", "Isolated Horizons"],
       date: "June 2025",
       repo: "",
       demo: "",
