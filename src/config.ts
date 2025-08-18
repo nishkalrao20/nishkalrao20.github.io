@@ -21,7 +21,6 @@ export interface NewsItem {
   title: string;
   description?: string;
   url?: string;
-  type?: "conference" | "poster" | "school" | "other";
 }
 
 export interface SiteConfig {
@@ -40,7 +39,7 @@ export interface SiteConfig {
 export const siteConfig: SiteConfig = {
   name: "Nishkal Rao",
   title: "Graduate Researcher",
-  description: "Personal website — Research, Projects, and Resources",
+  description: "Personal website - Research, Projects, and Resources",
   accentColor: "#1d4ed8",
   social: {
     email: "nishkal.rao@students.iiserpune.ac.in",
@@ -139,8 +138,9 @@ export const siteConfig: SiteConfig = {
   education: [
     {
       school: "Indian Institute of Science Education and Research (IISER) Pune",
-      degree: "BS-MS (Physics Major, Mathematics Minor)",
-      dateRange: "2021 — present",
+      degree: "BS-MS Dual Degree (5 year)",
+      dateRange: "2021 - present",
+      achievements: ["Physics Major, Mathematics Minor", "GPA: 9.3/10"]
     },
     {
       school: "Mount Carmel Central School",
@@ -159,7 +159,7 @@ export const siteConfig: SiteConfig = {
   news: [
     {
       date: "July 2025",
-      title: "ICTS Summer School on Gravitational-Wave Astronomy — ICTS-TIFR, Bangalore",
+      title: "ICTS Summer School on Gravitational-Wave Astronomy - ICTS-TIFR, Bangalore",
       description:
         "Attended ICTS Summer School on Gravitational-Wave Astronomy (July 2025). Participated in lectures and hands-on sessions on GW data analysis and modelling. Presented a poster summarizing work on non-circular binary merger ringdown and compiled detailed lecture notes.",
       poster: "/assets/news/icts-2025-poster.pdf",
@@ -167,36 +167,36 @@ export const siteConfig: SiteConfig = {
     },
 
     {
-      date: "Feb 25, 2025",
-      title: "Talk: 'Degeneracies between Overlapping and Lensing GWs' — LVK Lensing Group Meeting",
+      date: "Feb 2025",
+      title: "Talk: 'Degeneracies between Overlapping and Lensing GWs' - LVK Lensing Group Meeting",
       description:
         "Presented work analysing degeneracies between overlapping gravitational-wave signals and lensing effects. Discussed identification strategies and implications for parameter inference."
     },
 
     {
       date: "June 2025",
-      title: "QIQG 2025 — Quantum Information in Quantum Gravity (Perimeter Institute)",
+      title: "QIQG 2025 - Quantum Information in Quantum Gravity (Perimeter Institute)",
       description:
         "Attended QIQG 2025 (online). Participated in lectures and discussions bridging quantum information concepts with gravitational physics and quantum gravity research."
     },
 
     {
       date: "Jan 2025",
-      title: "Masterclass by Edward Witten — Black Hole Thermodynamics (DESY / University of Hamburg)",
+      title: "Masterclass by Edward Witten - Black Hole Thermodynamics (DESY / University of Hamburg)",
       description:
         "Invited masterclass covering black hole thermodynamics and related conceptual foundations. Attended lectures and discussion sessions led by Prof. Edward Witten."
     },
 
     {
       date: "Jan 2025",
-      title: "A Hundred Years of Quantum Mechanics — Discussion Meeting (ICTS-TIFR)",
+      title: "A Hundred Years of Quantum Mechanics - Discussion Meeting (ICTS-TIFR)",
       description:
         "Participated in the centennial discussion meeting on foundational and modern developments in quantum mechanics hosted by ICTS-TIFR."
     },
 
     {
       date: "June 2024",
-      title: "EOB@Work24 Conference — Theoretisch-Physikalisches Institut, FSU Jena",
+      title: "EOB@Work24 Conference - Theoretisch-Physikalisches Institut, FSU Jena",
       description:
         "Attended EOB@Work24. Engaged with researchers working on effective-one-body modelling and waveform systematics related to compact-binary mergers."
     },
@@ -210,7 +210,7 @@ export const siteConfig: SiteConfig = {
 
     {
       date: "2024",
-      title: "DAAD WISE Fellowship — Research Internship (FSU Jena)",
+      title: "DAAD WISE Fellowship - Research Internship (FSU Jena)",
       description:
         "Awarded DAAD WISE Fellowship for a three-month funded research internship at Theoretisch-Physikalisches Institut, Friedrich-Schiller-Universität Jena (Germany)."
     },
@@ -224,16 +224,9 @@ export const siteConfig: SiteConfig = {
 
     {
       date: "2021",
-      title: "KVPY SB Fellowship (Kishore Vaigyanik Protsahan Yojana)",
+      title: "KVPY SX/SB Fellowship (Kishore Vaigyanik Protsahan Yojana)",
       description:
-        "Awarded KVPY SB Fellowship (2021) in recognition of strong performance in the Kishore Vaigyanik Protsahan Yojana program."
-    },
-
-    {
-      date: "2020",
-      title: "SX Fellowship (Department of Science & Technology)",
-      description:
-        "Awarded SX Fellowship (2020) from the Department of Science & Technology."
+        "Awarded KVPY SB Fellowship (2021) in recognition of strong performance in the Kishore Vaigyanik Protsahan Yojana program. Earlier, Recipient of the KVPY SX Fellowship (2020)."
     },
   ],
 };
