@@ -235,5 +235,5 @@ export const siteConfig: SiteConfig = {
       description:
         "Awarded SX Fellowship (2020) from the Department of Science & Technology."
     },
-  ]
+  ],
 };
