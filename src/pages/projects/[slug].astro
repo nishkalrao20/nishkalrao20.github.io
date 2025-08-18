@@ -41,86 +41,110 @@ const meta = project.frontmatter ?? {};
     <meta name="color-scheme" content="light dark" />
     <style>
       :root { --accent: #1d4ed8; }
-      /* base overrides for the project page */
-      .project-prose { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace; color: #0f172a; line-height: 1.65; }
-      .project-prose p { margin-top: 0.7rem; margin-bottom: 0.9rem; font-size: 1.05rem; }
-      .project-prose h1, .project-prose h2, .project-prose h3 { font-weight: 700; margin-top: 1.6rem; margin-bottom: 0.6rem; line-height: 1.15; }
-      .project-prose h1 { font-size: 1.6rem; }
-      .project-prose h2 { font-size: 1.25rem; }
-      .project-prose h3 { font-size: 1.05rem; }
-
+    
+      /* project content container */
+      .project-prose {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Courier New", monospace;
+        color: #0f172a;
+        line-height: 1.8;            /* increased line spacing for readability */
+        font-size: 1.03rem;
+      }
+    
+      /* paragraphs & readable spacing */
+      .project-prose p {
+        margin-top: 0.9rem;
+        margin-bottom: 1.05rem;
+        font-size: 1.08rem;
+        letter-spacing: 0.0015em;
+      }
+    
+      /* headings */
+      .project-prose h1,
+      .project-prose h2,
+      .project-prose h3 {
+        margin-top: 1.8rem;
+        margin-bottom: 0.6rem;
+        line-height: 1.15;
+        font-weight: 700;
+      }
+    
+      .project-prose h1 { font-size: 2.1rem; }
+      .project-prose h2 { font-size: 1.6rem; }
+      .project-prose h3 { font-size: 1.25rem; } /* bigger than body so ### stand out */
+    
       /* lists */
-      .project-prose ul, .project-prose ol { padding-left: 1.25rem; margin-top: 0.6rem; margin-bottom: 0.9rem; }
+      .project-prose ul, .project-prose ol {
+        padding-left: 1.25rem;
+        margin-top: 0.6rem;
+        margin-bottom: 0.9rem;
+      }
+    
       .project-prose li { margin-top: 0.35rem; }
-
+    
       /* code blocks & inline code */
       .project-prose pre {
-        background: #0f172a10;
-        border: 1px solid rgba(15,23,42,0.06);
+        background: #0b1220;
+        color: #e6eef8;
         padding: 1rem;
-        border-radius: 0.5rem;
-        overflow: auto;
+        border-radius: 8px;
+        overflow-x: auto;
         font-size: 0.95rem;
       }
       .project-prose code {
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
-        background: rgba(15,23,42,0.03);
-        padding: 0.15rem 0.35rem;
-        border-radius: 0.25rem;
-        font-size: 0.92rem;
+        font-family: ui-monospace, monospace;
+        background: rgba(15,23,42,0.06);
+        padding: 0.12rem 0.3rem;
+        border-radius: 4px;
       }
-
-      /* blockquote */
-      .project-prose blockquote {
-        border-left: 3px solid rgba(0,0,0,0.06);
-        margin-left: 0;
-        padding-left: 1rem;
-        color: rgba(15,23,42,0.75);
-        font-style: italic;
-      }
-
-      /* tables */
-      .project-prose table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 0.75rem;
-        margin-bottom: 0.75rem;
-        font-size: 0.95rem;
-      }
-      .project-prose th, .project-prose td {
-        padding: 0.5rem 0.75rem;
-        border: 1px solid rgba(15,23,42,0.06);
-        text-align: left;
-      }
-      .project-prose thead th {
-        background: rgba(15,23,42,0.03);
-      }
-
-      /* images */
-      .project-prose img {
-        display: block;
-        max-width: 100%;
-        border-radius: 0.5rem;
-        margin: 1rem 0;
-      }
-
+    
       /* katex tweaks (math blocks) */
-      .project-prose .katex {
-        font-size: 1.01rem;
-        line-height: 1.35;
+      .project-prose .katex { font-size: 1.02rem; line-height: 1.35; }
+      .project-prose .katex-display { margin: 1rem 0; }
+    
+      /* make skill pills match About section */
+      .skill-pill {
+        display:inline-block;
+        font-family: ui-monospace, monospace;
+        padding: 0.25rem 0.65rem;
+        border-radius: 9999px;
+        background: #0f172a;    /* same dark pill */
+        color: #fff;
+        font-size: 0.8rem;
+        margin-right:0.35rem;
+        margin-top:0.3rem;
       }
-      .project-prose .katex-display {
-        margin: 1rem 0;
-      }
-
-      /* small project meta styles */
-      .project-meta { color: rgba(0,0,0,0.6); font-size: 0.95rem; margin-top: 0.25rem; font-family: ui-monospace, monospace; }
-      .skill-pill { display:inline-block; font-family: ui-monospace, monospace; padding: 0.2rem 0.6rem; border-radius: 9999px; background: #0f172a; color: #fff; font-size: 0.8rem; margin-right:0.35rem; margin-top:0.3rem; }
-
-      /* small responsive tweaks */
+    
+      /* responsive tweaks */
       @media (min-width: 768px) {
-        .project-prose p { font-size: 1.08rem; }
-        .project-prose h1 { font-size: 2rem; }
+        .project-prose p { font-size: 1.12rem; }
+        .project-prose h1 { font-size: 2.4rem; }
+        .project-prose h2 { font-size: 1.8rem; }
+        .project-prose h3 { font-size: 1.35rem; }
+      }
+    
+      /* --- Right-side reference / citation panel --- */
+      .ref-panel {
+        position: fixed;
+        right: 1.25rem;
+        top: 120px;
+        width: 280px;
+        max-height: 70vh;
+        overflow-y: auto;
+        border-left: 1px solid rgba(15,23,42,0.06);
+        padding-left: 1rem;
+        background: rgba(255,255,255,0.6);
+        backdrop-filter: blur(6px);
+        font-family: ui-monospace, monospace;
+        font-size: 0.9rem;
+        display: none; /* hidden until a ref is clicked */
+        z-index: 60;
+      }
+      .ref-panel h4 { font-weight: 700; margin-bottom: .45rem; }
+      .ref-entry { margin-bottom: .9rem; color: #111827; }
+    
+      /* small screens: hide panel */
+      @media (max-width: 1024px) {
+        .ref-panel { display: none !important; }
       }
     </style>
   </head>
@@ -146,5 +170,38 @@ const meta = project.frontmatter ?? {};
         <ProjectContent />
       </article>
     </main>
+
+  <aside id="refPanel" class="ref-panel" aria-hidden="true">
+    <h4>References</h4>
+    <div id="refContent"></div>
+  </aside>
+  
+  <script>
+    (function(){
+      const refPanel = document.getElementById('refPanel');
+      const refContent = document.getElementById('refContent');
+  
+      document.addEventListener('click', function(e){
+        const el = e.target.closest && e.target.closest('a.cite[data-ref]');
+        if (!el) return;
+        e.preventDefault();
+        const id = el.getAttribute('data-ref');
+        // Find the reference block in the document: <div id="ref-r1" class="refdef">...</div>
+        const def = document.getElementById('ref-' + id);
+        if (!def) return;
+        // populate panel and show
+        refContent.innerHTML = def.innerHTML;
+        refPanel.style.display = 'block';
+        refPanel.setAttribute('aria-hidden', 'false');
+      });
+  
+      document.addEventListener('click', function(e){
+        if (!e.target.closest('.ref-panel') && !e.target.closest('a.cite[data-ref]')) {
+          refPanel.style.display = 'none';
+          refPanel.setAttribute('aria-hidden', 'true');
+        }
+      });
+    })();
+  </script>
   </body>
 </html>
