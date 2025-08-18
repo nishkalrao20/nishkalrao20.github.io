@@ -1,6 +1,5 @@
 ---
 title: "Quantum Superpositions: Entanglement and Decoherence through Black Holes"
-date: 2025-08-18
 skills: ["Black Hole Decoherence", "Quantum Field Theory", "General Relativity", "Quantum Foundations"]
 ---
 
