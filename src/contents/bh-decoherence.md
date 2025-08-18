@@ -47,3 +47,15 @@ Using a dipole approximation for the current difference, this expression simplif
 $$\langle N \rangle \approx 4q^2 \int dt \int dt' \ d(t) d(t') \langle \Psi_0 | s^\mu \mathbf{E}^{in}_{\mu}(t, \mathbf{X}(t)) s^\nu \mathbf{E}^{in}_{\nu}(t', \mathbf{X}(t')) | \Psi_0 \rangle$$
 
 **Role of the Vacuum State:** The linear-in-$T$ growth of decoherence is a direct consequence of the thermal nature of the **Unruh vacuum** state near the horizon. This state's two-point function contains a specific low-frequency structure corresponding to thermal noise. The weighting factor for modes originating from the horizon ("white hole" modes) behaves as $G_U^+(\omega) \approx \frac{\kappa}{2\pi\omega}$ for low frequencies, where $\kappa$ is the surface gravity. It is this $1/\omega$ term that, when integrated, produces the decoherence rate proportional to time $T$. Other vacuum states, like the Boulware vacuum, lack this thermal component and lead to a much slower, logarithmic ($\ln T$) decoherence. In essence, the black hole acts as a thermal bath with fluctuating multipole moments, and the interaction of the superposition with these thermal fluctuations drives the decoherence.
+
+<div id="ref-r1" class="refdef" style="display:none">
+  <div class="ref-entry">
+    <strong>Author A.</strong> Title of paper. Journal, 2024. <a href="https://doi.org/..." target="_blank" rel="noopener">link</a>
+  </div>
+</div>
+
+<div id="ref-r2" class="refdef" style="display:none">
+  <div class="ref-entry">
+    <strong>Author B.</strong> Another source. 2023.
+  </div>
+</div>
