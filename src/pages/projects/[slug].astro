@@ -4,6 +4,7 @@ import { siteConfig } from '../../config';
 
 import '../../styles/global.css';
 ---
+
 export async function getStaticPaths() {
   const modules = import.meta.glob('../../contents/*.{md,mdx}', { eager: true });
   return Object.keys(modules).map((path) => {
@@ -31,12 +32,13 @@ if (!project) {
 const ProjectContent = project.default;
 const meta = project.frontmatter ?? {};
 
+---
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>{meta?.title ?? Astro.params.slug} — {Astro.site?.title}</title>
-    <meta name="description" content={meta?.summary ?? meta?.description ?? Astro.site?.description ?? ''} />
+    <title>{meta.title ?? slug} — {Astro.site?.title}</title>
+    <meta name="description" content={meta.summary ?? meta.description ?? Astro.site?.description ?? ''} />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
     <style>
