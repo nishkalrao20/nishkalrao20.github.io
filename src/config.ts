@@ -105,7 +105,7 @@ export const siteConfig: SiteConfig = {
     
     {
       name: "On detectability of non-linear modes in ringdown through Parameter Estimation",
-      slug: "nonlinear-ringdown-pes",
+      slug: "quadratic-modes",
       description:
         "Implementation and testing of quadratic mode injections, development of parameter estimation strategies, and analysis of the detectability of non-linear/quadratic ringdown modes.",
       skills: ["Gravitational Wave Analysis", "Ringdowns", "Parameter Estimation"],
@@ -115,7 +115,7 @@ export const siteConfig: SiteConfig = {
     
     {
       name: "Enhancing IMR Consistency Tests for Gravitational Wave Transients",
-      slug: "imr-consistency-enhancements",
+      slug: "imrct-tgr",
       description:
         "Enhancements to inspiral–merger–ringdown (IMR) consistency tests using time-domain analyses: algorithmic improvements, SNR threshold refinement and investigation of higher-mode systematics on GR tests.",
       skills: ["Gravitational Wave Analysis"],
