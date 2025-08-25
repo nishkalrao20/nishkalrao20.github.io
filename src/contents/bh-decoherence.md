@@ -3,7 +3,7 @@ title: "Quantum Superpositions: Entanglement and Decoherence through Black Holes
 skills: ["Black Hole Decoherence", "Quantum Field Theory", "General Relativity", "Quantum Foundations"]
 ---
 
-### The Gedankenexperiment: Causality and Complementarity
+<h2> The Gedankenexperiment: Causality and Complementarity </h2>
 The foundational problem is how a quantum source interacts with the gravitational field. This is explored via a thought experiment involving two spacelike separated agents, A and B.
 
 **The Setup:** Agent **A** prepares a massive particle in a spatial superposition $|\Psi\rangle = \frac{1}{\sqrt{2}}(|L\rangle + |R\rangle)$, where the paths are separated by a distance $d$. After a time $T_A$, A attempts to recombine the paths to observe interference. At a distance $D$, agent **B** tries to determine the particle's path by measuring its field, a process taking time $T_B$. A potential paradox arises if $T_A < D$ and $T_B < D$, as it seems to allow for a violation of complementarity or causality.
@@ -19,7 +19,7 @@ The foundational problem is how a quantum source interacts with the gravitationa
 
 ---
 
-### Decoherence from Black Holes and Horizons 
+<h2> Decoherence from Black Holes and Horizons </h2>
 
 Introducing a black hole creates a powerful, unavoidable decoherence mechanism, even for an adiabatically maintained superposition.
 
@@ -36,7 +36,7 @@ where $M$ is the black hole mass, $b$ is the distance to the hole, and $d$ is th
 
 ---
 
-### The Local Description of Decoherence
+<h2> The Local Description of Decoherence </h2>
 
 The decoherence mechanism can be understood from a purely local viewpoint, without reference to a global horizon. The effect arises from the interaction between the superposition's components and the local **vacuum fluctuations** of the quantum field.
 
