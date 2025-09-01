@@ -21,11 +21,13 @@ $\mathcal{M}_B/\mathcal{M}_A \in [0.1,\,10]$, $\mathrm{SNR_B/SNR_A} \in [0.1,\,1
 ### Methods
 #### Parameter Estimation
 Bayesian inference: $\mathcal{L}(d|\theta)\propto\exp\Big[-\tfrac{1}{2}\langle d-h(\theta)|d-h(\theta)\rangle\Big]$
-$\underbrace{\log_{10}\mathcal{B}^L_U}_{\text{Bayes Factor}} = \log_{10}\mathcal{Z}_L - \log_{10}\mathcal{Z}_U, \quad \mathcal{Z}_M = \int d\theta \mathcal{L}(d | \theta, \mathcal{H}_M) \pi_M(\theta | \mathcal{H}_M)$
+$\underbrace{\log_{10}\mathcal{B}^L_U}_{\text{Bayes Factor}} = \log_{10}\mathcal{Z}_L - \log_{10}\mathcal{Z}_U$
+$\mathcal{Z}_M = \int d\theta \mathcal{L}(d | \theta, \mathcal{H}_M) \pi_M(\theta | \mathcal{H}_M)$
 
 #### Fitting Factor 
 Maximizing waveform overlap: $\mathcal{M}[h_1, h_2] = \max_{t_c, \Phi_c}\frac{\langle h_1 | h_2 \rangle}{\sqrt{\langle h_1 | h_1 \rangle \langle h_2 | h_2 \rangle}}.$
-$\mathcal{F}=\max_{\lambda}\,\mathcal{M}[h_1, h_2(\lambda)], \quad \log_{10}\mathcal{B}^L_U = (\mathcal{F}_L^2 - \mathcal{F}_U^2)\frac{\mathrm{SNR}^2}{2}$
+$\mathcal{F}=\max_{\lambda}\,\mathcal{M}[h_1, h_2(\lambda)]$
+$\log_{10}\mathcal{B}^L_U = (\mathcal{F}_L^2 - \mathcal{F}_U^2)\frac{\mathrm{SNR}^2}{2}$
 
 ### Unlensed Singles:
 #### Parameter Estimation:
