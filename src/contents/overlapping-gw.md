@@ -19,12 +19,12 @@ Systematically vary key parameters influencing waveform evolution: Chirp mass ra
 
 ### Methods
 #### Parameter Estimation
-Bayesian inference: $$\mathcal{L}(d|\theta)\propto\exp\Big[-\tfrac{1}{2}\langle d-h(\theta)|d-h(\theta)\rangle\Big]$$
-$$\underbrace{\log_{10}\mathcal{B}^L_U}_{\text{Bayes Factor}} = \log_{10}\mathcal{Z}_L - \log_{10}\mathcal{Z}_U, \quad \mathcal{Z}_M = \int d\theta \mathcal{L}(d | \theta, \mathcal{H}_M) \pi_M(\theta | \mathcal{H}_M)$$
+Bayesian inference: $\mathcal{L}(d|\theta)\propto\exp\Big[-\tfrac{1}{2}\langle d-h(\theta)|d-h(\theta)\rangle\Big]$
+$\underbrace{\log_{10}\mathcal{B}^L_U}_{\text{Bayes Factor}} = \log_{10}\mathcal{Z}_L - \log_{10}\mathcal{Z}_U, \quad \mathcal{Z}_M = \int d\theta \mathcal{L}(d | \theta, \mathcal{H}_M) \pi_M(\theta | \mathcal{H}_M)$
 
 #### Fitting Factor 
-Maximizing waveform overlap: $$\mathcal{M}[h_1, h_2] = \max_{t_c, \Phi_c}\frac{\langle h_1 | h_2 \rangle}{\sqrt{\langle h_1 | h_1 \rangle \langle h_2 | h_2 \rangle}}.$$
-$$\mathcal{F}=\max_{\lambda}\,\mathcal{M}[h_1, h_2(\lambda)], \quad \log_{10}\mathcal{B}^L_U = (\mathcal{F}_L^2 - \mathcal{F}_U^2)\frac{\mathrm{SNR}^2}{2}$$
+Maximizing waveform overlap: $\mathcal{M}[h_1, h_2] = \max_{t_c, \Phi_c}\frac{\langle h_1 | h_2 \rangle}{\sqrt{\langle h_1 | h_1 \rangle \langle h_2 | h_2 \rangle}}.$
+$\mathcal{F}=\max_{\lambda}\,\mathcal{M}[h_1, h_2(\lambda)], \quad \log_{10}\mathcal{B}^L_U = (\mathcal{F}_L^2 - \mathcal{F}_U^2)\frac{\mathrm{SNR}^2}{2}$
 
 ### Unlensed Singles:
 #### Parameter Estimation:
@@ -69,30 +69,30 @@ $$\mathcal{F}=\max_{\lambda}\,\mathcal{M}[h_1, h_2(\lambda)], \quad \log_{10}\ma
 
 <div id="ref-r2" class="refdef" style="display:none">
   <div class="ref-entry">
-    <strong>Samajdar, A. et al.,</strong> Biases in parameter estimation from overlapping gravitational-wave signals in the third-generation detector era. Physical Review D 2021 <a href="https://doi.org/10.1103/PhysRevD.104.044003" target="_blank" rel="noopener">link</a>
+    <strong>Samajdar, A. et al.,</strong> Biases in parameter estimation from overlapping gravitational-wave signals in the third-generation detector era. Physical Review D 2021 <a href="https://doi.org/10.1103/PhysRevD.104.044003" target="_blank" rel="noopener">*</a>
   </div>
 </div>
 
 <div id="ref-r3" class="refdef" style="display:none">
   <div class="ref-entry">
-    <strong>Relton, P. and Raymond, V.,</strong> Parameter estimation bias from overlapping binary black hole events in second generation interferometers. Physical Review D 2021 <a href="https://doi.org/10.1103/PhysRevD.104.084039" target="_blank" rel="noopener">link</a>
+    <strong>Relton, P. and Raymond, V.,</strong> Parameter estimation bias from overlapping binary black hole events in second generation interferometers. Physical Review D 2021 <a href="https://doi.org/10.1103/PhysRevD.104.084039" target="_blank" rel="noopener">*</a>
   </div>
 </div>
 
 <div id="ref-r4" class="refdef" style="display:none">
   <div class="ref-entry">
-    <strong>Janquart, J. et al.,</strong> Analyses of overlapping gravitational wave signals using hierarchical subtraction and joint parameter estimation. Monthly Notices of the Royal Astronomical Society 2023 <a href="https://doi.org/10.1093/mnras/stad1542" target="_blank" rel="noopener">link</a>
+    <strong>Janquart, J. et al.,</strong> Analyses of overlapping gravitational wave signals using hierarchical subtraction and joint parameter estimation. Monthly Notices of the Royal Astronomical Society 2023 <a href="https://doi.org/10.1093/mnras/stad1542" target="_blank" rel="noopener">*</a>
   </div>
 </div>
 
 <div id="ref-r5" class="refdef" style="display:none">
   <div class="ref-entry">
-    <strong>Veitch, J. and Vecchio, A.,</strong> Bayesian coherent analysis of in-spiral gravitational wave signals with a detector network. Physical Review D 2010 <a href="https://doi.org/10.1103/PhysRevD.81.062003" target="_blank" rel="noopener">link</a>
+    <strong>Veitch, J. and Vecchio, A.,</strong> Bayesian coherent analysis of in-spiral gravitational wave signals with a detector network. Physical Review D 2010 <a href="https://doi.org/10.1103/PhysRevD.81.062003" target="_blank" rel="noopener">*</a>
   </div>
 </div>
 
 <div id="ref-r6" class="refdef" style="display:none">
   <div class="ref-entry">
-    <strong>Owen, B.J.,</strong> Search templates for gravitational waves from inspiraling binaries: Choice of template spacing. Physical Review D 1996 <a href="https://doi.org/10.1103/PhysRevD.53.6749" target="_blank" rel="noopener">link</a>
+    <strong>Owen, B.J.,</strong> Search templates for gravitational waves from inspiraling binaries: Choice of template spacing. Physical Review D 1996 <a href="https://doi.org/10.1103/PhysRevD.53.6749" target="_blank" rel="noopener">*</a>
   </div>
 </div>
