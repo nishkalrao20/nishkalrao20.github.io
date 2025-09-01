@@ -6,16 +6,17 @@ skills: ["Gravitational Wave Analysis"]
 ### Overlapping Transients
 
 ### Lensing Effects
-#### **Strong Lensing (Type II):** 
+#### Strong Lensing (Type II):
 It is an effect of scaling the signal's amplitude, a temporal delay and an overall phase shift. Resulting in non-trivial properties in the time domain for certain parameters.
-#### **Microlensing:** 
+#### Microlensing: 
 Exhibits frequency-dependent amplification due to wave-optics effects. Resemblance to the beating patterns in overlapping signals.
 
+### Parameters
 Systematically vary key parameters influencing waveform evolution: Chirp mass ratio: $\mathcal{M}_B/\mathcal{M}_A$, SNR ratio: $\rm{SNR_B/SNR_A}$, Coalescence time difference: $\Delta t_c$.
-#### **Individual Case:** 
-**Parameter estimation** (60 signals)): $\mathcal{M}_B/\mathcal{M}_A \in \{0.5,\,1,\,2\}$, $\mathrm{SNR_B/SNR_A} \in \{0.5,\,1\}$, $\Delta t_c \in [-1,\,1]\,$s
-#### **Population Study:**
-**Fitting factor** ($\sim\mathcal{O}$(5000) signals)): $\mathcal{M}_B/\mathcal{M}_A \in [0.1,\,10]$, $\mathrm{SNR_B/SNR_A} \in [0.1,\,10]$, $\Delta t_c \in [-1,\,1]\,$s
+#### Parameter estimation:
+$\mathcal{M}_B/\mathcal{M}_A \in \{0.5,\,1,\,2\}$, $\mathrm{SNR_B/SNR_A} \in \{0.5,\,1\}$, $\Delta t_c \in [-1,\,1]\,$s, (60 signals)
+#### Fitting factor:
+$\mathcal{M}_B/\mathcal{M}_A \in [0.1,\,10]$, $\mathrm{SNR_B/SNR_A} \in [0.1,\,10]$, $\Delta t_c \in [-1,\,1]\,$s, ($\sim\mathcal{O}$(5000) signals)
 
 ### Methods
 #### Parameter Estimation
