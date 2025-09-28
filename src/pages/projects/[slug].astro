@@ -191,6 +191,12 @@ const meta = project.frontmatter ?? {};
 
     </style>
   </head>
+  <style>
+    /* references styling */
+    #refContent { text-align: left; max-width: 65ch; margin: 2rem auto; }
+    #referencesList { list-style-position: inside; }
+    #referencesList li { text-align: left; }
+  </style>
 
   <body class="bg-white text-gray-900 font-mono" style={`--accent: ${siteConfig.accentColor};`}>
     <Header />
@@ -211,7 +217,7 @@ const meta = project.frontmatter ?? {};
       </header>
 
       <article class="project-prose">
-        <ProjectContent />
+        <article class="prose prose-lg lg:prose-xl max-w-none mx-auto dark:prose-invert"><ProjectContent /></article>
       </article>
 
       <section id="references" aria-labelledby="references-heading" class="hidden">
