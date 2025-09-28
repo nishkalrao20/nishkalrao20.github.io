@@ -9,7 +9,6 @@ import { siteConfig } from "../config";
   <div class="absolute inset-0 -z-10 hero-bg"></div>
 
   <style>
-    /* use --accent-rgb (set at runtime) to make rgba(...) stops from the accent */
     .hero-bg {
       transition: background-position 120ms linear;
       background: radial-gradient(
@@ -21,7 +20,6 @@ import { siteConfig } from "../config";
       );
     }
 
-    /* dark mode gradient overlay and endpoint */
     :global(.dark) .hero-bg {
       background: radial-gradient(
         1000px 1400px at var(--mouse-x) var(--mouse-y),
@@ -32,7 +30,6 @@ import { siteConfig } from "../config";
       );
     }
 
-    /* small animation classes kept from your original */
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -127,7 +124,32 @@ import { siteConfig } from "../config";
         </svg>
       </a>
     )}
-  </div>
+    {siteConfig.social?.twitter && (
+      <a href={siteConfig.social.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="transition-colors duration-300 hover:text-[var(--accent-color)]">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M4 4l11.733 16h4.267l-11.733 -16z" /> <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/> </>
+        </svg>
+      </a>
+    )}
+    {siteConfig.social?.instagram && (
+      <a href={siteConfig.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="transition-colors duration-300 hover:text-[var(--accent-color)]">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" /> <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"/> <path d="M16.5 7.5l0 .01" /> </>
+        </svg>
+      </a>
+    )}
+    {siteConfig.social?.blog && (
+      <a href={siteConfig.social.blog} target="_blank" rel="noopener noreferrer" aria-label="Blog" class="transition-colors duration-300 hover:text-[var(--accent-color)]">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M8 21h8a5 5 0 0 0 5 -5v-3a3 3 0 0 0 -3 -3h-1v-2a5 5 0 0 0 -5 -5h-4a5 5 0 0 0 -5 5v8a5 5 0 0 0 5 5z" /> <path d="M7 7m0 1.5a1.5 1.5 0 0 1 1.5 -1.5h3a1.5 1.5 0 0 1 1.5 1.5v0a1.5 1.5 0 0 1 -1.5 1.5h-3a1.5 1.5 0 0 1 -1.5 -1.5z" /> <path d="M7 14m0 1.5a1.5 1.5 0 0 1 1.5 -1.5h7a1.5 1.5 0 0 1 1.5 1.5v0a1.5 1.5 0 0 1 -1.5 1.5h-7a1.5 1.5 0 0 1 -1.5 -1.5z" />" /> </>
+        </svg>
+      </a>
+    )}
+
+</div>
 </div>
 
 <script is:inline>
