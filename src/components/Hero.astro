@@ -9,13 +9,22 @@ import { siteConfig } from "../config";
   <div class="absolute inset-0 -z-10 hero-bg"></div>
 
   <script is:inline>
-    (function initTheme(){
+    (function initThemeAndAccent(){
+      try {
+        const hex = `${siteConfig.accentColor}`?.trim() || '#1d4ed8';
+        const h = hex.replace('#','');
+        const rgb = (h.length === 3)
+          ? [parseInt(h[0]+h[0],16), parseInt(h[1]+h[1],16), parseInt(h[2]+h[2],16)]
+          : [parseInt(h.slice(0,2),16), parseInt(h.slice(2,4),16), parseInt(h.slice(4,6),16)];
+        document.documentElement.style.setProperty('--accent-rgb', rgb.join(','));
+      } catch (e) { /* safe fallback - continue */ }
+  
       try {
         const ls = localStorage.getItem('theme');
         const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
         const theme = ls === 'dark' || (!ls && prefersDark) ? 'dark' : 'light';
         document.documentElement.classList.toggle('dark', theme === 'dark');
-      } catch(e)
+      } catch (e) { /* ignore on SSR */ }
     })();
   </script>
 
