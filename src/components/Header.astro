@@ -7,6 +7,50 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 const hasUpdates = siteConfig.news && siteConfig.news.length > 0;
 ---
 
+<script is:inline>
+  (function initThemeEarly(){
+    try {
+      const stored = localStorage.getItem('theme');
+      if (stored === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else if (stored === 'light') {
+        document.documentElement.classList.remove('dark');
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      }
+    } catch (e) {
+    }
+  })();
+
+  (function reflectToggleState(){
+    try {
+      const setPressed = () => {
+        const btn = document.getElementById('themeToggle');
+        if (!btn) return;
+        const isDark = document.documentElement.classList.contains('dark');
+        btn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+      };
+
+      setPressed();
+
+      document.addEventListener('click', (e) => {
+        if (e.target && (e.target.id === 'themeToggle' || e.target.closest('#themeToggle'))) {
+          requestAnimationFrame(setPressed);
+        }
+      });
+
+      // keep in sync with other tabs
+      window.addEventListener('storage', (ev) => {
+        if (ev.key === 'theme') requestAnimationFrame(setPressed);
+      });
+    } catch (e) {}
+  })();
+</script>
+
 <header
   id="header"
   class="fixed top-0 left-0 right-0 z-50 hidden md:block transition-all duration-300"
