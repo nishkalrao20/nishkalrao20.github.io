@@ -9,41 +9,33 @@ import { siteConfig } from "../config";
   <div class="absolute inset-0 -z-10 hero-bg"></div>
 
   <style>
+    :global(html) {
+      --hero-stop-accent-1: rgba(var(--accent-rgb, 29,78,216), 0.18);
+      --hero-stop-accent-2: rgba(var(--accent-rgb, 29,78,216), 0.08);
+      --hero-stop-mid: rgba(255,255,255,0.6);
+      --hero-end: white;
+    }
+  
+    :global(html.dark) {
+      --hero-stop-accent-1: rgba(var(--accent-rgb, 29,78,216), 0.18);
+      --hero-stop-accent-2: rgba(var(--accent-rgb, 29,78,216), 0.08);
+      --hero-stop-mid: rgba(0,0,0,0.6);
+      --hero-end: #0b1220;
+    }
+  
     .hero-bg {
-      transition: background-position 120ms linear;
+      transition: background-position 120ms linear, background 160ms linear;
       background: radial-gradient(
         1000px 1400px at var(--mouse-x) var(--mouse-y),
-        rgba(var(--accent-rgb), 0.18) 0%,
-        rgba(var(--accent-rgb), 0.08) 25%,
-        rgba(255, 255, 255, 0.6) 70%,
-        white 100%
+        var(--hero-stop-accent-1) 0%,
+        var(--hero-stop-accent-2) 25%,
+        var(--hero-stop-mid) 70%,
+        var(--hero-end) 100%
       );
     }
 
-    :global(.dark) .hero-bg {
-      background: radial-gradient(
-        1000px 1400px at var(--mouse-x) var(--mouse-y),
-        rgba(var(--accent-rgb), 0.18) 0%,
-        rgba(var(--accent-rgb), 0.08) 25%,
-        rgba(0, 0, 0, 0.6) 70%,
-        #0b1220 100%
-      );
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    .animate-fade-in {
-      animation: fadeIn 0.8s ease-out forwards;
-      opacity: 0;
-    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px);} to { opacity:1; transform: translateY(0);} }
+    .animate-fade-in { animation: fadeIn 0.8s ease-out forwards; opacity: 0; }
     .animation-delay-200 { animation-delay: 0.2s; }
     .animation-delay-400 { animation-delay: 0.4s; }
     .animation-delay-600 { animation-delay: 0.6s; }
