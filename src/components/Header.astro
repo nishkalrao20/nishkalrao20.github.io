@@ -3,6 +3,7 @@ import { siteConfig } from "../config";
 
 const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
 const hasEducation = siteConfig.education && siteConfig.education.length > 0;
+const hasUpdates = siteConfig.updates && siteConfig.updates.length > 0;
 ---
 
 <header
@@ -22,6 +23,12 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
       { hasProjects && (
         <li>
           <a href="/projects" class="text-gray-700 hover:text-blue transition-colors font-medium">Projects</a>
+        </li>
+      ) }
+
+      { hasUpdates && (
+        <li>
+          <a href="/#news" class="text-gray-700 hover:text-blue transition-colors font-medium">Education</a>
         </li>
       ) }
 
