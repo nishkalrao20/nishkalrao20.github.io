@@ -10,22 +10,24 @@ import { siteConfig } from "../config";
 
   <style>
     :global(html) {
-      --hero-stop-accent-1: rgba(var(--accent-rgb, 29,78,216), 0.08);
+      --hero-stop-accent-1: rgba(var(--accent-rgb, 29,78,216), 0.06);
       --hero-stop-accent-2: rgba(var(--accent-rgb, 29,78,216), 0.03);
-      --hero-stop-mid: rgba(255,255,255,0.92);
+      --hero-stop-mid: rgba(255,255,255,0.98);
       --hero-end: #ffffff;
   
-      --symbols-opacity: 0.06;
+      --symbols-opacity: 0.03;
+      --symbol-text-alpha: 0.10;
       --hero-text: #1f2937;
     }
   
     :global(html.dark) {
-      --hero-stop-accent-1: rgba(var(--accent-rgb, 29,78,216), 0.18);
-      --hero-stop-accent-2: rgba(var(--accent-rgb, 29,78,216), 0.08);
+      --hero-stop-accent-1: rgba(var(--accent-rgb, 29,78,216), 0.20);
+      --hero-stop-accent-2: rgba(var(--accent-rgb, 29,78,216), 0.10);
       --hero-stop-mid: rgba(0,0,0,0.6);
       --hero-end: #0b1220;
   
       --symbols-opacity: 0.18;
+      --symbol-text-alpha: 0.20;
       --hero-text: #ffffff;
     }
   
@@ -34,17 +36,17 @@ import { siteConfig } from "../config";
       background: radial-gradient(
         1000px 1400px at var(--mouse-x) var(--mouse-y),
         var(--hero-stop-accent-1) 0%,
-        var(--hero-stop-accent-2) 18%,
-        var(--hero-stop-mid) 50%,
+        var(--hero-stop-accent-2) 12%,
+        var(--hero-stop-mid) 35%,
         var(--hero-end) 100%
       );
       background-blend-mode: normal;
     }
-
+  
     .hero-content { color: var(--hero-text); }
     .hero-content svg { stroke: currentColor; fill: none; }
     .hero-content svg.fill-current { fill: currentColor; stroke: none; }
-
+  
     @keyframes fadeIn { from { opacity: 0; transform: translateY(20px);} to { opacity:1; transform: translateY(0);} }
     .animate-fade-in { animation: fadeIn 0.8s ease-out forwards; opacity: 0; }
     .animation-delay-200 { animation-delay: 0.2s; }
@@ -87,16 +89,16 @@ import { siteConfig } from "../config";
         height="400"
         patternUnits="userSpaceOnUse"
       >
-        <text x="50" y="50" fill={siteConfig.accentColor} font-family="monospace" font-size="24" transform="rotate(-15)">&lt;/&gt;</text>
-        <text x="150" y="100" fill={siteConfig.accentColor} font-family="monospace" font-size="20" transform="rotate(10)">{}</text>
-        <text x="250" y="80" fill={siteConfig.accentColor} font-family="monospace" font-size="18" transform="rotate(-5)">=&gt;</text>
-        <text x="100" y="200" fill={siteConfig.accentColor} font-family="monospace" font-size="22" transform="rotate(15)">[]</text>
-        <text x="300" y="180" fill={siteConfig.accentColor} font-family="monospace" font-size="20" transform="rotate(-10)">&lt;&gt;</text>
-        <text x="200" y="250" fill={siteConfig.accentColor} font-family="monospace" font-size="24" transform="rotate(5)">()</text>
-        <text x="50" y="320" fill={siteConfig.accentColor} font-family="monospace" font-size="18" transform="rotate(-8)">::</text>
-        <text x="350" y="300" fill={siteConfig.accentColor} font-family="monospace" font-size="22" transform="rotate(12)">==</text>
-        <text x="150" y="350" fill={siteConfig.accentColor} font-family="monospace" font-size="20" transform="rotate(-15)">++</text>
-        <text x="250" y="370" fill={siteConfig.accentColor} font-family="monospace" font-size="24" transform="rotate(8)">;</text>
+        <text x="50"  y="50"  style="fill: rgba(var(--accent-rgb), var(--symbol-text-alpha));" font-family="monospace" font-size="24" transform="rotate(-15)">&lt;/&gt;</text>
+        <text x="150" y="100" style="fill: rgba(var(--accent-rgb), var(--symbol-text-alpha));" font-family="monospace" font-size="20" transform="rotate(10)">{}</text>
+        <text x="250" y="80"  style="fill: rgba(var(--accent-rgb), var(--symbol-text-alpha));" font-family="monospace" font-size="18" transform="rotate(-5)">=&gt;</text>
+        <text x="100" y="200" style="fill: rgba(var(--accent-rgb), var(--symbol-text-alpha));" font-family="monospace" font-size="22" transform="rotate(15)">[]</text>
+        <text x="300" y="180" style="fill: rgba(var(--accent-rgb), var(--symbol-text-alpha));" font-family="monospace" font-size="20" transform="rotate(-10)">&lt;&gt;</text>
+        <text x="200" y="250" style="fill: rgba(var(--accent-rgb), var(--symbol-text-alpha));" font-family="monospace" font-size="24" transform="rotate(5)">()</text>
+        <text x="50"  y="320" style="fill: rgba(var(--accent-rgb), var(--symbol-text-alpha));" font-family="monospace" font-size="18" transform="rotate(-8)">::</text>
+        <text x="350" y="300" style="fill: rgba(var(--accent-rgb), var(--symbol-text-alpha));" font-family="monospace" font-size="22" transform="rotate(12)">==</text>
+        <text x="150" y="350" style="fill: rgba(var(--accent-rgb), var(--symbol-text-alpha));" font-family="monospace" font-size="20" transform="rotate(-15)">++</text>
+        <text x="250" y="370" style="fill: rgba(var(--accent-rgb), var(--symbol-text-alpha));" font-family="monospace" font-size="24" transform="rotate(8)">;</text>
       </pattern>
     </defs>
 
