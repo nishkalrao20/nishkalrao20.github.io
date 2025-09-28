@@ -2,7 +2,6 @@
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import About from "../components/About.astro";
-import Projects from "../components/Projects.astro";
 import Education from "../components/Education.astro";
 import News from "../components/News.astro";
 import Footer from "../components/Footer.astro";
@@ -27,7 +26,12 @@ import "../styles/global.css";
     <section>
       <Hero />
       <About />
-      <Projects />
+<section class="max-w-3xl mx-auto py-12 px-6">
+  <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+    <a href="/projects" class="inline-block rounded-lg px-4 py-3 border border-current hover:bg-gray-100 dark:hover:bg-gray-800 transition">View projects (list)</a>
+    <a href="/Nishkal_CurriculumVitae.pdf" target="_blank" class="inline-block rounded-lg px-4 py-3 border border-current hover:bg-gray-100 dark:hover:bg-gray-800 transition">Download CV</a>
+  </div>
+</section>
       <News />
       <Education />
     </section>
