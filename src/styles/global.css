@@ -1,41 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 @import "katex/dist/katex.min.css";
 
-:root {
-  --content-max-width: 65ch;
-}
-
-html, body {
-  height: 100%;
-  background-color: white;
-}
-
 body {
-  font-family: 'Noto Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.prose {
-  max-width: var(--content-max-width);
-  line-height: 1.75;
-}
-
-.prose p {
-  margin-bottom: 1.15rem;
-}
-
-.prose a {
-  text-decoration: underline;
-}
-
-.dark body {
-  background-color: #0b1220;
-  color: #dbeafe;
-}
-
-#refContent, #referencesList {
-  text-align: left;
+  font-family: 'Noto Sans', serif;
 }
