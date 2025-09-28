@@ -20,18 +20,18 @@ Overlap can bias our inferences if it is not properly handled. Studies have show
 
 <div id="ref-r2" class="refdef" style="display:none">
   <div class="ref-entry">
-    <strong>Samajdar, A. et al.,</strong> Biases in parameter estimation from overlapping gravitational-wave signals in the third-generation detector era. Physical Review D 2021 <a href="https://doi.org/10.1103/PhysRevD.104.044003" target="_blank" rel="noopener">*</a>
+    <strong><a href="https://doi.org/10.1103/PhysRevD.104.044003" target="_blank" rel="noopener">Samajdar, A. et al.,</strong> Biases in parameter estimation from overlapping gravitational-wave signals in the third-generation detector era. Physical Review D 2021</a>
   </div>
 </div>
 
 <div id="ref-r3" class="refdef" style="display:none">
   <div class="ref-entry">
-    <strong>Relton, P. and Raymond, V.,</strong> Parameter estimation bias from overlapping binary black hole events in second generation interferometers. Physical Review D 2021 <a href="https://doi.org/10.1103/PhysRevD.104.084039" target="_blank" rel="noopener">*</a>
+    <strong><a href="https://doi.org/10.1103/PhysRevD.104.084039" target="_blank" rel="noopener">Relton, P. and Raymond, V.,</strong> Parameter estimation bias from overlapping binary black hole events in second generation interferometers. Physical Review D 2021</a>
   </div>
 </div>
 
 <div id="ref-r4" class="refdef" style="display:none">
   <div class="ref-entry">
-    <strong>Janquart, J. et al.,</strong> Analyses of overlapping gravitational wave signals using hierarchical subtraction and joint parameter estimation. Monthly Notices of the Royal Astronomical Society 2023 <a href="https://doi.org/10.1093/mnras/stad1542" target="_blank" rel="noopener">*</a>
+    <strong><a href="https://doi.org/10.1093/mnras/stad1542" target="_blank" rel="noopener">Janquart, J. et al.,</strong> Analyses of overlapping gravitational wave signals using hierarchical subtraction and joint parameter estimation. Monthly Notices of the Royal Astronomical Society 2023</a>
   </div>
 </div>
