@@ -8,6 +8,17 @@ import { siteConfig } from "../config";
 >
   <div class="absolute inset-0 -z-10 hero-bg"></div>
 
+  <script is:inline>
+    (function initTheme(){
+      try {
+        const ls = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = ls === 'dark' || (!ls && prefersDark) ? 'dark' : 'light';
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+      } catch(e)
+    })();
+  </script>
+
   <style>
     :global(html) {
       --hero-stop-accent-1: rgba(var(--accent-rgb, 29,78,216), 0.06);
@@ -53,17 +64,6 @@ import { siteConfig } from "../config";
     .animation-delay-400 { animation-delay: 0.4s; }
     .animation-delay-600 { animation-delay: 0.6s; }
   </style>
-
-  <script is:inline>
-    (function initTheme(){
-      try {
-        const ls = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const theme = ls === 'dark' || (!ls && prefersDark) ? 'dark' : 'light';
-        document.documentElement.classList.toggle('dark', theme === 'dark');
-      } catch(e)
-    })();
-  </script>
 
   <svg
     aria-hidden="true"
