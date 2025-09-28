@@ -146,9 +146,8 @@ import { siteConfig } from "../config";
 
 <script is:inline>
   (function setAccentRGB(){
-    const hex = ` ${siteConfig.accentColor}`.trim(); // injected server-side
+    const hex = `${siteConfig.accentColor}`?.trim() || '#1d4ed8'; // server-side injected
     function hexToRgb(hex) {
-      if (!hex) return null;
       const h = hex.replace('#','');
       if (h.length === 3) {
         return [
@@ -164,15 +163,11 @@ import { siteConfig } from "../config";
           parseInt(h.slice(4,6), 16)
         ];
       }
-      return null;
+      return [29,78,216];
     }
 
     const rgb = hexToRgb(hex);
-    if (rgb) {
-      document.documentElement.style.setProperty('--accent-rgb', rgb.join(','));
-    } else {
-      document.documentElement.style.setProperty('--accent-rgb', '29,78,216');
-    }
+    document.documentElement.style.setProperty('--accent-rgb', rgb.join(','));
   })();
 </script>
 
