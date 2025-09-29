@@ -44,15 +44,13 @@ const meta = project.frontmatter ?? {};
     <style>
       :root { --accent: #1d4ed8; }
 
-      /* project content */
       .project-prose {
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Courier New", monospace;
         color: #0f172a;
-        line-height: 1.8;            /* increased line spacing for readability */
+        line-height: 1.8;
         font-size: 1.03rem;
       }
 
-      /* paragraphs & readable spacing */
       .project-prose p {
         margin-top: 0.9rem;
         margin-bottom: 1.05rem;
@@ -60,7 +58,6 @@ const meta = project.frontmatter ?? {};
         letter-spacing: 0.0015em;
       }
 
-      /* headings */
       .project-prose h1,
       .project-prose h2,
       .project-prose h3 {
@@ -78,7 +75,6 @@ const meta = project.frontmatter ?? {};
 
       .project-prose li { margin-top: 0.35rem; }
 
-      /* code blocks & inline code */
       .project-prose pre {
         background: #0b1220;
         color: #e6eef8;
@@ -110,7 +106,6 @@ const meta = project.frontmatter ?? {};
         font-weight: 600;
       }
 
-      /* citation base + small transition so hover is visible */
       a.cite {
         color: inherit;
         text-decoration: underline dotted;
@@ -192,7 +187,6 @@ const meta = project.frontmatter ?? {};
     </style>
   </head>
   <style>
-    /* references styling */
     #refContent { text-align: left; max-width: 65ch; margin: 2rem auto; }
     #referencesList { list-style-position: inside; }
     #referencesList li { text-align: left; }
