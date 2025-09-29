@@ -123,16 +123,6 @@ export const siteConfig: SiteConfig = {
       demo: "",
     },
     
-    {
-      name: "Reconstruction of the Universe from the DESI Survey using Neural Networks",
-      slug: "desi-reconstruction",
-      description:
-        "Constructing high-resolution density and peculiar velocity field maps using DESI galaxy-survey data and neural networks. Aims to enable velocity-field reconstructions for cosmological analyses of dark matter and dark energy.",
-      skills: ["Cosmology", "Neural Networks", "Machine Learning"],
-      repo: "",
-      demo: "",
-    },
-
   ],
 
   education: [
