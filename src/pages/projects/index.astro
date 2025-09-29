@@ -10,7 +10,6 @@ const projects = siteConfig.projects ?? [];
   <body style={`--accent: ${siteConfig.accentColor}`}>
     <Header />
     <main class="max-w-4xl mx-auto px-6 py-12">
-      <h1 class="text-3xl font-bold mb-6">Projects</h1>
       <div class="grid gap-6">
         {projects.map((p, i) => (
           <a href={`/projects/${p.slug ?? p.name.toLowerCase().replace(/\s+/g,'-')}`} class="block p-6 rounded-lg border hover:shadow-sm">
