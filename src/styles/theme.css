@@ -1,17 +1,20 @@
 :root {
   --accent-color: #1d4ed8;
   --accent-rgb: 29,78,216;
+  --accent-rgba: rgba(var(--accent-rgb), 1);
 
-  --hero-stop-accent-1: rgba(var(--accent-rgb), 0.03);
-  --hero-stop-accent-2: rgba(var(--accent-rgb), 0.015);
-  --hero-stop-mid: rgba(255,255,255,0.985);
+  --hero-stop-accent-1: rgba(var(--accent-rgb), 0.045);
+  --hero-stop-accent-2: rgba(var(--accent-rgb), 0.02);
+  --hero-stop-mid: rgba(255,255,255,0.995);
   --hero-end: #ffffff;
 
   --symbols-opacity: 0.06;
   --symbol-text-alpha: 0.12;
 
-  --hero-text: #111827;
+  --hero-text: #0f172a;
   --icon-sun-fill: 17 24 39;
+
+  --accent-focus: rgba(var(--accent-rgb), 0.12);
 }
 
 html.dark {
@@ -20,14 +23,16 @@ html.dark {
 
   --hero-stop-accent-1: rgba(var(--accent-rgb), 0.20);
   --hero-stop-accent-2: rgba(var(--accent-rgb), 0.10);
-  --hero-stop-mid: rgba(0,0,0,0.6);
-  --hero-end: #071028;
+  --hero-stop-mid: rgba(3,37,65,0.60);
+  --hero-end: rgba(3,37,65,1);
 
   --symbols-opacity: 0.18;
   --symbol-text-alpha: 0.18;
 
   --hero-text: #ffffff;
-  --icon-sun-fill: 255 255 255; /* sun white in dark mode when needed */
+  --icon-sun-fill: 255 255 255;
+
+  --accent-focus: rgba(var(--accent-rgb), 0.18);
 }
 
 :root, html.dark {
@@ -35,3 +40,4 @@ html.dark {
 }
 
 html.dark a { color: var(--accent-color); }
+a:focus { box-shadow: 0 0 0 4px var(--accent-focus); outline: none; border-radius: 6px; }
