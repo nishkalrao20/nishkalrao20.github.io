@@ -17,13 +17,11 @@
     cursor: pointer;
   }
 
-  /* sun uses a variable for its RGB so it can adapt */
   .sun { fill: rgb(var(--icon-sun-fill)); transition: fill .18s ease, opacity .18s ease; }
   .moon { fill: transparent; transition: fill .18s ease, opacity .18s ease; }
 
   :global(.dark) .sun { fill: transparent; }
 
-  /* moon uses the accent color in dark mode */
   :global(.dark) .moon {
     fill: rgb(var(--accent-rgb));
   }
