@@ -1,4 +1,4 @@
-@import "/.themes.css";
+@import "./theme.css";
 @import "tailwindcss";
 @import "katex/dist/katex.min.css";
 
