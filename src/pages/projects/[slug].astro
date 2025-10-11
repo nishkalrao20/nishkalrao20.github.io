@@ -30,7 +30,6 @@ if (!project) {
 
 const ProjectContent = project.default;
 const meta = project.frontmatter ?? {};
-
 ---
 
 <!doctype html>
@@ -42,7 +41,7 @@ const meta = project.frontmatter ?? {};
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
     <style>
-      :root { --accent: #1d4ed8; }
+      :root
 
       .project-prose {
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Courier New", monospace;
@@ -106,21 +105,19 @@ const meta = project.frontmatter ?? {};
         font-weight: 600;
       }
 
-      a.cite {
-        color: inherit;
-        text-decoration: underline dotted;
-        cursor: pointer;
-        transition: color 160ms ease, text-decoration-color 160ms ease;
-      }
-      a.cite.cite-active { color: var(--accent);}
+      
+      a.cite.cite-active { color: var(--accent-color); }
+    
       a.cite:hover,
       a.cite:focus {
-        color: var(--accent);
-        text-decoration-color: var(--accent);
+        color: var(--accent-color);
+        text-decoration-color: var(--accent-color);
         outline: none;
       }
+    
       a.cite:focus-visible {
-        box-shadow: 0 0 0 4px rgba(29,78,216,0.12);
+        /* use rgba(var(--accent-rgb), 0.12) for focus ring */
+        box-shadow: 0 0 0 4px rgba(var(--accent-rgb),0.12);
         border-radius: 4px;
       }
 
@@ -182,7 +179,7 @@ const meta = project.frontmatter ?? {};
         color: inherit;
         cursor:pointer;
       }
-      .ref-list-btn:hover { text-decoration: underline; color: var(--accent); }
+      .ref-list-btn:hover { text-decoration: underline; color: var(--accent-color); }
 
     </style>
   </head>
@@ -192,7 +189,7 @@ const meta = project.frontmatter ?? {};
     #referencesList li { text-align: left; }
   </style>
 
-  <body class="bg-white text-gray-900 font-mono" style={`--accent: ${siteConfig.accentColor};`}>
+  <body class="bg-white text-gray-900 font-mono">
     <Header />
 
     <main class="max-w-4xl mx-auto px-6 md:px-8 lg:px-12 py-10">
