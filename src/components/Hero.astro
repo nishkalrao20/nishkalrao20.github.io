@@ -110,28 +110,63 @@ import { siteConfig } from "../config";
     )}
     {siteConfig.social?.github && (
       <a href={siteConfig.social.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="transition-colors duration-300 hover:text-[var(--accent-color)]">
-        <!-- svg omitted for brevity in snippet -->
-        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6..."/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+        </svg>
       </a>
     )}
     {siteConfig.social?.instagram && (
       <a href={siteConfig.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="transition-colors duration-300 hover:text-[var(--accent-color)]">
-        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3"/><circle cx="16.5" cy="7.5" r="0.5"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8">
+          <rect x="4" y="4" width="16" height="16" rx="4" />
+          <circle cx="12" cy="12" r="3" />
+          <circle cx="16.5" cy="7.5" r="0.5" />
+        </svg>
       </a>
     )}
     {siteConfig.social?.blog && (
       <a href={siteConfig.social.blog} target="_blank" rel="noopener noreferrer" aria-label="Blog" class="transition-colors duration-300 hover:text-[var(--accent-color)]">
-        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8a5 5 0 0 0 5 -5v-3a3 3 0 0 0 -3 -3h-1v-2a5 5 0 0 0 -5 -5h-4a5 5 0 0 0 -5 5v8a5 5 0 0 0 5 5z"/><path d="M7 7m0 1.5a1.5 1.5 0 0 1 1.5 -1.5h3a1.5 1.5 0 0 1 1.5 1.5"/><path d="M7 14m0 1.5a1.5 1.5 0 0 1 1.5 -1.5h7"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8">
+          <path d="M8 21h8a5 5 0 0 0 5 -5v-3a3 3 0 0 0 -3 -3h-1v-2a5 5 0 0 0 -5 -5h-4a5 5 0 0 0 -5 5v8a5 5 0 0 0 5 5z" />
+          <path d="M7 7m0 1.5a1.5 1.5 0 0 1 1.5 -1.5h3a1.5 1.5 0 0 1 1.5 1.5" />
+          <path d="M7 14m0 1.5a1.5 1.5 0 0 1 1.5 -1.5h7" />
+        </svg>
       </a>
     )}
   </div>
 </div>
 
+<script is:inline>
+  (function setAccentRGB(){
+    const hex = `${siteConfig.accentColor}`?.trim() || '#1d4ed8';
+    function hexToRgb(hex) {
+      const h = hex.replace('#','');
+      if (h.length === 3) {
+        return [
+          parseInt(h[0] + h[0], 16),
+          parseInt(h[1] + h[1], 16),
+          parseInt(h[2] + h[2], 16)
+        ];
+      }
+      if (h.length === 6) {
+        return [
+          parseInt(h.slice(0,2), 16),
+          parseInt(h.slice(2,4), 16),
+          parseInt(h.slice(4,6), 16)
+        ];
+      }
+      return [29,78,216];
+    }
+    const rgb = hexToRgb(hex);
+    document.documentElement.style.setProperty('--accent-rgb', rgb.join(','));
+  })();
+</script>
+
 <script>
   (function(){
     const hero = document.getElementById('hero');
     if(!hero) return;
-
     const setFromEvent = (clientX, clientY) => {
       const rect = hero.getBoundingClientRect();
       const x = Math.max(0, Math.min(rect.width, clientX - rect.left)) / rect.width * 100;
@@ -139,15 +174,12 @@ import { siteConfig } from "../config";
       hero.style.setProperty('--mouse-x', x + '%');
       hero.style.setProperty('--mouse-y', y + '%');
     };
-
     const onPointerMove = (e) => {
       const evt = (e.touches && e.touches[0]) || e;
       setFromEvent(evt.clientX, evt.clientY);
     };
-
     hero.addEventListener('pointermove', onPointerMove);
     hero.addEventListener('touchmove', onPointerMove, {passive:true});
-
     hero.addEventListener('pointerdown', (e) => {
       const evt = (e.touches && e.touches[0]) || e;
       setFromEvent(evt.clientX, evt.clientY);
