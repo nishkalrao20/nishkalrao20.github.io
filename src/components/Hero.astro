@@ -53,11 +53,11 @@ import { siteConfig } from "../config";
       background: radial-gradient(
         1000px 1400px at var(--mouse-x) var(--mouse-y),
         var(--hero-stop-accent-1) 0%,
-        var(--hero-stop-accent-2) 12%,
+        var(--hero-stop-accent-2) 25%,
         var(--hero-stop-mid) 35%,
         var(--hero-end) 100%
       );
-      background-blend-mode: normal;
+      transition: background-position 120ms linear;
     }
   
     .hero-content { color: var(--hero-text); }
