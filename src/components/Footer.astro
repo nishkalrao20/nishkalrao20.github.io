@@ -3,6 +3,7 @@ import { siteConfig } from "../config";
 
 const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
 const hasEducation = siteConfig.education && siteConfig.education.length > 0;
+const hasUpdates = siteConfig.news && siteConfig.news.length > 0;
 ---
 
 <footer class="relative bg-gray-50 border-t border-gray-200">
@@ -120,7 +121,10 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
         <nav class="flex items-center gap-6 flex-wrap">
           <a class="text-sm text-gray-600 hover:text-gray-800 transition-colors" href="/#about">About</a>
           { hasProjects && (
-            <a href="/#projects" class="text-sm text-gray-600 hover:text-gray-800 transition-colors">Projects</a>
+            <a href="/projects" class="text-sm text-gray-600 hover:text-gray-800 transition-colors">Projects</a>
+          ) }
+          { hasUpdates && (
+            <a href="/#updates" class="text-sm text-gray-600 hover:text-gray-800 transition-colors">Updates</a>
           ) }
           { hasEducation && (
             <a href="/#education" class="text-sm text-gray-600 hover:text-gray-800 transition-colors">Education</a>
