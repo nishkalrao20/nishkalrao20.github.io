@@ -17,13 +17,15 @@
     cursor: pointer;
   }
 
-  .sun { fill: rgb(17 24 39); transition: fill .18s ease, opacity .18s ease; }
+  /* sun uses a variable for its RGB so it can adapt */
+  .sun { fill: rgb(var(--icon-sun-fill)); transition: fill .18s ease, opacity .18s ease; }
   .moon { fill: transparent; transition: fill .18s ease, opacity .18s ease; }
 
   :global(.dark) .sun { fill: transparent; }
 
+  /* moon uses the accent color in dark mode */
   :global(.dark) .moon {
-    fill: rgb(var(--accent-rgb, 29, 78, 216));
+    fill: rgb(var(--accent-rgb));
   }
 
   #themeToggle svg { width: 30px; height: 30px; display:block; }
