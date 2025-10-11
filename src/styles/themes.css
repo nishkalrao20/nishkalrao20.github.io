@@ -1,0 +1,37 @@
+:root {
+  --accent-color: #1d4ed8;
+  --accent-rgb: 29,78,216;
+
+  --hero-stop-accent-1: rgba(var(--accent-rgb), 0.03);
+  --hero-stop-accent-2: rgba(var(--accent-rgb), 0.015);
+  --hero-stop-mid: rgba(255,255,255,0.985);
+  --hero-end: #ffffff;
+
+  --symbols-opacity: 0.06;
+  --symbol-text-alpha: 0.12;
+
+  --hero-text: #111827;
+  --icon-sun-fill: 17 24 39;
+}
+
+html.dark {
+  --accent-color: #1d4ed8;
+  --accent-rgb: 29,78,216;
+
+  --hero-stop-accent-1: rgba(var(--accent-rgb), 0.20);
+  --hero-stop-accent-2: rgba(var(--accent-rgb), 0.10);
+  --hero-stop-mid: rgba(0,0,0,0.6);
+  --hero-end: #071028;
+
+  --symbols-opacity: 0.18;
+  --symbol-text-alpha: 0.18;
+
+  --hero-text: #ffffff;
+  --icon-sun-fill: 255 255 255; /* sun white in dark mode when needed */
+}
+
+:root, html.dark {
+  --accent-rgba: rgba(var(--accent-rgb), 1);
+}
+
+html.dark a { color: var(--accent-color); }
