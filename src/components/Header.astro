@@ -59,28 +59,28 @@ const hasUpdates = siteConfig.news && siteConfig.news.length > 0;
     <ul class="flex items-center gap-8 justify-center">
       <ThemeIcon />
       <li>
-        <a href="/" class="text-gray-700 hover:text-blue transition-colors font-medium">Home</a>
+        <a href="/" class="text-gray-700 hover:text-[var(--accent-color)] transition-colors font-medium">Home</a>
       </li>
 
       <li>
-        <a href="/#about" class="text-gray-700 hover:text-blue transition-colors font-medium">About</a>
+        <a href="/" class="text-gray-700 hover:text-[var(--accent-color)] transition-colors font-medium">About</a>
       </li>
 
       { hasProjects && (
         <li>
-          <a href="/projects" class="text-gray-700 hover:text-blue transition-colors font-medium">Projects</a>
+          <a href="/" class="text-gray-700 hover:text-[var(--accent-color)] transition-colors font-medium">Projects</a>
         </li>
       ) }
 
       { hasUpdates && (
         <li>
-          <a href="/#news" class="text-gray-700 hover:text-blue transition-colors font-medium">Updates</a>
+          <a href="/" class="text-gray-700 hover:text-[var(--accent-color)] transition-colors font-medium">Updates</a>
         </li>
       ) }
 
       { hasEducation && (
         <li>
-          <a href="/#education" class="text-gray-700 hover:text-blue transition-colors font-medium">Education</a>
+          <a href="/" class="text-gray-700 hover:text-[var(--accent-color)] transition-colors font-medium">Education</a>
         </li>
       ) }
 
@@ -89,7 +89,7 @@ const hasUpdates = siteConfig.news && siteConfig.news.length > 0;
           href="https://drive.google.com/drive/folders/1w7-eAqVPWLUALg1ZREcdAiqZe89ZNQvC?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-gray-700 hover:text-blue transition-colors font-medium"
+          class="text-gray-700 hover:text-[var(--accent-color)] transition-colors font-medium"
         >
           Study Resources
         </a>
