@@ -1,4 +1,4 @@
----
+--- 
 import { siteConfig } from "../config";
 ---
 <div
@@ -9,17 +9,38 @@ import { siteConfig } from "../config";
   <div class="absolute inset-0 -z-10 hero-bg"></div>
 
   <style>
+    :global(html:not(.dark)) {
+      --hero-stop-accent-1: rgba(var(--accent-rgb, 29,78,216), 0.035);
+      --hero-stop-accent-2: rgba(var(--accent-rgb, 29,78,216), 0.02);
+      --hero-stop-mid: rgba(255,255,255,0.995);
+      --hero-end: #ffffff;
+      --symbols-opacity: 0.08;
+      --symbol-text-alpha: 0.16;
+      --hero-text: #111827;
+    }
+
+    :global(html.dark) {
+      --hero-stop-accent-1: rgba(var(--accent-rgb, 29,78,216), 0.20);
+      --hero-stop-accent-2: rgba(var(--accent-rgb, 29,78,216), 0.10);
+      --hero-stop-mid: rgba(0,0,0,0.60);
+      --hero-end: #071028;
+      --symbols-opacity: 0.18;
+      --symbol-text-alpha: 0.18;
+      --hero-text: #ffffff;
+    }
+
     .hero-bg {
       transition: background-position 120ms linear, background 180ms linear;
       background: radial-gradient(
-        1000px 1400px at var(--mouse-x) var(--mouse-y),
+        900px 1200px at var(--mouse-x) var(--mouse-y),
         var(--hero-stop-accent-1) 0%,
         var(--hero-stop-accent-2) 25%,
         var(--hero-stop-mid) 35%,
         var(--hero-end) 100%
       );
-      transition: background-position 120ms linear;
     }
+
+    .hero-bg-svg { pointer-events: none; }
 
     .hero-content { color: var(--hero-text); }
     .hero-content svg { stroke: currentColor; fill: none; }
@@ -36,28 +57,14 @@ import { siteConfig } from "../config";
 
   <svg
     aria-hidden="true"
-    class="hero-bg-svg absolute inset-0 -z-10 size-full [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
+    class="hero-bg-svg absolute inset-0 -z-10 w-full h-full [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
   >
     <defs>
-      <pattern
-        x="50%"
-        y={-1}
-        id="grid-pattern"
-        width={200}
-        height={200}
-        patternUnits="userSpaceOnUse"
-      >
+      <pattern x="50%" y={-1} id="grid-pattern" width={200} height={200} patternUnits="userSpaceOnUse">
         <path d="M.5 200V.5H200" fill="none" style={`stroke: rgba(var(--accent-rgb), var(--symbols-opacity)); stroke-width: 1`} />
       </pattern>
 
-      <pattern
-        id="programming-symbols"
-        x="0"
-        y="0"
-        width="400"
-        height="400"
-        patternUnits="userSpaceOnUse"
-      >
+      <pattern id="programming-symbols" x="0" y="0" width="400" height="400" patternUnits="userSpaceOnUse">
         <text x="50"  y="50"  style="fill: rgba(var(--accent-rgb), var(--symbol-text-alpha));" font-family="monospace" font-size="24" transform="rotate(-15)">&lt;/&gt;</text>
         <text x="150" y="100" style="fill: rgba(var(--accent-rgb), var(--symbol-text-alpha));" font-family="monospace" font-size="20" transform="rotate(10)">{}</text>
         <text x="250" y="80"  style="fill: rgba(var(--accent-rgb), var(--symbol-text-alpha));" font-family="monospace" font-size="18" transform="rotate(-5)">=&gt;</text>
@@ -113,7 +120,9 @@ import { siteConfig } from "../config";
       <a href={siteConfig.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="transition-colors duration-300 hover:text-[var(--accent-color)]">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8">
           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" /> <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"/> <path d="M16.5 7.5l0 .01" /> </>
+          <rect x="4" y="4" width="16" height="16" rx="4" />
+          <circle cx="12" cy="12" r="3" />
+          <circle cx="16.5" cy="7.5" r="0.5" />
         </svg>
       </a>
     )}
@@ -121,38 +130,31 @@ import { siteConfig } from "../config";
       <a href={siteConfig.social.blog} target="_blank" rel="noopener noreferrer" aria-label="Blog" class="transition-colors duration-300 hover:text-[var(--accent-color)]">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8">
           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M8 21h8a5 5 0 0 0 5 -5v-3a3 3 0 0 0 -3 -3h-1v-2a5 5 0 0 0 -5 -5h-4a5 5 0 0 0 -5 5v8a5 5 0 0 0 5 5z" /> <path d="M7 7m0 1.5a1.5 1.5 0 0 1 1.5 -1.5h3a1.5 1.5 0 0 1 1.5 1.5v0a1.5 1.5 0 0 1 -1.5 1.5h-3a1.5 1.5 0 0 1 -1.5 -1.5z" /> <path d="M7 14m0 1.5a1.5 1.5 0 0 1 1.5 -1.5h7a1.5 1.5 0 0 1 1.5 1.5v0a1.5 1.5 0 0 1 -1.5 1.5h-7a1.5 1.5 0 0 1 -1.5 -1.5z" />" /> </>
+          <path d="M8 21h8a5 5 0 0 0 5 -5v-3a3 3 0 0 0 -3 -3h-1v-2a5 5 0 0 0 -5 -5h-4a5 5 0 0 0 -5 5v8a5 5 0 0 0 5 5z" />
+          <path d="M7 7m0 1.5a1.5 1.5 0 0 1 1.5 -1.5h3a1.5 1.5 0 0 1 1.5 1.5" />
+          <path d="M7 14m0 1.5a1.5 1.5 0 0 1 1.5 -1.5h7" />
         </svg>
       </a>
     )}
-
-</div>
+  </div>
 </div>
 
 <script is:inline>
   (function setAccentRGB(){
-    const hex = `${siteConfig.accentColor}`?.trim() || '#1d4ed8'; // server-side injected
-    function hexToRgb(hex) {
-      const h = hex.replace('#','');
-      if (h.length === 3) {
-        return [
-          parseInt(h[0] + h[0], 16),
-          parseInt(h[1] + h[1], 16),
-          parseInt(h[2] + h[2], 16)
-        ];
+    const hex = `${siteConfig.accentColor ?? '#1d4ed8'}`.trim();
+    function hexToRgb(h) {
+      const s = h.replace('#','');
+      if (s.length === 3) {
+        return [parseInt(s[0]+s[0],16), parseInt(s[1]+s[1],16), parseInt(s[2]+s[2],16)];
       }
-      if (h.length === 6) {
-        return [
-          parseInt(h.slice(0,2), 16),
-          parseInt(h.slice(2,4), 16),
-          parseInt(h.slice(4,6), 16)
-        ];
+      if (s.length === 6) {
+        return [parseInt(s.slice(0,2),16), parseInt(s.slice(2,4),16), parseInt(s.slice(4,6),16)];
       }
       return [29,78,216];
     }
-
     const rgb = hexToRgb(hex);
     document.documentElement.style.setProperty('--accent-rgb', rgb.join(','));
+    document.documentElement.style.setProperty('--accent-color', `#${hex.replace('#','')}`);
   })();
 </script>
 
@@ -160,7 +162,6 @@ import { siteConfig } from "../config";
   (function(){
     const hero = document.getElementById('hero');
     if(!hero) return;
-
     const setFromEvent = (clientX, clientY) => {
       const rect = hero.getBoundingClientRect();
       const x = Math.max(0, Math.min(rect.width, clientX - rect.left)) / rect.width * 100;
@@ -168,15 +169,12 @@ import { siteConfig } from "../config";
       hero.style.setProperty('--mouse-x', x + '%');
       hero.style.setProperty('--mouse-y', y + '%');
     };
-
     const onPointerMove = (e) => {
       const evt = (e.touches && e.touches[0]) || e;
       setFromEvent(evt.clientX, evt.clientY);
     };
-
     hero.addEventListener('pointermove', onPointerMove);
     hero.addEventListener('touchmove', onPointerMove, {passive:true});
-
     hero.addEventListener('pointerdown', (e) => {
       const evt = (e.touches && e.touches[0]) || e;
       setFromEvent(evt.clientX, evt.clientY);
