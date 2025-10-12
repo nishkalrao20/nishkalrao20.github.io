@@ -178,52 +178,36 @@ const meta = project.frontmatter ?? {};
     .ref-entry { margin-bottom: .9rem; color: rgba(var(--text-color),0.95); }
 
     #references { max-width: 640px; margin: 2rem 0 4rem; padding: 0 1rem 0 0; }
-    #references h2 { font-size: 1.125rem; font-weight: 700; margin-bottom: 0.75rem; color: rgba(var(--text-color),1); }
-
+    #references h2 { font-size: 1.125rem; font-weight: 600; margin-bottom: 0.75rem; color: rgba(var(--text-color),1); }
+    
     #referencesList {
       list-style: none;
       counter-reset: refs;
       padding-left: 0;
       margin-left: 0;
     }
-
+    
     #referencesList li {
       counter-increment: refs;
       margin-bottom: 0.9rem;
-      display: block;
-      text-align: left;
-      padding-left: 0;
+      display: flex;
+      gap: 0.75rem;
       align-items: flex-start;
-      gap: 0.6rem;
+      text-align: left;
     }
-
+    
     #referencesList li::before {
       content: "[" counter(refs) "]";
       color: rgba(var(--muted-text-color),1);
-      margin-right: 0.6rem;
-      font-weight: 600;
-      display: inline-block;
       min-width: 2.2ch;
       text-align: right;
-      vertical-align: top; /* keep marker top-aligned to the content */
+      font-weight: 500;
+      margin-top: 0.08rem;
+      line-height: 1.2;
     }
-
-    .ref-list-btn {
-      display:block;
-      width:100%;
-      text-align:left;
-      padding:0;
-      border:0;
-      background:transparent;
-      font-family: var(--mono-font);
-      color: inherit;
-      cursor:pointer;
-    }
-
-    .ref-list-btn:hover { text-decoration: underline; color: var(--accent-color); }
-    @media (max-width: 1024px) {
-      .ref-panel { position: fixed; left: 8px; right: 8px; top: 12vh; max-width: calc(100% - 16px); width: auto; }
-    }
+    
+    .ref-list-btn { display:block; width:100%; text-align:left; padding:0; border:0; background:transparent; font-family: var(--body-font); font-weight: 400; color: inherit; cursor: pointer; }
+    .ref-entry { color: rgba(var(--text-color), 0.95); line-height: 1.45; }
   </style>
   </head>
   <script>
@@ -236,6 +220,8 @@ const meta = project.frontmatter ?? {};
             const id = href.replace(/^#/, '');
             a.classList.add('cite');
             a.setAttribute('data-ref', id.replace(/^ref-/, ''));
+            a.setAttribute('role', 'button');
+            a.setAttribute('tabindex', '0');
           } catch(e){}
         });
       }
@@ -256,7 +242,7 @@ const meta = project.frontmatter ?? {};
     <main class="max-w-4xl mx-auto px-6 md:px-8 lg:px-12 py-10 pt-28">
       
       <header class="project-header mb-6">
-        <h1 class="text-3xl md:text-4xl leading-tight">{meta.title}</h1>
+        <h1 class="text-3xl md:text-4xl leading-tight font-normal">{meta.title}</h1>
         {meta.skills && meta.skills.length > 0 && (
           <div class="flex flex-wrap gap-2 mt-3">
             {meta.skills.map(s => (
@@ -334,6 +320,50 @@ const meta = project.frontmatter ?? {};
       refPanel.style.top = `${top}px`;
     }
 
+    let hoverTimer = null;
+    
+    document.addEventListener('pointerenter', (e) => {
+      const el = e.target.closest && e.target.closest('a.cite[data-ref]');
+      if (!el) return;
+      clearTimeout(hoverTimer);
+      // show immediately on hover
+      const id = el.getAttribute('data-ref');
+      const def = document.getElementById('ref-' + id);
+      if (!def) return;
+      if (activeCite && activeCite !== el) activeCite.classList.remove('cite-active');
+      el.classList.add('cite-active');
+      activeCite = el;
+      showPanelForElement(el, def.innerHTML);
+    }, true);
+    
+    document.addEventListener('pointerleave', (e) => {
+      const el = e.target.closest && e.target.closest('a.cite[data-ref]');
+      if (!el) return;
+      hoverTimer = setTimeout(() => {
+        if (el.classList.contains('cite-active')) el.classList.remove('cite-active');
+        if (refPanel) {
+          refPanel.classList.remove('open');
+          refPanel.setAttribute('aria-hidden', 'true');
+        }
+        activeCite = null;
+      }, 250);
+    }, true);
+    
+    if (refPanel) {
+      refPanel.addEventListener('pointerenter', () => clearTimeout(hoverTimer));
+      refPanel.addEventListener('pointerleave', () => {
+        hoverTimer = setTimeout(() => {
+          if (activeCite) activeCite.classList.remove('cite-active');
+          if (refPanel) {
+            refPanel.classList.remove('open');
+            refPanel.setAttribute('aria-hidden', 'true');
+          }
+          activeCite = null;
+        }, 200);
+      });
+    }
+
+
     document.addEventListener('click', function(e){
       const el = e.target.closest && e.target.closest('a.cite[data-ref]');
       if (!el) return;
@@ -382,30 +412,35 @@ const meta = project.frontmatter ?? {};
     });
 
     function buildReferencesList() {
-      const defs = Array.from(document.querySelectorAll('[id^="ref-"]'));
-      if (!defs.length) return;
-
-      const referencesSection = document.getElementById('references');
+      const refsSection = document.getElementById('references');
       const listEl = document.getElementById('referencesList');
-      if (!referencesSection || !listEl) return;
+      if (!refsSection || !listEl) return;
+    
+      const citedAnchors = Array.from(document.querySelectorAll('a.cite[data-ref]'));
+      const referencedIds = Array.from(new Set(citedAnchors.map(a => a.getAttribute('data-ref')))).filter(Boolean);
+    
+      if (!referencedIds.length) {
+        refsSection.classList.add('hidden');
+        listEl.innerHTML = '';
+        return;
+      }
+    
       listEl.innerHTML = '';
-
-      referencesSection.classList.remove('hidden');
-
-      defs.forEach((def, idx) => {
+      refsSection.classList.remove('hidden');
+    
+      referencedIds.forEach((refId, idx) => {
+        const def = document.getElementById('ref-' + refId);
+        if (!def) return;
         const li = document.createElement('li');
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'ref-list-btn';
         btn.setAttribute('aria-label', `Open reference ${idx + 1}`);
         btn.innerHTML = def.innerHTML;
-
         btn.addEventListener('click', function(ev) {
           ev.preventDefault();
-          if (activeCite) { activeCite.classList.remove('cite-active'); activeCite = null; }
           showPanelForElement(btn, def.innerHTML);
         });
-
         li.appendChild(btn);
         listEl.appendChild(li);
       });
