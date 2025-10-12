@@ -184,77 +184,7 @@ const meta = project.frontmatter ?? {};
     .ref-panel h4 { font-weight: 600; margin-bottom: .45rem; color: rgba(var(--text-color),1); }
     .ref-entry { margin-bottom: .9rem; color: rgba(var(--text-color),0.95); }
 
-    /* References list: strong left-aligned layout */
-    #references {
-      text-align: left !important;
-      max-width: 640px;
-      margin: 2rem 0 4rem;
-      padding: 0 1rem 0 0;
-    }
-    #references h2 {
-      font-size: 1.125rem;
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-      color: rgba(var(--text-color),1);
-      text-align: left;
-    }
-    
-    #referencesList {
-      list-style: none;
-      padding-left: 0;
-      margin-left: 0;
-    }
-    
-    #referencesList li {
-      margin-bottom: 0.9rem;
-      display: flex;
-      gap: 0.75rem;
-      align-items: flex-start;
-      text-align: left !important;
-    }
-    
-    .ref-num {
-      color: rgba(var(--muted-text-color),1);
-      min-width: 2.2ch;
-      text-align: right;
-      font-weight: 600;
-      margin-top: 0.08rem;
-      line-height: 1.2;
-      flex: 0 0 auto;
-      display: inline-block;
-    }
-    
-    .ref-body {
-      color: rgba(var(--text-color), 0.95);
-      line-height: 1.45;
-      font-family: var(--body-font);
-      flex: 1 1 auto;
-      text-align: left !important;
-    }
-
-    /* Normalise any nested markup inside the hidden ref blocks */
-    #referencesList .ref-body, 
-    #referencesList .ref-body * {
-      text-align: left !important;
-      display: block;
-    }
-
-    .ref-list-btn {
-      display: flex;
-      gap: 0.75rem;
-      align-items: flex-start;
-      width: 100%;
-      padding: 0;
-      border: 0;
-      background: transparent;
-      text-align: left;
-      font-family: var(--body-font);
-      font-weight: 400;
-      color: inherit;
-      cursor: pointer;
-      justify-content: flex-start;
-    }
-
+    /* keep references region removed — only hover panel will be used */
     @media (max-width: 1024px) {
       .ref-panel { position: fixed; left: 8px; right: 8px; top: 12vh; max-width: calc(100% - 16px); width: auto; }
     }
@@ -319,15 +249,10 @@ const meta = project.frontmatter ?? {};
       <article class="project-prose">
         <article class="prose prose-lg lg:prose-xl max-w-none mx-auto dark:prose-invert"><ProjectContent /></article>
       </article>
-
-      <section id="references" aria-labelledby="references-heading" class="hidden">
-        <h2 id="references-heading">References</h2>
-        <ol id="referencesList"></ol>
-      </section>
     </main>
 
   <aside id="refPanel" class="ref-panel" aria-hidden="true">
-    <h4>References</h4>
+    <h4>Reference</h4>
     <div id="refContent"></div>
   </aside>
   
@@ -413,42 +338,7 @@ const meta = project.frontmatter ?? {};
       });
     }
 
-    document.addEventListener('click', function(e){
-      const el = e.target.closest && e.target.closest('a.cite[data-ref]');
-      if (!el) return;
-      e.preventDefault();
-      const id = el.getAttribute('data-ref');
-      const def = document.getElementById('ref-' + id);
-      if (!def) return;
-      const defInner = def.querySelector('.ref-entry') || def;
-
-      if (activeCite && activeCite !== el) {
-        activeCite.classList.remove('cite-active');
-      }
-      if (el.classList.contains('cite-active')) {
-        el.classList.remove('cite-active');
-        refPanel.classList.remove('open');
-        refPanel.setAttribute('aria-hidden', 'true');
-        activeCite = null;
-        return;
-      }
-
-      el.classList.add('cite-active');
-      activeCite = el;
-
-      showPanelForElement(el, defInner.innerHTML);
-    });
-
-    document.addEventListener('click', function(e){
-      if (!e.target.closest('.ref-panel') && !e.target.closest('a.cite[data-ref]') && !e.target.closest('.ref-list-btn')) {
-        if (activeCite) activeCite.classList.remove('cite-active');
-        activeCite = null;
-        if (refPanel) {
-          refPanel.classList.remove('open');
-          refPanel.setAttribute('aria-hidden', 'true');
-        }
-      }
-    });
+    // clicks are intentionally ignored now — only hover opens the panel
 
     window.addEventListener('scroll', function() {
       if (refPanel && refPanel.classList.contains('open') && activeCite) {
@@ -460,71 +350,6 @@ const meta = project.frontmatter ?? {};
         showPanelForElement(activeCite, refContent.innerHTML);
       }
     });
-
-    function buildReferencesList() {
-      const refsSection = document.getElementById('references');
-      const listEl = document.getElementById('referencesList');
-      if (!refsSection || !listEl) return;
-    
-      const citedAnchors = Array.from(document.querySelectorAll('a.cite[data-ref]'));
-      const seen = new Set();
-      const referencedIds = [];
-      for (const a of citedAnchors) {
-        const id = a.getAttribute('data-ref');
-        if (!id) continue;
-        if (!seen.has(id)) {
-          seen.add(id);
-          referencedIds.push(id);
-        }
-      }
-    
-      if (!referencedIds.length) {
-        refsSection.classList.add('hidden');
-        listEl.innerHTML = '';
-        return;
-      }
-    
-      listEl.innerHTML = '';
-      refsSection.classList.remove('hidden');
-    
-      referencedIds.forEach((refId, idx) => {
-        const def = document.getElementById('ref-' + refId);
-        if (!def) return;
-        const defInner = def.querySelector('.ref-entry') || def;
-    
-        const li = document.createElement('li');
-    
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'ref-list-btn';
-        btn.setAttribute('aria-label', `Open reference ${idx + 1}`);
-    
-        const numSpan = document.createElement('span');
-        numSpan.className = 'ref-num';
-        numSpan.textContent = `[${idx + 1}]`;
-    
-        const bodySpan = document.createElement('span');
-        bodySpan.className = 'ref-body';
-        bodySpan.innerHTML = defInner.innerHTML;
-    
-        btn.addEventListener('click', function(ev) {
-          ev.preventDefault();
-          if (activeCite) { activeCite.classList.remove('cite-active'); activeCite = null; }
-          showPanelForElement(btn, defInner.innerHTML);
-        });
-    
-        btn.appendChild(numSpan);
-        btn.appendChild(bodySpan);
-        li.appendChild(btn);
-        listEl.appendChild(li);
-      });
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', buildReferencesList);
-    } else {
-      buildReferencesList();
-    }
 
   })();
 </script>
