@@ -1,15 +1,15 @@
 :root {
-  --accent-color: #1d4ed8;
-  --accent-rgb: 29,78,216;
+  --accent-color: #0000ff;
+  --accent-rgb: 0,0,255;
   --accent-rgba: rgba(var(--accent-rgb), 1);
 
   --hero-stop-accent-1: rgba(var(--accent-rgb), 0.045);
   --hero-stop-accent-2: rgba(var(--accent-rgb), 0.02);
-  --hero-stop-mid: rgba(255,255,255,0.995);
-  --hero-end: #ffffff;
+  --hero-stop-mid: rgba(var(--accent-rgb),0.1);
+  --hero-end: rgba(var(--accent-rgb),0.25);
 
-  --symbols-opacity: 0.06;
-  --symbol-text-alpha: 0.12;
+  --symbols-opacity: 0.4;
+  --symbol-text-alpha: 0.3;
 
   --hero-text: #0f172a;
   --icon-sun-fill: 17 24 39;
@@ -18,8 +18,8 @@
 }
 
 html.dark {
-  --accent-color: #1d4ed8;
-  --accent-rgb: 29,78,216;
+  --accent-color: #0000ff;
+  --accent-rgb: 0,0,255;
 
   --hero-stop-accent-1: rgba(var(--accent-rgb), 0.20);
   --hero-stop-accent-2: rgba(var(--accent-rgb), 0.10);
