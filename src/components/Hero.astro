@@ -29,6 +29,55 @@ import { siteConfig } from "../config";
   </script>
 
   <style>
+    .hero-name {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      line-height: 0.95;
+      font-family: var(--name-font);
+      font-weight: 600;
+      font-size: clamp(2.4rem, 6.8vw, 5.5rem); /* larger than before */
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+  
+    .hero-name .name-english {
+      font-family: var(--heading-font), var(--name-font);
+      font-weight: 600;
+      font-size: inherit;
+    }
+  
+    .name-cycle {
+      display: block;
+      margin-top: 0.15rem;
+      font-family: var(--body-font);
+      font-size: clamp(1.0rem, 2.1vw, 1.2rem);
+      color: rgba(var(--muted-text-color), 1);
+      height: 1.2em;
+      position: relative;
+      overflow: visible;
+    }
+  
+    .name-variant {
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity .45s ease, transform .45s ease;
+      white-space: nowrap;
+    }
+    .name-variant.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  
+    .name-variant[data-script="devanagari"] { font-family: var(--name-deva); }
+    .name-variant[data-script="kannada"]   { font-family: var(--name-kannada); }
+    .name-variant[data-script="tulu"]      { font-family: var(--name-tulu), var(--name-deva); }
+  
+    .hero-subtitle { font-weight: 400; color: rgba(var(--text-color), .9); }
+
     .hero-bg {
       transition: background-position 120ms linear, background 180ms linear;
       background: radial-gradient(
@@ -89,9 +138,18 @@ import { siteConfig } from "../config";
         Hello! 👋
       </h2>
 
-      <h1 class="mt-6 sm:mt-8 md:mt-10 text-pretty text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold tracking-tight text-current animate-fade-in animation-delay-200">
-        I'm <span class="accent">{siteConfig.name}</span>
+      <h1 class="mt-6 sm:mt-8 md:mt-10 hero-name animate-fade-in animation-delay-200" role="img" aria-label={`Name ${siteConfig.name}`}>
+        <span class="name-english accent" data-lang="en">{siteConfig.name}</span>
+        <span class="name-cycle" aria-hidden="true">
+          <span class="name-variant" data-script="devanagari">निष्कल् राव्</span>
+          <span class="name-variant" data-script="kannada">ನಿಷ್ಕಲ್ ರಾವ್</span>
+          <span class="name-variant" data-script="tulu">നിഷ്‌കൾ രാവ്</span>
+        </span>
       </h1>
+
+      <p class="mt-4 sm:mt-6 md:mt-8 hero-subtitle text-pretty text-base sm:text-lg md:text-xl/8 font-medium text-current animate-fade-in animation-delay-400">
+        {siteConfig.title}
+      </p>
 
       <p class="mt-4 sm:mt-6 md:mt-8 text-pretty text-base sm:text-lg md:text-xl/8 font-medium text-current animate-fade-in animation-delay-400">
         {siteConfig.title}
@@ -163,6 +221,24 @@ import { siteConfig } from "../config";
     const rgb = hexToRgb(hex);
     document.documentElement.style.setProperty('--accent-rgb', rgb.join(','));
     document.documentElement.style.setProperty('--hero-accent-rgb', rgb.join(','));
+  })();
+</script>
+
+<script is:inline>
+  (function cycleNameVariants(){
+    try {
+      const variants = Array.from(document.querySelectorAll('.name-variant'));
+      if (!variants.length) return;
+      let idx = 0;
+      const show = (i) => {
+        variants.forEach((el, j) => el.classList.toggle('show', i === j));
+      };
+      show(0);
+      setInterval(() => {
+        idx = (idx + 1) % variants.length;
+        show(idx);
+      }, 2500);
+    } catch(e){}
   })();
 </script>
 
