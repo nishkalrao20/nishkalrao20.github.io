@@ -8,27 +8,27 @@
   --alpha-muted: 0.05;
 
   --hero-accent-rgb: var(--accent-rgb);
-  --hero-stop-accent-1-alpha: 0.50;
-  --hero-stop-accent-2-alpha: 0.12;
-  --hero-stop-mid-rgb: 255,255,255;
-  --hero-stop-mid-alpha: 0.05;
+  --hero-stop-accent-1-alpha: 0.48;
+  --hero-stop-accent-2-alpha: 0.10;
+  --hero-stop-mid-rgb: 250,250,252;
+  --hero-stop-mid-alpha: 0.06;
   --hero-end-rgb: 255,255,255;
-  --hero-end-alpha: 0.10;
+  --hero-end-alpha: 0.12;
 
-  --symbols-opacity: 0.40;
-  --symbol-text-alpha: 0.28;
+  --symbols-opacity: 0.60;
+  --symbol-text-alpha: 0.40;
 
-  --bg-color: 255,255,255;
+  --bg-color: 250,251,253;
   --bg-alpha: 1;
   --muted-bg-rgb: 247,249,250;
   --muted-bg-alpha: 1;
   --card-bg-rgb: 255,255,255;
-  --card-bg-alpha: 0.96;
+  --card-bg-alpha: 0.98;
   --card-accent-border-alpha: 0.06;
   --card-accent-bg-overlay-alpha: 0.02; 
 
   --text-color: 15,23,42;
-  --muted-text-color: 107,114,128;
+  --muted-text-color: 90,98,110;
 
   --hero-text: #0f172a;
   --icon-sun-fill: 17 24 39;
@@ -42,12 +42,12 @@ html.dark {
   --accent-color: #60a5fa;
   --accent-rgb: 96,165,250;
 
-  --hero-accent-rgb: var(--accent-rgb);
-  --hero-stop-accent-1-alpha: 0.20;
+  --hero-accent-rgb: 60,130,200;
+  --hero-stop-accent-1-alpha: 0.24;
   --hero-stop-accent-2-alpha: 0.08;
-  --hero-stop-mid-rgb: 3,37,65;
-  --hero-stop-mid-alpha: 0.60;
-  --hero-end-rgb: 3,37,65;
+  --hero-stop-mid-rgb: 4,18,35;
+  --hero-stop-mid-alpha: 0.62;
+  --hero-end-rgb: 2,10,20;
   --hero-end-alpha: 1;
 
   --symbols-opacity: 0.18;
