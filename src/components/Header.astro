@@ -58,28 +58,28 @@ const hasUpdates = siteConfig.news && siteConfig.news.length > 0;
     <ul class="flex items-center gap-8 justify-center">
       <ThemeIcon />
       <li>
-        <a href="/" class="text-gray-700 hover:text-[var(--accent-color)] transition-colors font-medium">Home</a>
+        <a href="/" style="color: rgba(var(--text-color), 1);" class="hover:opacity-85 transition-colors" onmouseover="this.style.color='var(--accent-color)'" onmouseout="this.style.color='rgba(var(--text-color),1)'">Home</a>
       </li>
 
       <li>
-        <a href="/#about" class="text-gray-700 hover:text-[var(--accent-color)] transition-colors font-medium">About</a>
+        <a href="/#about" style="color: rgba(var(--text-color), 1);" class="hover:opacity-85 transition-colors" onmouseover="this.style.color='var(--accent-color)'" onmouseout="this.style.color='rgba(var(--text-color),1)'">About</a>
       </li>
 
       { hasProjects && (
         <li>
-          <a href="/projects" class="text-gray-700 hover:text-[var(--accent-color)] transition-colors font-medium">Projects</a>
+          <a href="/projects" style="color: rgba(var(--text-color), 1);" class="hover:opacity-85 transition-colors" onmouseover="this.style.color='var(--accent-color)'" onmouseout="this.style.color='rgba(var(--text-color),1)'">Projects</a>
         </li>
       ) }
 
       { hasUpdates && (
         <li>
-          <a href="/#news" class="text-gray-700 hover:text-[var(--accent-color)] transition-colors font-medium">Updates</a>
+          <a href="/#news" style="color: rgba(var(--text-color), 1);" class="hover:opacity-85 transition-colors" onmouseover="this.style.color='var(--accent-color)'" onmouseout="this.style.color='rgba(var(--text-color),1)'">Updates</a>
         </li>
       ) }
 
       { hasEducation && (
         <li>
-          <a href="/#education" class="text-gray-700 hover:text-[var(--accent-color)] transition-colors font-medium">Education</a>
+          <a href="/#education" style="color: rgba(var(--text-color), 1);" class="hover:opacity-85 transition-colors" onmouseover="this.style.color='var(--accent-color)'" onmouseout="this.style.color='rgba(var(--text-color),1)'">Education</a>
         </li>
       ) }
 
@@ -88,7 +88,7 @@ const hasUpdates = siteConfig.news && siteConfig.news.length > 0;
           href="https://drive.google.com/drive/folders/1w7-eAqVPWLUALg1ZREcdAiqZe89ZNQvC?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-gray-700 hover:text-[var(--accent-color)] transition-colors font-medium"
+          style="color: rgba(var(--text-color), 1);" class="hover:opacity-85 transition-colors" onmouseover="this.style.color='var(--accent-color)'" onmouseout="this.style.color='rgba(var(--text-color),1)'"
         >
           Study Resources
         </a>
@@ -107,10 +107,15 @@ const hasUpdates = siteConfig.news && siteConfig.news.length > 0;
 <script>
   window.addEventListener("scroll", () => {
     const header = document.getElementById("header");
-    if (window.scrollY > 100) {
-      header?.classList.add("bg-white/80", "backdrop-blur-sm");
+    if (!header) return;
+    if (window.scrollY > 80) {
+      header.style.backgroundColor = `rgba(var(--muted-bg-rgb), ${Math.min(0.96, parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--muted-bg-alpha') || 1))})`;
+      header.style.backdropFilter = 'blur(6px)';
+      header.style.borderBottom = `1px solid rgba(var(--muted-text-color), 0.06)`;
     } else {
-      header?.classList.remove("bg-white/80", "backdrop-blur-sm");
+      header.style.backgroundColor = 'transparent';
+      header.style.backdropFilter = '';
+      header.style.borderBottom = '';
     }
   });
 </script>
