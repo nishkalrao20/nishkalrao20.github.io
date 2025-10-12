@@ -338,8 +338,6 @@ const meta = project.frontmatter ?? {};
       refPanel.style.top = `${top}px`;
     }
     
-    let hoverTimer = null;
-
     document.addEventListener('pointerenter', (e) => {
       const el = e.target.closest && e.target.closest('a.cite[data-ref]');
       if (!el) return;
