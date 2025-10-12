@@ -40,149 +40,129 @@ const meta = project.frontmatter ?? {};
     <meta name="description" content={meta.summary ?? meta.description ?? Astro.site?.description ?? ''} />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
-    <style>
-      :root
+      <style>
+    :root { --project-text: rgba(var(--text-color), 1); --project-muted: rgba(var(--muted-text-color), 1); }
 
-      .project-prose {
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Courier New", monospace;
-        color: #0f172a;
-        line-height: 1.8;
-        font-size: 1.03rem;
-      }
+    .project-prose {
+      font-family: var(--mono-font);
+      color: var(--project-text);
+      line-height: 1.8;
+      font-size: 1.03rem;
+    }
 
-      .project-prose p {
-        margin-top: 0.9rem;
-        margin-bottom: 1.05rem;
-        font-size: 1.08rem;
-        letter-spacing: 0.0015em;
-      }
+    .project-prose p {
+      margin-top: 0.9rem;
+      margin-bottom: 1.05rem;
+      font-size: 1.02rem;
+      letter-spacing: 0.0015em;
+      color: var(--project-text);
+      font-family: var(--body-font);
+      font-weight: 400;
+    }
 
-      .project-prose h1,
-      .project-prose h2,
-      .project-prose h3 {
-        margin-top: 1.8rem;
-        margin-bottom: 0.6rem;
-        line-height: 1.15;
-        font-weight: 700;
-      }
+    .project-prose .prose h1,
+    .project-prose .prose h2,
+    .project-prose .prose h3,
+    .project-prose h1,
+    .project-prose h2,
+    .project-prose h3 {
+      margin-top: 1.6rem;
+      margin-bottom: 0.6rem;
+      line-height: 1.12;
+      font-weight: 600;
+      color: rgba(var(--text-color), 1);
+      font-family: var(--heading-font);
+    }
+    .project-prose h1 { font-size: 1.9rem; }
+    .project-prose h2 { font-size: 1.4rem; }
+    .project-prose h3 { font-size: 1.125rem; }
 
-      .project-prose ul, .project-prose ol {
-        padding-left: 1.25rem;
-        margin-top: 0.6rem;
-        margin-bottom: 0.9rem;
-      }
+    .project-prose ul, .project-prose ol {
+      padding-left: 1.25rem;
+      margin-top: 0.6rem;
+      margin-bottom: 0.9rem;
+      color: var(--project-text);
+    }
 
-      .project-prose li { margin-top: 0.35rem; }
+    .project-prose pre {
+      background: rgba(11,18,32,0.86);
+      color: #e6eef8;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.95rem;
+    }
+    .project-prose code {
+      font-family: var(--mono-font);
+      background: rgba(15,23,42,0.06);
+      padding: 0.12rem 0.3rem;
+      border-radius: 4px;
+      color: rgba(var(--text-color), 0.95);
+    }
 
-      .project-prose pre {
-        background: #0b1220;
-        color: #e6eef8;
-        padding: 1rem;
-        border-radius: 8px;
-        overflow-x: auto;
-        font-size: 0.95rem;
-      }
-      .project-prose code {
-        font-family: ui-monospace, monospace;
-        background: rgba(15,23,42,0.06);
-        padding: 0.12rem 0.3rem;
-        border-radius: 4px;
-      }
+    .project-prose .katex { font-size: 1.02rem; line-height: 1.35; }
+    .project-prose .katex-display { margin: 1rem 0; }
 
-      .project-prose .katex { font-size: 1.02rem; line-height: 1.35; }
-      .project-prose .katex-display { margin: 1rem 0; }
+    .skill-pill {
+      display:inline-block;
+      font-family: var(--mono-font);
+      padding: 0.25rem 0.6rem;
+      border-radius: 0.5rem;
+      background: rgba(var(--card-bg-rgb), 0.92);
+      color: rgba(var(--text-color), 1);
+      font-size: 0.75rem;
+      margin-right:0.35rem;
+      margin-top:0.3rem;
+      font-weight: 600;
+    }
 
-      .skill-pill {
-        display:inline-block;
-        font-family: ui-monospace, monospace;
-        padding: 0.25rem 0.6rem;
-        border-radius: 0.5rem;
-        background: #0f172a;
-        color: #fff;
-        font-size: 0.75rem;
-        margin-right:0.35rem;
-        margin-top:0.3rem;
-        font-weight: 600;
-      }
+    a.cite.cite-active { color: var(--accent-color); }
+    a.cite:hover,
+    a.cite:focus { color: var(--accent-color); text-decoration-color: var(--accent-color); outline: none; }
+    a.cite:focus-visible { box-shadow: 0 0 0 4px rgba(var(--accent-rgb),0.12); border-radius: 4px; }
 
-      
-      a.cite.cite-active { color: var(--accent-color); }
-    
-      a.cite:hover,
-      a.cite:focus {
-        color: var(--accent-color);
-        text-decoration-color: var(--accent-color);
-        outline: none;
-      }
-    
-      a.cite:focus-visible {
-        /* use rgba(var(--accent-rgb), 0.12) for focus ring */
-        box-shadow: 0 0 0 4px rgba(var(--accent-rgb),0.12);
-        border-radius: 4px;
-      }
-
-      .ref-panel {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 320px;
-        max-width: 42vw;
-        max-height: 60vh;
-        overflow-y: auto;
-        border-left: 1px solid rgba(15,23,42,0.06);
-        padding: 1rem;
-        background: rgba(255,255,255,0.85);
-        backdrop-filter: blur(6px);
-        -webkit-backdrop-filter: blur(6px);
-        box-shadow: 0 10px 30px rgba(2,6,23,0.08);
-        font-family: ui-monospace, monospace;
-        font-size: 0.95rem;
-        display: none;
-        z-index: 9999;
-        border-radius: 8px;
-      }
-      .ref-panel h4 { font-weight: 700; margin-bottom: .45rem; }
-      .ref-entry { margin-bottom: .9rem; color: #111827; }
-
-      @media (max-width: 1024px) {
-        .ref-panel { display: none !important; }
-      }
-
-      .project-header { margin-top: 1.5rem; margin-bottom: 1rem; }
-
-      #references {
-        max-width: 640px;
-        margin: 2rem 0 4rem;
-        padding: 0 1rem 0 0;
-      }
-      #references h2 {
-        font-size: 1.125rem;
-        font-weight: 700;
-        margin-bottom: 0.75rem;
-      }
-      #references ol {
-        list-style: decimal;
-        margin-left: 1.25rem;
-        color: #374151;
-      }
-      #references ol li {
-        margin-bottom: 0.8rem;
-      }
-      .ref-list-btn {
-        display:block;
-        width:100%;
-        text-align:left;
-        padding:0;
-        border:0;
-        background:transparent;
-        font-family: ui-monospace, monospace;
-        color: inherit;
-        cursor:pointer;
-      }
-      .ref-list-btn:hover { text-decoration: underline; color: var(--accent-color); }
-
-    </style>
+    .ref-panel {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 320px;
+      max-width: 42vw;
+      max-height: 60vh;
+      overflow-y: auto;
+      border-left: 1px solid rgba(15,23,42,0.06);
+      padding: 1rem;
+      background: rgba(var(--card-bg-rgb), 0.95);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      box-shadow: 0 10px 30px rgba(2,6,23,0.08);
+      font-family: var(--mono-font);
+      font-size: 0.95rem;
+      display: none;
+      z-index: 9999;
+      border-radius: 8px;
+    }
+    .ref-panel h4 { font-weight: 600; margin-bottom: .45rem; color: rgba(var(--text-color),1); }
+    .ref-entry { margin-bottom: .9rem; color: rgba(var(--text-color),0.95); }
+  </style>
   </head>
+  <script>
+    (function normalizeReferenceLinks(){
+      function convert() {
+        const anchors = document.querySelectorAll('.project-prose a[href^="#ref-"]');
+        anchors.forEach(a => {
+          try {
+            const href = a.getAttribute('href');
+            const id = href.replace(/^#/, '');
+            a.classList.add('cite');
+            a.setAttribute('data-ref', id.replace(/^ref-/, ''));
+          } catch(e){}
+        });
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', convert);
+      } else convert();
+    })();
+  </script>
   <style>
     #refContent { text-align: left; max-width: 65ch; margin: 2rem auto; }
     #referencesList { list-style-position: inside; }
