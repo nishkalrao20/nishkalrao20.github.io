@@ -197,7 +197,7 @@ const meta = project.frontmatter ?? {};
 
       {meta.banner ? (
         <div class="project-banner my-6">
-          <img src={meta.banner} alt={`${meta.title ?? slug} banner`} class="w-full rounded-lg object-cover max-h-[420px]" loading="lazy" onerror="this.src='/assets/projects/placeholder.jpg'"/>
+          <img src='/projects/${slug}.jpg' alt={`${meta.title ?? slug} banner`} class="w-full rounded-lg object-cover max-h-[420px]" loading="lazy" onerror="this.src='/assets/projects/placeholder.jpg'"/>
         </div>
       ) : null}
 
