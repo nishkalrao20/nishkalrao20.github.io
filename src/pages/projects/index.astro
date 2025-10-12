@@ -15,7 +15,7 @@ const projects = siteConfig.projects ?? [];
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((p) => {
           const slug = p.slug ?? p.name.toLowerCase().replace(/\s+/g,'-');
-          const banner = `/assets/projects/${slug}.jpg`; /* placeholder: add a banner per project here */
+          const banner = `/projects/${slug}.jpg`;
           return (
             <a href={`/projects/${slug}`} class="block rounded-lg overflow-hidden border transition-shadow duration-200 card-surface hover:shadow-lg">
               <div class="h-40 sm:h-44 relative">
