@@ -119,5 +119,85 @@ const getFileType = (url) => {
         </div>
       </div>
     </div>
+
+    <script is:inline>
+      (function initNewsCarousel(){
+        document.addEventListener('DOMContentLoaded', () => {
+          const track = document.getElementById('newsTrack');
+          const prevBtn = document.getElementById('newsPrev');
+          const nextBtn = document.getElementById('newsNext');
+          if (!track || !prevBtn || !nextBtn) return;
+    
+          const cards = Array.from(track.children);
+          if (!cards.length) return;
+    
+          track.style.transitionProperty = 'transform';
+          track.style.transitionDuration = track.style.transitionDuration || '600ms';
+          track.style.willChange = 'transform';
+    
+          let idx = 0;
+          let autoTimer = null;
+          const AUTO_DELAY = 3500;
+    
+          function scrollToIndex(i, smooth = true) {
+            i = Math.max(0, Math.min(i, cards.length - 1));
+            idx = i;
+            const left = cards[i].offsetLeft;
+            if (!smooth) {
+              const prevDuration = track.style.transitionDuration;
+              track.style.transitionDuration = '0ms';
+              track.style.transform = `translateX(-${left}px)`;
+              // force reflow then restore
+              void track.offsetHeight;
+              track.style.transitionDuration = prevDuration;
+            } else {
+              track.style.transform = `translateX(-${left}px)`;
+            }
+          }
+    
+          function next() {
+            idx = (idx + 1) % cards.length;
+            scrollToIndex(idx);
+          }
+          function prev() {
+            idx = (idx - 1 + cards.length) % cards.length;
+            scrollToIndex(idx);
+          }
+    
+          function startAuto() {
+            stopAuto();
+            autoTimer = setInterval(next, AUTO_DELAY);
+          }
+          function stopAuto() {
+            if (autoTimer) {
+              clearInterval(autoTimer);
+              autoTimer = null;
+            }
+          }
+          function resetAuto() {
+            stopAuto();
+            startAuto();
+          }
+    
+          nextBtn.addEventListener('click', (e) => { e.preventDefault(); next(); resetAuto(); });
+          prevBtn.addEventListener('click', (e) => { e.preventDefault(); prev(); resetAuto(); });
+    
+          const slider = track.closest('.news-slider');
+          if (slider) {
+            slider.addEventListener('mouseenter', () => stopAuto());
+            slider.addEventListener('mouseleave', () => startAuto());
+          }
+    
+          let resizeTimer = null;
+          window.addEventListener('resize', () => {
+            if (resizeTimer) clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => scrollToIndex(idx, false), 120);
+          });
+    
+          scrollToIndex(0, false);
+          startAuto();
+        });
+      })();
+    </script>
   </section>
 )}
