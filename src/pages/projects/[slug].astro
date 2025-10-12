@@ -180,32 +180,9 @@ const meta = project.frontmatter ?? {};
     #references { max-width: 640px; margin: 2rem 0 4rem; padding: 0 1rem 0 0; }
     #references h2 { font-size: 1.125rem; font-weight: 600; margin-bottom: 0.75rem; color: rgba(var(--text-color),1); }
     
-    #referencesList {
-      list-style: none;
-      counter-reset: refs;
-      padding-left: 0;
-      margin-left: 0;
-    }
-    
-    #referencesList li {
-      counter-increment: refs;
-      margin-bottom: 0.9rem;
-      display: flex;
-      gap: 0.75rem;
-      align-items: flex-start;
-      text-align: left;
-    }
-    
-    #referencesList li::before {
-      content: "[" counter(refs) "]";
-      color: rgba(var(--muted-text-color),1);
-      min-width: 2.2ch;
-      text-align: right;
-      font-weight: 500;
-      margin-top: 0.08rem;
-      line-height: 1.2;
-    }
-    
+    #referencesList { list-style: none; counter-reset: refs; padding-left: 0; margin-left: 0; }
+    #referencesList li { counter-increment: refs; margin-bottom: 0.9rem; display: flex; gap: 0.75rem; align-items: flex-start; text-align: left; }
+    #referencesList li::before { content: "[" counter(refs) "]"; color: rgba(var(--muted-text-color),1); min-width: 2.2ch; text-align: right; margin-top: 0.08rem; font-weight: 500; line-height: 1.2; display: inline-block; }
     .ref-list-btn { display:block; width:100%; text-align:left; padding:0; border:0; background:transparent; font-family: var(--body-font); font-weight: 400; color: inherit; cursor: pointer; }
     .ref-entry { color: rgba(var(--text-color), 0.95); line-height: 1.45; }
   </style>
@@ -284,6 +261,7 @@ const meta = project.frontmatter ?? {};
   (function(){
     const refPanel = document.getElementById('refPanel');
     const refContent = document.getElementById('refContent');
+    let hoverTimer = null;
     let activeCite = null;
 
     function showPanelForElement(el, htmlContent) {
@@ -319,8 +297,6 @@ const meta = project.frontmatter ?? {};
       refPanel.style.left = `${left}px`;
       refPanel.style.top = `${top}px`;
     }
-
-    let hoverTimer = null;
     
     document.addEventListener('pointerenter', (e) => {
       const el = e.target.closest && e.target.closest('a.cite[data-ref]');
@@ -437,10 +413,32 @@ const meta = project.frontmatter ?? {};
         btn.className = 'ref-list-btn';
         btn.setAttribute('aria-label', `Open reference ${idx + 1}`);
         btn.innerHTML = def.innerHTML;
+    
         btn.addEventListener('click', function(ev) {
           ev.preventDefault();
+          if (activeCite) { activeCite.classList.remove('cite-active'); activeCite = null; }
           showPanelForElement(btn, def.innerHTML);
         });
+    
+        btn.addEventListener('pointerenter', function(ev) {
+          clearTimeout(hoverTimer);
+          if (activeCite && activeCite !== btn) activeCite.classList.remove('cite-active');
+          btn.classList.add('cite-active');
+          activeCite = btn;
+          showPanelForElement(btn, def.innerHTML);
+        });
+    
+        btn.addEventListener('pointerleave', function(ev) {
+          hoverTimer = setTimeout(() => {
+            if (btn.classList.contains('cite-active')) btn.classList.remove('cite-active');
+            if (refPanel) {
+              refPanel.classList.remove('open');
+              refPanel.setAttribute('aria-hidden', 'true');
+            }
+            activeCite = null;
+          }, 250);
+        });
+    
         li.appendChild(btn);
         listEl.appendChild(li);
       });
