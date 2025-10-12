@@ -71,6 +71,7 @@ const meta = project.frontmatter ?? {};
       text-align: left;
     }
     
+    /* fake h3 by styling h2 smaller — use ## in markdown for this "h3 look" */
     .project-prose .prose h2,
     .project-prose h2 {
       font-size: 1.125rem;
@@ -220,14 +221,18 @@ const meta = project.frontmatter ?? {};
       flex: 0 0 auto;
     }
     
-    /* body text flows normally, left aligned */
     .ref-body {
       color: rgba(var(--text-color), 0.95);
       line-height: 1.45;
       font-family: var(--body-font);
       flex: 1 1 auto;
     }
-    
+
+    /* Ensure any nested markup from the hidden ref definitions is normalised and left-aligned */
+    .ref-body .ref-entry { display:block; text-align:left; margin:0; padding:0; }
+    .ref-body strong { font-weight:600; }
+    .ref-body a { color: inherit; text-decoration: underline; }
+
     .ref-list-btn {
       display: flex;
       gap: 0.75rem;
@@ -367,10 +372,11 @@ const meta = project.frontmatter ?? {};
       const id = el.getAttribute('data-ref');
       const def = document.getElementById('ref-' + id);
       if (!def) return;
+      const defInner = def.querySelector('.ref-entry') || def;
       if (activeCite && activeCite !== el) activeCite.classList.remove('cite-active');
       el.classList.add('cite-active');
       activeCite = el;
-      showPanelForElement(el, def.innerHTML);
+      showPanelForElement(el, defInner.innerHTML);
     }, true);
 
     document.addEventListener('pointerleave', (e) => {
@@ -407,6 +413,7 @@ const meta = project.frontmatter ?? {};
       const id = el.getAttribute('data-ref');
       const def = document.getElementById('ref-' + id);
       if (!def) return;
+      const defInner = def.querySelector('.ref-entry') || def;
 
       if (activeCite && activeCite !== el) {
         activeCite.classList.remove('cite-active');
@@ -422,7 +429,7 @@ const meta = project.frontmatter ?? {};
       el.classList.add('cite-active');
       activeCite = el;
 
-      showPanelForElement(el, def.innerHTML);
+      showPanelForElement(el, defInner.innerHTML);
     });
 
     document.addEventListener('click', function(e){
@@ -476,6 +483,7 @@ const meta = project.frontmatter ?? {};
       referencedIds.forEach((refId, idx) => {
         const def = document.getElementById('ref-' + refId);
         if (!def) return;
+        const defInner = def.querySelector('.ref-entry') || def;
     
         const li = document.createElement('li');
     
@@ -490,12 +498,12 @@ const meta = project.frontmatter ?? {};
     
         const bodySpan = document.createElement('span');
         bodySpan.className = 'ref-body';
-        bodySpan.innerHTML = def.innerHTML;
+        bodySpan.innerHTML = defInner.innerHTML; // use inner ref-entry content only
     
         btn.addEventListener('click', function(ev) {
           ev.preventDefault();
           if (activeCite) { activeCite.classList.remove('cite-active'); activeCite = null; }
-          showPanelForElement(btn, def.innerHTML);
+          showPanelForElement(btn, defInner.innerHTML);
         });
     
         btn.appendChild(numSpan);
