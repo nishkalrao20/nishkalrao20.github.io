@@ -89,3 +89,11 @@ a:focus {
 
 .hero-gradient-stop-accent-1 {
 }
+
+.site-nav a { color: rgba(var(--text-color), 1); text-decoration: none; }
+.site-nav a:hover { color: var(--accent-color); }
+.card-surface { background-color: rgba(var(--card-bg-rgb), var(--card-bg-alpha)); border: 1px solid rgba(var(--muted-text-color), 0.06); }
+
+:target {
+  scroll-margin-top: 5.5rem;
+}
