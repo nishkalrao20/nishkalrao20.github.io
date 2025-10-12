@@ -60,11 +60,8 @@ const meta = project.frontmatter ?? {};
     }
 
     .project-prose .prose h1,
-    .project-prose .prose h2,
-    .project-prose .prose h3,
-    .project-prose h1,
-    .project-prose h2,
-    .project-prose h3 {
+    .project-prose h1 {
+      font-size: 1.9rem;
       margin-top: 1.6rem;
       margin-bottom: 0.6rem;
       line-height: 1.12;
@@ -72,13 +69,10 @@ const meta = project.frontmatter ?? {};
       color: rgba(var(--text-color), 1);
       font-family: var(--heading-font);
       text-align: left;
-      text-indent: 0;
     }
-
-    .project-prose .prose h3,
-    .project-prose h3,
-    .project-prose :is(h3) {
-      display: block;
+    
+    .project-prose .prose h2,
+    .project-prose h2 {
       font-size: 1.125rem;
       margin-top: 1.2rem;
       margin-bottom: 0.6rem;
@@ -86,10 +80,8 @@ const meta = project.frontmatter ?? {};
       font-weight: 600;
       color: rgba(var(--text-color), 1);
       font-family: var(--heading-font);
+      text-align: left;
     }
-
-    .project-prose h1 { font-size: 1.9rem; }
-    .project-prose h2 { font-size: 1.4rem; }
 
     .project-prose ul, .project-prose ol {
       padding-left: 1.25rem;
@@ -191,15 +183,25 @@ const meta = project.frontmatter ?? {};
     .ref-panel h4 { font-weight: 600; margin-bottom: .45rem; color: rgba(var(--text-color),1); }
     .ref-entry { margin-bottom: .9rem; color: rgba(var(--text-color),0.95); }
 
-    #references { max-width: 640px; margin: 2rem 0 4rem; padding: 0 1rem 0 0; }
-    #references h2 { font-size: 1.125rem; font-weight: 600; margin-bottom: 0.75rem; color: rgba(var(--text-color),1); }
-
+    #references {
+      text-align: left;
+      max-width: 640px;
+      margin: 2rem 0 4rem;
+      padding: 0 1rem 0 0;
+    }
+    #references h2 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: rgba(var(--text-color),1);
+    }
+    
     #referencesList {
       list-style: none;
       padding-left: 0;
       margin-left: 0;
     }
-
+    
     #referencesList li {
       margin-bottom: 0.9rem;
       display: flex;
@@ -207,7 +209,7 @@ const meta = project.frontmatter ?? {};
       align-items: flex-start;
       text-align: left;
     }
-
+    
     .ref-num {
       color: rgba(var(--muted-text-color),1);
       min-width: 2.2ch;
@@ -217,20 +219,24 @@ const meta = project.frontmatter ?? {};
       line-height: 1.2;
       flex: 0 0 auto;
     }
-
+    
+    /* body text flows normally, left aligned */
     .ref-body {
       color: rgba(var(--text-color), 0.95);
       line-height: 1.45;
       font-family: var(--body-font);
+      flex: 1 1 auto;
     }
-
+    
     .ref-list-btn {
-      display: block;
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
       width: 100%;
-      text-align: left;
       padding: 0;
       border: 0;
       background: transparent;
+      text-align: left;
       font-family: var(--body-font);
       font-weight: 400;
       color: inherit;
@@ -445,46 +451,55 @@ const meta = project.frontmatter ?? {};
       const refsSection = document.getElementById('references');
       const listEl = document.getElementById('referencesList');
       if (!refsSection || !listEl) return;
-
+    
       const citedAnchors = Array.from(document.querySelectorAll('a.cite[data-ref]'));
-      const referencedIds = Array.from(new Set(citedAnchors.map(a => a.getAttribute('data-ref')))).filter(Boolean);
-
+      const seen = new Set();
+      const referencedIds = [];
+      for (const a of citedAnchors) {
+        const id = a.getAttribute('data-ref');
+        if (!id) continue;
+        if (!seen.has(id)) {
+          seen.add(id);
+          referencedIds.push(id);
+        }
+      }
+    
       if (!referencedIds.length) {
         refsSection.classList.add('hidden');
         listEl.innerHTML = '';
         return;
       }
-
+    
       listEl.innerHTML = '';
       refsSection.classList.remove('hidden');
-
+    
       referencedIds.forEach((refId, idx) => {
         const def = document.getElementById('ref-' + refId);
         if (!def) return;
+    
         const li = document.createElement('li');
-
+    
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'ref-list-btn';
         btn.setAttribute('aria-label', `Open reference ${idx + 1}`);
-
+    
         const numSpan = document.createElement('span');
         numSpan.className = 'ref-num';
         numSpan.textContent = `[${idx + 1}]`;
-
+    
         const bodySpan = document.createElement('span');
         bodySpan.className = 'ref-body';
         bodySpan.innerHTML = def.innerHTML;
-
-        btn.appendChild(numSpan);
-        btn.appendChild(bodySpan);
-
+    
         btn.addEventListener('click', function(ev) {
           ev.preventDefault();
           if (activeCite) { activeCite.classList.remove('cite-active'); activeCite = null; }
           showPanelForElement(btn, def.innerHTML);
         });
-
+    
+        btn.appendChild(numSpan);
+        btn.appendChild(bodySpan);
         li.appendChild(btn);
         listEl.appendChild(li);
       });
