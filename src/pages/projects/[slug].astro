@@ -195,9 +195,14 @@ const meta = project.frontmatter ?? {};
         )}
       </header>
 
-      {meta.banner ? (
+      {(meta.banner ?? (`/projects/${slug}.jpg`)) ? (
         <div class="project-banner my-6">
-          <img src='/projects/${slug}.jpg' alt={`${meta.title ?? slug} banner`} class="w-full rounded-lg object-cover max-h-[420px]" loading="lazy" onerror="this.src='/assets/projects/placeholder.jpg'"/>
+          <img
+            src={meta.banner ?? `/projects/${slug}.jpg`}
+            alt={`${meta.title ?? slug} banner`}
+            class="w-full rounded-lg object-cover max-h-[420px]"
+            onerror="this.src='/assets/projects/placeholder.jpg'"
+          />
         </div>
       ) : null}
 
