@@ -6,10 +6,21 @@ const getFileName = (url) => {
   try {
     if (!url) return "";
     const parts = url.split('/');
-    return parts[parts.length - 1] || url;
+    return decodeURIComponent(parts[parts.length - 1] || url);
   } catch (e) {
-    return url;
+    return url || "";
   }
+};
+
+const isImage = (url) => {
+  if (!url) return false;
+  return /\.(png|jpe?g|gif|webp|avif|svg)$/i.test(url.split('?')[0]);
+};
+
+const getFileType = (url) => {
+  if (!url) return "";
+  const m = url.split('?')[0].match(/\.([^.\/]+)$/);
+  return m ? m[1].toLowerCase() : "";
 };
 ---
 {news.length > 0 && (
@@ -20,104 +31,90 @@ const getFileName = (url) => {
         <div class="w-[75px] h-[5px] mt-2 rounded-full" style="background-color: var(--accent-color);"></div>
       </div>
 
-          <div class="lg:col-span-8">
-            <div class="news-slider relative overflow-hidden">
-              <div id="newsTrack" class="flex gap-6 transition-transform duration-600 will-change-transform">
-                {news.map((item, idx) => {
-                  const href = item.program ?? item.url ?? null;
-                  const linkProps = href && href.startsWith('http') ? { href, target: "_blank", rel: "noopener noreferrer" } : { href };
-                  return (
-                    <article class="w-full min-w-full sm:min-w-[60%] md:min-w-[50%] lg:min-w-[33.333%] rounded-2xl border card-surface p-5 shadow-sm transition-all duration-250" key={item.title}>
-                      <a {...(href ? linkProps : {})} class="block h-full">
-                        <div class="flex flex-col h-full">
-                          <div class="flex-1">
-                            <h3 class="text-lg font-medium" style="font-family: var(--heading-font)">{item.title}</h3>
-                            <p class="text-sm text-muted mt-1">{item.description}</p>
-                          </div>
-    
-                          <div class="mt-4 flex items-center justify-between">
-                            <div class="text-xs text-muted font-mono">{item.date}</div>
-    
-                            <div class="flex items-center gap-2">
-                              {item.poster ? (
-                                <a
-                                  href={item.poster}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  class="inline-flex items-center gap-2 text-xs font-mono px-2 py-1 rounded-md border card-surface shadow-sm max-w-[9rem] overflow-hidden"
-                                  title={getFileName(item.poster)}
-                                >
-                                  <!-- PDF icon -->
-                                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                    <path d="M6 2h7l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path>
-                                    <path d="M14 2v6h6"></path>
-                                    <text x="7" y="17" style="font-size:9px; font-family: monospace;">PDF</text>
-                                  </svg>
-                                  <span class="truncate">{getFileName(item.poster)}</span>
-                                </a>
-                              ) : null}
-                              
-                              {item.docs ? (
-                                <a
-                                  href={item.docs}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  class="inline-flex items-center gap-2 text-xs font-mono px-2 py-1 rounded-md border card-surface shadow-sm max-w-[9rem] overflow-hidden"
-                                  title={getFileName(item.docs)}
-                                >
-                                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                    <path d="M6 2h7l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path>
-                                    <path d="M14 2v6h6"></path>
-                                    <text x="6.8" y="17" style="font-size:9px; font-family: monospace;">DOC</text>
-                                  </svg>
-                                  <span class="truncate">{getFileName(item.docs)}</span>
-                                </a>
-                              ) : null}
+      <div class="lg:col-span-8">
+        <div class="news-slider relative overflow-hidden">
+          <div id="newsTrack" class="flex gap-6 transition-transform duration-600 will-change-transform">
+            {news.map((item, idx) => {
+              const href = item.program ?? item.url ?? null;
+              const linkProps = href && href.startsWith('http') ? { href, target: "_blank", rel: "noopener noreferrer" } : { href };
+              const posterIsImage = !!item.poster && isImage(item.poster);
+              const fileType = item.poster ? getFileType(item.poster) : (item.docs ? getFileType(item.docs) : '');
+              const fileLabel = fileType ? fileType.toUpperCase() : "FILE";
 
-                            </div>
-                          </div>
-                        </div>
-                      </a>
-                    </article>
-                  );
-                })}
-              </div>
-    
-              <button id="newsPrev" aria-label="Previous update" class="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded bg-[rgba(var(--card-bg-rgb),0.85)]">‹</button>
-              <button id="newsNext" aria-label="Next update" class="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded bg-[rgba(var(--card-bg-rgb),0.85)]">›</button>
-            </div>
+              const cardContent = (
+                <div class="flex flex-col h-full">
+                  {posterIsImage ? (
+                    <img src={item.poster} alt={getFileName(item.poster)} loading="lazy"
+                      class="w-full h-44 md:h-36 object-cover rounded-xl mb-4" />
+                  ) : null}
+
+                  <div class="flex-1">
+                    <h3 class="text-lg font-medium" style="font-family: var(--heading-font)">{item.title}</h3>
+                    <p class="text-sm text-muted mt-1">{item.description}</p>
+                  </div>
+
+                  <div class="mt-4 flex items-center justify-between">
+                    <div class="text-xs text-muted font-mono">{item.date}</div>
+
+                    <div class="flex items-center gap-2">
+                      {item.poster && !posterIsImage ? (
+                        <a
+                          href={item.poster}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="inline-flex items-center gap-2 text-xs font-mono px-2 py-1 rounded-md border card-surface shadow-sm max-w-[11rem] overflow-hidden"
+                          title={getFileName(item.poster)}
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M6 2h7l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path>
+                            <path d="M14 2v6h6"></path>
+                            <text x="6.5" y="17" style="font-size:9px; font-family: monospace;">{fileLabel}</text>
+                          </svg>
+                          <span class="truncate">{getFileName(item.poster)}</span>
+                        </a>
+                      ) : null}
+
+                      {item.docs ? (
+                        <a
+                          href={item.docs}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="inline-flex items-center gap-2 text-xs font-mono px-2 py-1 rounded-md border card-surface shadow-sm max-w-[11rem] overflow-hidden"
+                          title={getFileName(item.docs)}
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M6 2h7l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path>
+                            <path d="M14 2v6h6"></path>
+                            <text x="6.5" y="17" style="font-size:9px; font-family: monospace;">DOC</text>
+                          </svg>
+                          <span class="truncate">{getFileName(item.docs)}</span>
+                        </a>
+                      ) : null}
+                    </div>
+                  </div>
+                </div>
+              );
+
+              return (
+                <article class="w-full min-w-full sm:min-w-[60%] md:min-w-[50%] lg:min-w-[33.333%] rounded-2xl border card-surface p-5 shadow-sm transition-all duration-250" key={item.title}>
+                  {href ? (
+                    <a {...linkProps} class="block h-full">
+                      {cardContent}
+                    </a>
+                  ) : (
+                    <div class="block h-full">
+                      {cardContent}
+                    </div>
+                  )}
+                </article>
+              );
+            })}
+          </div>
+
+          <button id="newsPrev" aria-label="Previous update" class="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded bg-[rgba(var(--card-bg-rgb),0.85)]">‹</button>
+          <button id="newsNext" aria-label="Next update" class="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded bg-[rgba(var(--card-bg-rgb),0.85)]">›</button>
         </div>
-      </div>
       </div>
     </div>
   </section>
-
-<script is:inline>
-  (function newsAutoSlider(){
-    try {
-      const track = document.getElementById('newsTrack');
-      if(!track) return;
-      const items = Array.from(track.children);
-      let idx = 0;
-      const slide = (i) => {
-        const width = items[0].getBoundingClientRect().width + parseFloat(getComputedStyle(track).gap || 24);
-        track.style.transform = `translateX(-${i * width}px)`;
-      };
-      const next = () => {
-        idx = (idx + 1) % items.length;
-        slide(idx);
-      };
-      let timer = setInterval(next, 3500);
-      document.getElementById('newsNext')?.addEventListener('click', ()=>{ clearInterval(timer); next(); timer = setInterval(next, 3500); });
-      document.getElementById('newsPrev')?.addEventListener('click', ()=>{ clearInterval(timer); idx = (idx - 1 + items.length) % items.length; slide(idx); timer = setInterval(next, 3500); });
-
-      const slider = track.parentElement;
-      slider.addEventListener('mouseenter', ()=> clearInterval(timer));
-      slider.addEventListener('mouseleave', ()=> timer = setInterval(next, 3500));
-      window.addEventListener('resize', ()=> slide(idx));
-      slide(0);
-    } catch(e){}
-  })();
-</script>
-
 )}
