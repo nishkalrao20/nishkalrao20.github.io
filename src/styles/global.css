@@ -2,6 +2,53 @@
 @import "tailwindcss";
 @import "katex/dist/katex.min.css";
 
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&family=IBM+Plex+Mono:wght@300;400;600&display=swap');
+
+:root {
+  --heading-font: "Crimson Text", serif;
+  --body-font: "Lato", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --mono-font: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+}
+
+html, body {
+  height: 100%;
+}
 body {
-  font-family: 'Crimson Text', serif;
+  margin: 0;
+  font-family: var(--body-font);
+  background-color: rgba(var(--bg-color), var(--bg-alpha));
+  color: rgba(var(--text-color), 1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--heading-font);
+  margin: 0 0 0.6rem 0;
+  font-weight: 400;
+  color: rgba(var(--text-color), 1);
+  letter-spacing: -0.005em;
+}
+h1 { font-size: clamp(1.6rem, 3vw, 3.2rem); font-weight: 600; }
+h2 { font-size: clamp(1.4rem, 2.6vw, 2.4rem); }
+h3 { font-size: 1.125rem; }
+
+p, li {
+  font-family: var(--body-font);
+  color: rgba(var(--text-color), 0.95);
+}
+
+code, pre, kbd {
+  font-family: var(--mono-font);
+}
+
+.bg-card {
+  background-color: rgba(var(--card-bg-rgb), var(--card-bg-alpha));
+}
+.text-muted { color: rgba(var(--muted-text-color), 1); }
+
+.section {
+  background-color: transparent;
+  color: rgba(var(--text-color), 1);
 }
