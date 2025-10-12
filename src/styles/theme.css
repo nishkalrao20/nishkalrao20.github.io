@@ -3,9 +3,9 @@
   --accent-rgb: 0,0,255;
   --accent-rgba: rgba(var(--accent-rgb), 1);
 
-  --hero-stop-accent-1: rgba(var(--accent-rgb), 0.045);
-  --hero-stop-accent-2: rgba(var(--accent-rgb), 0.02);
-  --hero-stop-mid: rgba(255,255,255,0.1);
+  --hero-stop-accent-1: rgba(var(--accent-rgb), 0.9);
+  --hero-stop-accent-2: rgba(var(--accent-rgb), 0.5);
+  --hero-stop-mid: rgba(255,255,255,0.5);
   --hero-end: rgba(255,255,255,1);
 
   --symbols-opacity: 0.4;
