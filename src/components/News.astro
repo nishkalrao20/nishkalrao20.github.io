@@ -64,16 +64,18 @@ const getFileType = (url) => {
                           rel="noopener noreferrer"
                           class="inline-flex items-center gap-2 text-xs font-mono px-2 py-1 rounded-md border card-surface shadow-sm max-w-[11rem] overflow-hidden"
                           title={getFileName(item.poster)}
+                          aria-label={`Open poster: ${getFileName(item.poster)}`}
                         >
+                          <!-- simple doc icon -->
                           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M6 2h7l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path>
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                             <path d="M14 2v6h6"></path>
-                            <text x="6.5" y="17" style="font-size:9px; font-family: monospace;">{fileLabel}</text>
                           </svg>
-                          <span class="truncate">{getFileName(item.poster)}</span>
+                      
+                          <span class="font-medium">Poster</span>
                         </a>
                       ) : null}
-
+                      
                       {item.docs ? (
                         <a
                           href={item.docs}
@@ -81,13 +83,15 @@ const getFileType = (url) => {
                           rel="noopener noreferrer"
                           class="inline-flex items-center gap-2 text-xs font-mono px-2 py-1 rounded-md border card-surface shadow-sm max-w-[11rem] overflow-hidden"
                           title={getFileName(item.docs)}
+                          aria-label={`Open notes: ${getFileName(item.docs)}`}
                         >
+                          <!-- simple notes icon (document with three lines) -->
                           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M6 2h7l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path>
-                            <path d="M14 2v6h6"></path>
-                            <text x="6.5" y="17" style="font-size:9px; font-family: monospace;">DOC</text>
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <path d="M8 11h8M8 15h8M8 7h4"></path>
                           </svg>
-                          <span class="truncate">{getFileName(item.docs)}</span>
+                      
+                          <span class="font-medium">Notes</span>
                         </a>
                       ) : null}
                     </div>
