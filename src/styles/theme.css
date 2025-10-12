@@ -51,7 +51,7 @@ html.dark {
   --symbols-opacity: 0.18;
   --symbol-text-alpha: 0.18;
 
-  --bg-color: 7,10,17; /* near black */
+  --bg-color: 7,10,17;
   --bg-alpha: 1;
   --muted-bg-rgb: 19,24,31;
   --muted-bg-alpha: 0.92;
