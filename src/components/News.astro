@@ -1,6 +1,16 @@
 ---
 import { siteConfig } from "../config";
 const news = siteConfig.news ?? [];
+
+const getFileName = (url) => {
+  try {
+    if (!url) return "";
+    const parts = url.split('/');
+    return parts[parts.length - 1] || url;
+  } catch (e) {
+    return url;
+  }
+};
 ---
 {news.length > 0 && (
   <section id="news" class="p-8 sm:p-12 md:p-16 lg:p-24">
@@ -29,8 +39,41 @@ const news = siteConfig.news ?? [];
                             <div class="text-xs text-muted font-mono">{item.date}</div>
     
                             <div class="flex items-center gap-2">
-                              {item.poster ? <a href={item.poster} target="_blank" rel="noopener noreferrer" class="text-xs font-mono px-2 py-1 rounded bg-[rgba(var(--card-bg-rgb),0.9)]">Poster</a> : null}
-                              {item.docs ? <a href={item.docs} target="_blank" rel="noopener noreferrer" class="text-xs font-mono px-2 py-1 rounded bg-[rgba(var(--card-bg-rgb),0.9)]">Notes</a> : null}
+                              {item.poster ? (
+                                <a
+                                  href={item.poster}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  class="inline-flex items-center gap-2 text-xs font-mono px-2 py-1 rounded-md border card-surface shadow-sm max-w-[9rem] overflow-hidden"
+                                  title={getFileName(item.poster)}
+                                >
+                                  <!-- PDF icon -->
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M6 2h7l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path>
+                                    <path d="M14 2v6h6"></path>
+                                    <text x="7" y="17" style="font-size:9px; font-family: monospace;">PDF</text>
+                                  </svg>
+                                  <span class="truncate">{getFileName(item.poster)}</span>
+                                </a>
+                              ) : null}
+                              
+                              {item.docs ? (
+                                <a
+                                  href={item.docs}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  class="inline-flex items-center gap-2 text-xs font-mono px-2 py-1 rounded-md border card-surface shadow-sm max-w-[9rem] overflow-hidden"
+                                  title={getFileName(item.docs)}
+                                >
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M6 2h7l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path>
+                                    <path d="M14 2v6h6"></path>
+                                    <text x="6.8" y="17" style="font-size:9px; font-family: monospace;">DOC</text>
+                                  </svg>
+                                  <span class="truncate">{getFileName(item.docs)}</span>
+                                </a>
+                              ) : null}
+
                             </div>
                           </div>
                         </div>
