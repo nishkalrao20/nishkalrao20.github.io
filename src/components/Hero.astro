@@ -29,7 +29,6 @@ import { siteConfig } from "../config";
   </script>
 
   <style>
-    <style>
     .hero-name {
       display: flex;
       flex-direction: column;
@@ -41,35 +40,39 @@ import { siteConfig } from "../config";
       margin: 0;
       letter-spacing: -0.02em;
     }
-
-    .hero-name .name-row {
+    
+    .hero-name .name-english {
+      font-family: var(--heading-font), var(--name-font);
+      font-weight: 400;
+      font-size: inherit;
       display: inline-flex;
       gap: 0.5rem;
       align-items: baseline;
-      font-size: inherit;
-      font-weight: 400;
     }
-
+    
     .name-label {
-      color: #000;
+      color: rgba(var(--text-color), 1);
       font-weight: 400;
       line-height: 1;
-      display: inline-block;
-      min-width: 3ch;
     }
-
-    :global(.dark) .name-label {
-      color: rgba(var(--text-color), 1);
+    
+    .name-accent {
+      color: var(--accent-color);
+      font-weight: 600;
+      line-height: 1;
     }
-
-    .name-animated {
-      display: inline-block;
+    
+    .name-cycle {
+      display: block;
+      margin-top: 0.15rem;
+      font-family: var(--body-font);
+      font-size: clamp(1.0rem, 2.1vw, 1.2rem);
+      color: rgba(var(--muted-text-color), 1);
+      height: 1.2em;
       position: relative;
-      height: 1.05em;
       overflow: visible;
-      vertical-align: baseline;
     }
-
+    
     .name-variant {
       position: absolute;
       left: 0;
@@ -86,12 +89,11 @@ import { siteConfig } from "../config";
       opacity: 1;
       transform: translateY(0);
     }
-
+    
     .name-variant[data-script="devanagari"] { font-family: var(--name-deva); }
     .name-variant[data-script="kannada"]   { font-family: var(--name-kannada); }
     .name-variant[data-script="tulu"]      { font-family: var(--name-tulu); }
-    .name-variant[data-script="latin"]     { font-family: var(--heading-font), var(--name-font); }
-
+    
     .hero-subtitle { font-weight: 400; color: rgba(var(--text-color), .9); }
 
     .hero-bg {
@@ -155,24 +157,22 @@ import { siteConfig } from "../config";
       </h2>
 
       <h1 class="mt-6 sm:mt-8 md:mt-10 hero-name animate-fade-in animation-delay-200" role="img" aria-label={`Name ${siteConfig.name}`}>
-        <span class="name-row">
+        <span class="name-english" data-lang="en" aria-hidden="false">
           <span class="name-label">I'm</span>
-          <span class="name-animated" aria-hidden="true">
-            <span class="name-variant" data-script="latin">
-              <span class="name-accent">NISHKAL RAO</span>
-            </span>
-    
-            <span class="name-variant" data-script="devanagari">
-              <span class="name-accent">निष्कल् राव्</span>
-            </span>
-    
-            <span class="name-variant" data-script="kannada">
-              <span class="name-accent">ನಿಷ್ಕಲ್ ರಾವ್</span>
-            </span>
-    
-            <span class="name-variant" data-script="tulu">
-              <span class="name-accent">നിഷ്കല് രാവ്</span>
-            </span>
+          <span class="name-accent">{siteConfig.name}</span>
+        </span>
+      
+        <span class="name-cycle" aria-hidden="true">
+          <span class="name-variant" data-script="devanagari">
+            <span class="name-accent">निष्कल् राव्</span>
+          </span>
+      
+          <span class="name-variant" data-script="kannada">
+            <span class="name-accent">ನಿಷ್ಕಲ್ ರಾವ್</span>
+          </span>
+      
+          <span class="name-variant" data-script="tulu">
+            <span class="name-accent">നിഷ്കല് രാവ്</span>
           </span>
         </span>
       </h1>
@@ -253,9 +253,7 @@ import { siteConfig } from "../config";
 <script is:inline>
   (function cycleNameVariants(){
     try {
-      const wrapper = document.querySelector('.name-animated');
-      if (!wrapper) return;
-      const variants = Array.from(wrapper.querySelectorAll('.name-variant'));
+      const variants = Array.from(document.querySelectorAll('.name-variant'));
       if (!variants.length) return;
       let idx = 0;
       const show = (i) => {
