@@ -1,9 +1,9 @@
----
+--- 
 import { siteConfig } from "../config";
 ---
 <div
   id="hero"
-  class="relative isolate overflow-hidden bg-white dark:bg-slate-900 py-24 md:h-screen"
+  class="relative isolate overflow-hidden py-24 md:h-screen"
   style={`--mouse-x: 50%; --mouse-y: 20%`}
 >
   <div class="absolute inset-0 -z-10 hero-bg"></div>
@@ -18,6 +18,7 @@ import { siteConfig } from "../config";
           : [parseInt(h.slice(0,2),16), parseInt(h.slice(2,4),16), parseInt(h.slice(4,6),16)];
         document.documentElement.style.setProperty('--accent-rgb', rgb.join(','));
         document.documentElement.style.setProperty('--accent-color', `#${h}`);
+        document.documentElement.style.setProperty('--hero-accent-rgb', rgb.join(','));
       } catch(e) {}
       try {
         const ls = localStorage.getItem('theme'); // 'dark' | 'light' | null
@@ -32,17 +33,17 @@ import { siteConfig } from "../config";
       transition: background-position 120ms linear, background 180ms linear;
       background: radial-gradient(
         1000px 1400px at var(--mouse-x) var(--mouse-y),
-        var(--hero-stop-accent-1) 0%,
-        var(--hero-stop-accent-2) 25%,
-        var(--hero-stop-mid) 35%,
-        var(--hero-end) 100%
+        rgba(var(--hero-accent-rgb), var(--hero-stop-accent-1-alpha)) 0%,
+        rgba(var(--hero-accent-rgb), var(--hero-stop-accent-2-alpha)) 25%,
+        rgba(var(--hero-stop-mid-rgb), var(--hero-stop-mid-alpha)) 35%,
+        rgba(var(--hero-end-rgb), var(--hero-end-alpha)) 100%
       );
       background-blend-mode: normal;
     }
 
     .hero-bg-svg { pointer-events: none; }
 
-    .hero-content { color: var(--hero-text); }
+    .hero-content { color: rgba(var(--text-color), 1); }
     .hero-content svg { stroke: currentColor; fill: none; }
     .hero-content svg.fill-current { fill: currentColor; stroke: none; }
 
@@ -161,6 +162,7 @@ import { siteConfig } from "../config";
     }
     const rgb = hexToRgb(hex);
     document.documentElement.style.setProperty('--accent-rgb', rgb.join(','));
+    document.documentElement.style.setProperty('--hero-accent-rgb', rgb.join(','));
   })();
 </script>
 
