@@ -41,6 +41,10 @@ const meta = project.frontmatter ?? {};
     <meta name="color-scheme" content="light dark" />
     <style>
     :root { --project-text: rgba(var(--text-color), 1); --project-muted: rgba(var(--muted-text-color), 1); }
+    
+    .project-header h1 {
+      font-weight: 400 !important;
+    }
 
     .project-prose {
       font-family: var(--mono-font);
@@ -337,8 +341,6 @@ const meta = project.frontmatter ?? {};
         }, 200);
       });
     }
-
-    // clicks are intentionally ignored now — only hover opens the panel
 
     window.addEventListener('scroll', function() {
       if (refPanel && refPanel.classList.contains('open') && activeCite) {
