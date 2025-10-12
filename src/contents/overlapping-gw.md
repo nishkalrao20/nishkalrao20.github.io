@@ -3,13 +3,13 @@ title: "Comprehensive analysis of time-domain Overlapping Gravitational Wave Tra
 skills: ["Gravitational Wave Analysis"]
 ---
 
-<h2>Gravity Waves</h2>
+<h3>Gravity Waves</h3>
 
 On September 14, 2015, in the quiet hours of an otherwise ordinary morning in the United States, two LIGO detectors in Hanford and Livingston registered a signal unlike any seen before. That signal, labeled [**GW150914**](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.116.061102), was the advent of gravitational wave astronomy. A gravitational wave that traveled across the cosmos at the speed of light for nearly a billion years before reaching Earth provided us with the toolkit to unravel a newer perspective of our universe.
 
 What began with that first whisper has grown into a chorus. Since GW150914, observatories around the world have recorded hundreds more gravitational-wave events, and detections now occur with a rate that was once unimaginable, often multiple times per week. Over the past decade, the LIGO and Virgo detectors have been made markedly more sensitive, and research laboratories worldwide are building and testing further upgrades to push sensitivity even higher.
 
-As detectors grow more sensitive and surveys become deeper and longer, new challenges appear alongside new opportunities. One key challenge is **overlapping signals** <a class="cite" data-ref="r1">[1]</a>: when two (or more) gravitational-wave strains arrive at close times and in similar frequency bands, their signals superpose in the detector output.
+As detectors grow more sensitive and surveys become deeper and longer, new challenges appear alongside new opportunities. One key challenge is **overlapping signals** [<a class="cite" data-ref="r1">1</a>,<a class="cite" data-ref="r2">2</a>,<a class="cite" data-ref="r3">3</a>,<a class="cite" data-ref="r4">4</a>]: when two (or more) gravitational-wave strains arrive at close times and in similar frequency bands, their signals superpose in the detector output.
 
 Overlap can bias our conclusions if not addressed properly. Studies have shown that when one signal is recovered while ignoring a coincident or nearby signal, it can lead to distorted parameter estimates, decreased detection efficiency, and misleading confidence intervals. To tackle this issue, researchers are developing higher-dimensional joint-inference techniques that aim to model multiple overlapping sources simultaneously. They are also implementing practical strategies such as global-fit approaches, targeted subtraction of strong transients, and new search pipelines and machine-learning tools designed for dense populations of signals. These efforts are crucial: as detector technology improves and the rate of events increases, robust statistical and computational methods will ensure that we can reliably transform faint signals into valuable insights about the universe's most extreme events.
 
