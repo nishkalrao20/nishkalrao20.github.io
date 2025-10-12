@@ -79,7 +79,6 @@ import { siteConfig } from "../config";
     .hero-subtitle { font-weight: 400; color: rgba(var(--text-color), .9); }
 
     .hero-bg {
-      position: relative;
       transition: background-position 120ms linear, background 180ms linear;
       background: radial-gradient(
         1000px 1400px at var(--mouse-x) var(--mouse-y),
@@ -89,18 +88,6 @@ import { siteConfig } from "../config";
         rgba(var(--hero-end-rgb), var(--hero-end-alpha)) 100%
       );
       background-blend-mode: normal;
-    }
-
-    .hero-bg::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        linear-gradient(135deg, rgba(var(--hero-accent-rgb), 0.03) 0%, transparent 30%),
-        linear-gradient(225deg, rgba(var(--accent-rgb), 0.015) 0%, transparent 40%);
-      opacity: 1;
-      mix-blend-mode: normal;
     }
 
     .hero-bg-svg { pointer-events: none; }
