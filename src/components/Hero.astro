@@ -176,26 +176,6 @@ import { siteConfig } from "../config";
           </span>
         </span>
       </h1>
-    
-      <script is:inline>
-        (function cycleNameVariants(){
-          try {
-            const wrapper = document.querySelector('.name-animated');
-            if (!wrapper) return;
-            const variants = Array.from(wrapper.querySelectorAll('.name-variant'));
-            if (!variants.length) return;
-            let idx = 0;
-            const show = (i) => {
-              variants.forEach((el, j) => el.classList.toggle('show', i === j));
-            };
-            show(0);
-            setInterval(() => {
-              idx = (idx + 1) % variants.length;
-              show(idx);
-            }, 2500);
-          } catch(e){}
-        })();
-      </script>
 
       <p class="mt-4 sm:mt-6 md:mt-8 hero-subtitle text-pretty text-base sm:text-lg md:text-xl/8 font-medium text-current animate-fade-in animation-delay-400">
         {siteConfig.title}
@@ -273,7 +253,9 @@ import { siteConfig } from "../config";
 <script is:inline>
   (function cycleNameVariants(){
     try {
-      const variants = Array.from(document.querySelectorAll('.name-variant'));
+      const wrapper = document.querySelector('.name-animated');
+      if (!wrapper) return;
+      const variants = Array.from(wrapper.querySelectorAll('.name-variant'));
       if (!variants.length) return;
       let idx = 0;
       const show = (i) => {
