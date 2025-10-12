@@ -1,39 +1,91 @@
 :root {
-  --accent-color: #0000ff;
-  --accent-rgb: 0,0,255;
-  --accent-rgba: rgba(var(--accent-rgb), 1);
+  --accent-color: #1d4ed8;
+  --accent-rgb: 29,78,216;
 
-  --hero-stop-accent-1: rgba(0,0,255,0.5);
-  --hero-stop-accent-2: rgba(0,0,255,0.1);
-  --hero-stop-mid: rgba(255,255,255,0.05);
-  --hero-end: rgba(255,255,255,0.1);
+  --alpha-strong: 1;
+  --alpha-medium: 0.6;
+  --alpha-subtle: 0.12;
+  --alpha-muted: 0.05;
 
-  --symbols-opacity: 0.4;
-  --symbol-text-alpha: 0.3;
+  --hero-accent-rgb: var(--accent-rgb);
+  --hero-stop-accent-1-alpha: 0.50;
+  --hero-stop-accent-2-alpha: 0.12;
+  --hero-stop-mid-rgb: 255,255,255;
+  --hero-stop-mid-alpha: 0.05;
+  --hero-end-rgb: 255,255,255;
+  --hero-end-alpha: 0.10;
+
+  --symbols-opacity: 0.40;
+  --symbol-text-alpha: 0.28;
+
+  --bg-color: 255,255,255;
+  --bg-alpha: 1;
+  --muted-bg-rgb: 247,249,250;
+  --muted-bg-alpha: 1;
+  --card-bg-rgb: 255,255,255;
+  --card-bg-alpha: 0.96;
+
+  --text-color: 15,23,42;
+  --muted-text-color: 107,114,128;
 
   --hero-text: #0f172a;
   --icon-sun-fill: 17 24 39;
 
-  --accent-focus: rgba(var(--accent-rgb), 0.12);
+  --accent-focus-alpha: 0.12;
+
+  --max-content-width: 1200px;
 }
 
 html.dark {
-  --accent-color: #0000ff;
-  --accent-rgb: 0,0,255;
-  --accent-rgba: rgba(var(--accent-rgb), 1);
+  --accent-color: #60a5fa;
+  --accent-rgb: 96,165,250;
 
-  --hero-stop-accent-1: rgba(0,0,255, 0.20);
-  --hero-stop-accent-2: rgba(0,0,255,0.10);
-  --hero-stop-mid: rgba(3,37,65,0.60);
-  --hero-end: rgba(3,37,65,1);
+  --hero-accent-rgb: var(--accent-rgb);
+  --hero-stop-accent-1-alpha: 0.20;
+  --hero-stop-accent-2-alpha: 0.08;
+  --hero-stop-mid-rgb: 3,37,65;
+  --hero-stop-mid-alpha: 0.60;
+  --hero-end-rgb: 3,37,65;
+  --hero-end-alpha: 1;
 
   --symbols-opacity: 0.18;
   --symbol-text-alpha: 0.18;
 
+  --bg-color: 7,10,17; /* near black */
+  --bg-alpha: 1;
+  --muted-bg-rgb: 19,24,31;
+  --muted-bg-alpha: 0.92;
+  --card-bg-rgb: 12,16,23;
+  --card-bg-alpha: 0.98;
+
+  --text-color: 255,255,255;
+  --muted-text-color: 156,163,175;
+
   --hero-text: #ffffff;
   --icon-sun-fill: 255 255 255;
 
-  --accent-focus: rgba(var(--accent-rgb), 0.18);
+  --accent-focus-alpha: 0.18;
 }
 
-a:focus { box-shadow: 0 0 0 4px var(--accent-focus); outline: none; border-radius: 6px; }
+:root,
+:root * {
+}
+
+a:focus {
+  box-shadow: 0 0 0 4px rgba(var(--accent-rgb), var(--accent-focus-alpha));
+  outline: none;
+  border-radius: 6px;
+}
+
+.bg-page {
+  background-color: rgba(var(--bg-color), var(--bg-alpha));
+  color: rgba(var(--text-color), 1);
+}
+
+.card-surface {
+  background-color: rgba(var(--card-bg-rgb), var(--card-bg-alpha));
+  border-color: rgba(var(--muted-text-color), 0.08);
+}
+
+.hero-gradient-stop-accent-1 {
+}
