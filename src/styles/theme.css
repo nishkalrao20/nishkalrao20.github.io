@@ -3,10 +3,10 @@
   --accent-rgb: 0,0,255;
   --accent-rgba: rgba(var(--accent-rgb), 1);
 
-  --hero-stop-accent-1: rgba(var(--accent-rgb), 0.9);
-  --hero-stop-accent-2: rgba(var(--accent-rgb), 0.5);
-  --hero-stop-mid: rgba(255,255,255,0.5);
-  --hero-end: rgba(255,255,255,1);
+  --hero-stop-accent-1: rgba(0,0,255,0.05);
+  --hero-stop-accent-2: rgba(0,0,255,0.1);
+  --hero-stop-mid: rgba(255,255,255,0.05);
+  --hero-end: rgba(0,0,255,0.1);
 
   --symbols-opacity: 0.4;
   --symbol-text-alpha: 0.3;
@@ -20,9 +20,10 @@
 html.dark {
   --accent-color: #0000ff;
   --accent-rgb: 0,0,255;
+  --accent-rgba: rgba(var(--accent-rgb), 1);
 
-  --hero-stop-accent-1: rgba(var(--accent-rgb), 0.20);
-  --hero-stop-accent-2: rgba(var(--accent-rgb), 0.10);
+  --hero-stop-accent-1: rgba(0,0,255, 0.20);
+  --hero-stop-accent-2: rgba(0,0,255,0.10);
   --hero-stop-mid: rgba(3,37,65,0.60);
   --hero-end: rgba(3,37,65,1);
 
@@ -35,9 +36,4 @@ html.dark {
   --accent-focus: rgba(var(--accent-rgb), 0.18);
 }
 
-:root, html.dark {
-  --accent-rgba: rgba(var(--accent-rgb), 1);
-}
-
-html.dark a { color: var(--accent-color); }
 a:focus { box-shadow: 0 0 0 4px var(--accent-focus); outline: none; border-radius: 6px; }
