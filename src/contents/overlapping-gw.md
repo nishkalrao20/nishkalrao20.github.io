@@ -15,7 +15,7 @@ Overlap can bias our conclusions if not addressed properly. Studies have shown t
 
 <div id="ref-r1" class="refdef" style="display:none">
   <div class="ref-entry">
-    <strong>Rao, N. et al.,</strong> Comprehensive analysis of time-domain overlapping gravitational wave transients I: A Lensing Study. arXiv, 2025.
+    <strong><a href="https://doi.org/10.1103/PhysRevD.104.044003" target="_blank" rel="noopener">Rao, N. et al.,</strong> Comprehensive analysis of time-domain overlapping gravitational wave transients I: A Lensing Study. arXiv, 2025.
   </div>
 </div>
 
