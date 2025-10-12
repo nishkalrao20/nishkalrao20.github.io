@@ -3,7 +3,7 @@ title: "Comprehensive analysis of time-domain Overlapping Gravitational Wave Tra
 skills: ["Gravitational Wave Analysis"]
 ---
 
-<h3>Gravity Waves</h3>
+<h2>Gravity Waves</h2>
 
 On September 14, 2015, in the quiet hours of an otherwise ordinary morning in the United States, two LIGO detectors in Hanford and Livingston registered a signal unlike any seen before. That signal, labeled [**GW150914**](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.116.061102), was the advent of gravitational wave astronomy. A gravitational wave that traveled across the cosmos at the speed of light for nearly a billion years before reaching Earth provided us with the toolkit to unravel a newer perspective of our universe.
 
