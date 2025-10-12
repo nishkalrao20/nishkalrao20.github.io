@@ -71,7 +71,7 @@ const meta = project.frontmatter ?? {};
       text-align: left;
     }
     
-    /* fake h3 by styling h2 smaller — use ## in markdown for this "h3 look" */
+    /* smaller H2 used as a replacement for h3 due to compatibility */
     .project-prose .prose h2,
     .project-prose h2 {
       font-size: 1.125rem;
@@ -184,8 +184,9 @@ const meta = project.frontmatter ?? {};
     .ref-panel h4 { font-weight: 600; margin-bottom: .45rem; color: rgba(var(--text-color),1); }
     .ref-entry { margin-bottom: .9rem; color: rgba(var(--text-color),0.95); }
 
+    /* References list: strong left-aligned layout */
     #references {
-      text-align: left;
+      text-align: left !important;
       max-width: 640px;
       margin: 2rem 0 4rem;
       padding: 0 1rem 0 0;
@@ -195,6 +196,7 @@ const meta = project.frontmatter ?? {};
       font-weight: 600;
       margin-bottom: 0.75rem;
       color: rgba(var(--text-color),1);
+      text-align: left;
     }
     
     #referencesList {
@@ -208,7 +210,7 @@ const meta = project.frontmatter ?? {};
       display: flex;
       gap: 0.75rem;
       align-items: flex-start;
-      text-align: left;
+      text-align: left !important;
     }
     
     .ref-num {
@@ -219,6 +221,7 @@ const meta = project.frontmatter ?? {};
       margin-top: 0.08rem;
       line-height: 1.2;
       flex: 0 0 auto;
+      display: inline-block;
     }
     
     .ref-body {
@@ -226,12 +229,15 @@ const meta = project.frontmatter ?? {};
       line-height: 1.45;
       font-family: var(--body-font);
       flex: 1 1 auto;
+      text-align: left !important;
     }
 
-    /* Ensure any nested markup from the hidden ref definitions is normalised and left-aligned */
-    .ref-body .ref-entry { display:block; text-align:left; margin:0; padding:0; }
-    .ref-body strong { font-weight:600; }
-    .ref-body a { color: inherit; text-decoration: underline; }
+    /* Normalise any nested markup inside the hidden ref blocks */
+    #referencesList .ref-body, 
+    #referencesList .ref-body * {
+      text-align: left !important;
+      display: block;
+    }
 
     .ref-list-btn {
       display: flex;
@@ -246,6 +252,7 @@ const meta = project.frontmatter ?? {};
       font-weight: 400;
       color: inherit;
       cursor: pointer;
+      justify-content: flex-start;
     }
 
     @media (max-width: 1024px) {
@@ -498,7 +505,7 @@ const meta = project.frontmatter ?? {};
     
         const bodySpan = document.createElement('span');
         bodySpan.className = 'ref-body';
-        bodySpan.innerHTML = defInner.innerHTML; // use inner ref-entry content only
+        bodySpan.innerHTML = defInner.innerHTML;
     
         btn.addEventListener('click', function(ev) {
           ev.preventDefault();
