@@ -26,7 +26,7 @@
     <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
   </svg>
 
-  <!-- Moon Icon with Cloud -->
+  <!-- Moon Icon with Better Cloud -->
   <svg
     class="icon-moon"
     xmlns="http://www.w3.org/2000/svg"
@@ -43,8 +43,11 @@
     <path
       d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
     ></path>
+
     <g class="moon-cloud">
-      <ellipse cx="17" cy="17" rx="4" ry="2" fill="currentColor" opacity="0.3"></ellipse>
+      <ellipse cx="16" cy="17" rx="4.5" ry="2.5" fill="currentColor" opacity="0.45"></ellipse>
+      <ellipse cx="18.5" cy="16.5" rx="3" ry="2" fill="currentColor" opacity="0.5"></ellipse>
+      <ellipse cx="14" cy="18" rx="2.5" ry="1.5" fill="currentColor" opacity="0.35"></ellipse>
     </g>
   </svg>
 </button>
@@ -80,24 +83,25 @@
     }
   }
 
-  /* Cloud drift on moon */
+  /* Cloud drifting animation */
   .moon-cloud {
-    animation: drift 4s ease-in-out infinite;
+    animation: driftCloud 6s ease-in-out infinite;
+    transform-origin: center;
   }
 
-  @keyframes drift {
+  @keyframes driftCloud {
     0% {
       transform: translateX(0);
     }
     50% {
-      transform: translateX(2px);
+      transform: translateX(3px);
     }
     100% {
       transform: translateX(0);
     }
   }
 
-  /* Toggle visibility */
+  /* Visibility toggle */
   .icon-moon {
     display: none;
   }
