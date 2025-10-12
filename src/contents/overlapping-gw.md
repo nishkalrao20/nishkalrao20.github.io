@@ -4,6 +4,7 @@ skills: ["Gravitational Wave Analysis"]
 ---
 
 <h2>Introduction</h2>
+
 On September 14, 2015, in the quiet hours of an otherwise ordinary morning in the United States, two LIGO detectors in Hanford and Livingston registered a signal unlike any seen before. That signal, labeled [**GW150914**](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.116.061102), was the advent of gravitational wave astronomy. A gravitational wave that traveled across the cosmos at the speed of light for nearly a billion years before reaching Earth provided us with the toolkit to unravel a newer perspective of our universe.
 
 What began with that first whisper has grown into a chorus. Since GW150914, observatories around the world have recorded hundreds more gravitational-wave events, and detections now occur with a rate that was once unimaginable, often multiple times per week. Over the past decade, the LIGO and Virgo detectors have been made markedly more sensitive, and research laboratories worldwide are building and testing further upgrades to push sensitivity even higher.
