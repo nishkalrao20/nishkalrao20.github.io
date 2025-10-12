@@ -24,6 +24,8 @@
   --muted-bg-alpha: 1;
   --card-bg-rgb: 255,255,255;
   --card-bg-alpha: 0.96;
+  --card-accent-border-alpha: 0.06;
+  --card-accent-bg-overlay-alpha: 0.02; 
 
   --text-color: 15,23,42;
   --muted-text-color: 107,114,128;
@@ -84,7 +86,8 @@ a:focus {
 
 .card-surface {
   background-color: rgba(var(--card-bg-rgb), var(--card-bg-alpha));
-  border-color: rgba(var(--muted-text-color), 0.08);
+  border: 1px solid rgba(var(--accent-rgb), var(--card-accent-border-alpha));
+  box-shadow: 0 1px 0 rgba(var(--accent-rgb), var(--card-accent-bg-overlay-alpha)) inset;
 }
 
 .hero-gradient-stop-accent-1 {
