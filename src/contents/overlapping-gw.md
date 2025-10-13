@@ -1,5 +1,5 @@
 ---
-title: "Comprehensive analysis of time-domain Overlapping Gravitational Wave Transients"
+title: "Overlapping Gravitational Wave Transients"
 skills: ["Gravitational Wave Analysis"]
 ---
 
