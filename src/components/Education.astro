@@ -27,7 +27,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
                   <div class="hidden sm:block w-1.5 h-12 rounded mr-4" style={`background: linear-gradient(180deg, rgba(var(--accent-rgb),0.9), rgba(var(--accent-rgb),0.65));`} aria-hidden="true"></div>
 
                   <div>
-                    <h3 class="text-lg sm:text-xl font-semibold text-gray-900">
+                    <h3 class="text-lg sm:text-xl font-semibold text-sm transition-colors">
                       {edu.degree}
                     </h3>
                     <p class="text-base sm:text-lg font-family:var(--body-font)" style={`color: ${siteConfig.accentColor}`}>
@@ -36,7 +36,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
                   </div>
                 </div>
 
-                <span class="text-xs sm:text-sm text-gray-500 mt-2 sm:mt-0">
+                <span class="text-xs sm:text-sm text-sm transition-colors mt-2 sm:mt-0">
                   {edu.dateRange}
                 </span>
               </div>
@@ -46,7 +46,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
                   {edu.achievements.map((achievement) => (
                     <li class="flex items-start">
                       <span class="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mt-2 mr-3 flex-shrink-0" />
-                      <span class="text-sm sm:text-base font-family:var(--body-font) text-gray-600">
+                      <span class="text-sm sm:text-base font-family:var(--body-font) text-sm transition-colors">
                         {achievement}
                       </span>
                     </li>
