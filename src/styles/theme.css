@@ -90,6 +90,19 @@ a:focus {
   box-shadow: 0 1px 0 rgba(var(--accent-rgb), var(--card-accent-bg-overlay-alpha)) inset;
 }
 
+.project-card {
+  background-color: rgba(var(--card-bg-rgb), 0.78);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(var(--muted-text-color), 0.08);
+  box-shadow: 0 8px 24px rgba(2,6,23,0.06);
+  transition: box-shadow .18s ease, transform .12s ease;
+}
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 40px rgba(2,6,23,0.10);
+}
+
 .hero-gradient-stop-accent-1 {
 }
 
