@@ -146,7 +146,7 @@ const getYouTubeThumb = (id) => id ? `https://img.youtube.com/vi/${id}/hqdefault
                       
                         <span class="font-medium">{['mp4','webm','ogg'].includes(fileType) ? 'Video': 'Poster'}</span>                          
                           <span class="font-medium">
-                            {isYouTube(item.poster) ? 'Watch' : (['mp4','webm','ogg'].includes(fileType) ? 'Video' : 'Poster')}
+                            {isYouTube(item.poster) ? 'Watch' : (['mp4','webm','ogg'].includes(fileType) ? 'Video')}
                           </span>
                         </a>
                       ) : null}
