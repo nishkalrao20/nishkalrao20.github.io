@@ -14,15 +14,26 @@
     stroke-linejoin="round"
     aria-hidden="true"
   >
-    <circle cx="12" cy="12" r="5"></circle>
-    <line x1="12" y1="1" x2="12" y2="3"></line>
-    <line x1="12" y1="21" x2="12" y2="23"></line>
-    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-    <line x1="1" y1="12" x2="3" y2="12"></line>
-    <line x1="21" y1="12" x2="23" y2="12"></line>
-    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    <defs>
+      <radialGradient id="sunG" cx="50%" cy="45%" r="55%">
+        <stop offset="0%" stop-color="#FFD37A"/>
+        <stop offset="40%" stop-color="#FF9A3C"/>
+        <stop offset="100%" stop-color="#FF6A00"/>
+      </radialGradient>
+    </defs>
+  
+    <g class="sun-rotor">
+      <circle cx="12" cy="12" r="5" fill="url(#sunG)" stroke="none"></circle>
+      <!-- rays (stroke uses currentColor so they adapt to theme) -->
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </g>
   </svg>
 
   <svg
@@ -71,14 +82,16 @@
     animation: spin 12s linear infinite;
   }
 
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+  .sun-rotor {
+    transform-origin: 12px 12px;
+    animation: rotor 18s linear infinite;
   }
+
+  @keyframes rotor {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
 
   .moon-cloud {
     animation: driftCloud 6s ease-in-out infinite;
