@@ -12,11 +12,19 @@ const hasUpdates = siteConfig.news && siteConfig.news.length > 0;
   <div class="mx-auto max-w-6xl px-6 py-12 lg:px-8">
     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
       <div class="flex flex-col gap-4">
-        <h3 class="text-2xl font-bold" style={`color: rgba(var(--text-color), 1);`}>
-          {siteConfig.name}
-        </h3>
+        <div class="inline-flex flex-col items-center gap-0 leading-tight" aria-label="Site owner name block">
+          <span class="text-lg md:text-xl" style="font-family: var(--name-font); font-weight:600;">
+            Nishkal Rao
+            <span aria-hidden="true"> &nbsp;|&nbsp; </span>
+            <span lang="sa" style="font-family: var(--name-deva); font-weight:500; font-size:0.95rem;">निष्कल् राव्</span>
+            <span aria-hidden="true"> &nbsp;|&nbsp; </span>
+            <span lang="kn" style="font-family: var(--name-kannada); font-weight:500; font-size:0.95rem;">ನಿಷ್ಕಲ್ ರಾವ್</span>
+            <span aria-hidden="true"> &nbsp;|&nbsp; </span>
+            <span lang="ml" style="font-family: var(--name-tulu); font-weight:500; font-size:0.95rem;">നിഷ്കല് രാവ്</span>
+          </span>
+        </div>
 
-        <p class="text-base" style={`color: rgba(var(--muted-text-color), 1);`}>
+        <p class="text-sm text-muted" style="font-family: var(--body-font); margin-top:0.125rem;">
           {siteConfig.title}
         </p>
 
