@@ -22,6 +22,40 @@ const getFileType = (url) => {
   const m = url.split('?')[0].match(/\.([^.\/]+)$/);
   return m ? m[1].toLowerCase() : "";
 };
+
+const isYouTube = (url) => {
+  if (!url) return false;
+  try {
+    return /^(?:https?:)?\/\/(?:www\.)?(?:youtube\.com\/watch|youtu\.be\/)/i.test(url);
+  } catch (e) {
+    return false;
+  }
+};
+
+const getYouTubeId = (url) => {
+  if (!url) return null;
+  try {
+    const shortMatch = url.match(/youtu\.be\/([A-Za-z0-9_-]{6,})/);
+    if (shortMatch) return shortMatch[1];
+
+    const watchMatch = url.match(/[?&]v=([A-Za-z0-9_-]{6,})/);
+    if (watchMatch) return watchMatch[1];
+
+    const embedMatch = url.match(/youtube\.com\/embed\/([A-Za-z0-9_-]{6,})/);
+    if (embedMatch) return embedMatch[1];
+
+    const parts = url.split('/');
+    const last = parts.pop() || parts.pop();
+    if (last && /^[A-Za-z0-9_-]{6,}$/.test(last)) return last;
+
+    return null;
+  } catch (e) {
+    return null;
+  }
+};
+
+const getYouTubeEmbedUrl = (id) => id ? `https://www.youtube.com/embed/${id}?rel=0` : null;
+const getYouTubeThumb = (id) => id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : null;
 ---
 {news.length > 0 && (
   <section id="news" class="p-8 sm:p-12 md:p-16 lg:p-24">
@@ -47,19 +81,44 @@ const getFileType = (url) => {
                     <img src={item.poster} alt={getFileName(item.poster)} loading="lazy"
                       class="w-full h-44 md:h-36 object-cover rounded-xl mb-4" />
                   ) : (
-                    (item.poster && ['mp4','webm','ogg'].includes(fileType)) ? (
-                      <div class="w-full h-44 md:h-36 rounded-xl overflow-hidden mb-4 bg-black">
-                        <video
-                          src={item.poster}
-                          controls
-                          preload="metadata"
-                          class="w-full h-full object-cover"
-                          poster={item.posterPoster ?? undefined} 
-                        >
-                          Sorry, your browser doesn't support embedded videos.
-                        </video>
-                      </div>
-                    ) : null
+                    (item.poster && isYouTube(item.poster)) ? (() => {
+                      const ytId = getYouTubeId(item.poster);
+                      const embed = getYouTubeEmbedUrl(ytId);
+                      const thumb = getYouTubeThumb(ytId);
+                      return (
+                        <div class="w-full rounded-xl overflow-hidden mb-4 bg-black">
+                          {embed ? (
+                            <div class="relative" style="padding-top:56.25%; height:0;">
+                              <iframe
+                                src={embed}
+                                title={item.title || 'YouTube'}
+                                class="absolute inset-0 w-full h-full"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen
+                                loading="lazy"
+                              />
+                            </div>
+                          ) : (
+                            <img src={thumb || item.poster} alt={getFileName(item.poster)} loading="lazy" class="w-full h-44 md:h-36 object-cover rounded-xl" />
+                          )}
+                        </div>
+                      );
+                    })() : (
+                      (item.poster && ['mp4','webm','ogg'].includes(fileType)) ? (
+                        <div class="w-full h-44 md:h-36 rounded-xl overflow-hidden mb-4 bg-black">
+                          <video
+                            src={item.poster}
+                            controls
+                            preload="metadata"
+                            class="w-full h-full object-cover"
+                            poster={item.posterPoster ?? undefined} 
+                          >
+                            Sorry, your browser doesn't support embedded videos.
+                          </video>
+                        </div>
+                      ) : null
+                    )
                   )}
 
                   <div class="flex-1">
@@ -77,18 +136,21 @@ const getFileType = (url) => {
                           target="_blank"
                           rel="noopener noreferrer"
                           class="inline-flex items-center gap-2 text-xs font-mono px-2 py-1 rounded-md border card-surface shadow-sm max-w-[11rem] overflow-hidden transition-colors duration-200 ease-out hover:text-[var(--accent-color)] hover:border-[var(--accent-color)] hover:bg-[rgba(var(--accent-rgb),0.06)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)]/20"
-                          title={getFileName(item.poster)}
-                          aria-label={`Open poster: ${getFileName(item.poster)}`}
+                          title={isYouTube(item.poster) ? `Watch on YouTube: ${item.title ?? getFileName(item.poster)}` : getFileName(item.poster)}
+                          aria-label={isYouTube(item.poster) ? `Watch video: ${item.title ?? getFileName(item.poster)}` : `Open poster: ${getFileName(item.poster)}`}
                         >
                           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                             <path d="M14 2v6h6"></path>
                           </svg>
                       
-                          <span class="font-medium">{['mp4','webm','ogg'].includes(fileType) ? 'Video': 'Poster'}</span>
+                        <span class="font-medium">{['mp4','webm','ogg'].includes(fileType) ? 'Video': 'Poster'}</span>                          
+                          <span class="font-medium">
+                            {isYouTube(item.poster) ? 'Watch' : (['mp4','webm','ogg'].includes(fileType) ? 'Video' : 'Poster')}
+                          </span>
                         </a>
                       ) : null}
-                      
+
                       {item.docs ? (
                         <a
                           href={item.docs}
