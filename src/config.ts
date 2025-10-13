@@ -165,7 +165,7 @@ export const siteConfig: SiteConfig = {
       date: "Feb 2025",
       title: "Talk: 'Degeneracies between Overlapping and Lensing GWs' - LVK Lensing Group Meeting",
       description:
-        "Presented work analysing degeneracies between overlapping gravitational-wave signals and lensing effects. Discussed identification strategies and implications for parameter inference."
+        "Presented work analysing degeneracies between overlapping gravitational-wave signals and lensing effects. Discussed identification strategies and implications for parameter inference.",
       poster: "https://www.youtube.com/watch?v=GD7CZXRHXyA"
     },
 
