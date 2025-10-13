@@ -40,11 +40,9 @@ export const siteConfig: SiteConfig = {
   name: "Nishkal Rao",
   title: "Graduate Researcher",
   description: "Personal website - Research, Projects, and Resources",
-  accentColor: "#1d4ed8",
   social: {
     email: "nishkal.rao@students.iiserpune.ac.in",
     github: "https://github.com/nishkalrao20",
-    twitter: "https://x.com/nishkalrao",
     instagram: "https://instagram.com/nishkalrao",
     blog: "https://nishkal20.wixsite.com/dream",
   },
