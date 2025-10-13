@@ -69,7 +69,7 @@ export const siteConfig: SiteConfig = {
       description:
         "Construction and analysis of quasi-local isolated horizons for near-horizon spacetime models.",
       skills: ["General Relativity", "Isolated Horizons"],
-      date: "June 2025",
+      date: "June 2025 - present",
       repo: "",
       demo: "",
     },
@@ -79,7 +79,8 @@ export const siteConfig: SiteConfig = {
       description:
         "Addressing challenges of overlapping compact binary coalescences in future gravitational wave detectors. Developing techniques for identification and characterization to enhance parameter estimation accuracy. Gained expertise in matched filtering (PyCBC), unmodeled analysis (cWB), and Bayesian parameter estimation (bilby).",
       skills: ["Gravitational Wave Analysis"],
-      repo: "",
+      date: "July 2022 - June 2025",
+      repo: "https://github.com/nishkalrao20/git_overlap",
       demo: "",
     },
     
@@ -89,7 +90,8 @@ export const siteConfig: SiteConfig = {
       description:
         "Comprehensive study of non-circular encounters in the context of gravitational wave ringdowns, through fitting techniques and the reconstruction of waveforms that capture the physics of eccentric, non-circular mergers.",
       skills: ["Gravitational Wave Analysis", "Ringdowns", "Numerical Relativity"],
-      repo: "",
+      date: "Jan 2025 - present",
+      repo: "https://github.com/GCArullo/bayRing/tree/nc_fits_nishkal",
       demo: "",
     },
     
@@ -99,6 +101,7 @@ export const siteConfig: SiteConfig = {
       description:
         "Study of decoherence of stationary superpositions in spacetimes with Killing horizons. Analysis framed via the local two-point function of quantum fields and applications to black hole induced decoherence.",
       skills: ["Black Hole Decoherence", "Quantum Field Theory", "General Relativity", "Quantum Foundations"],
+      date: "Jan 2025 - present",
       repo: "",
       demo: "",
     },
@@ -109,7 +112,8 @@ export const siteConfig: SiteConfig = {
       description:
         "Implementation and testing of quadratic mode injections, development of parameter estimation strategies, and analysis of the detectability of non-linear/quadratic ringdown modes.",
       skills: ["Gravitational Wave Analysis", "Ringdowns", "Parameter Estimation"],
-      repo: "",
+      date: "Dec 2024 - present",
+      repo: "http://github.com/nishkalrao20/pycbc/tree/quadtratic_modes",
       demo: "",
     },
     
@@ -119,7 +123,8 @@ export const siteConfig: SiteConfig = {
       description:
         "Enhancements to inspiral–merger–ringdown (IMR) consistency tests using time-domain analyses: algorithmic improvements, SNR threshold refinement and investigation of higher-mode systematics on GR tests.",
       skills: ["Gravitational Wave Analysis"],
-      repo: "",
+      date: "September 2023 - present",
+      repo: "https://github.com/nishkalrao20/bilby/tree/time_domain_dev",
       demo: "",
     },
     
