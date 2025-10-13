@@ -46,7 +46,21 @@ const getFileType = (url) => {
                   {posterIsImage ? (
                     <img src={item.poster} alt={getFileName(item.poster)} loading="lazy"
                       class="w-full h-44 md:h-36 object-cover rounded-xl mb-4" />
-                  ) : null}
+                  ) : (
+                    (item.poster && ['mp4','webm','ogg'].includes(fileType)) ? (
+                      <div class="w-full h-44 md:h-36 rounded-xl overflow-hidden mb-4 bg-black">
+                        <video
+                          src={item.poster}
+                          controls
+                          preload="metadata"
+                          class="w-full h-full object-cover"
+                          poster={item.posterPoster ?? undefined} 
+                        >
+                          Sorry, your browser doesn't support embedded videos.
+                        </video>
+                      </div>
+                    ) : null
+                  )}
 
                   <div class="flex-1">
                     <h3 class="text-lg font-medium" style="font-family: var(--heading-font)">{item.title}</h3>
@@ -71,10 +85,9 @@ const getFileType = (url) => {
                             <path d="M14 2v6h6"></path>
                           </svg>
                       
-                          <span class="font-medium">Poster</span>
+                          <span class="font-medium">{['mp4','webm','ogg'].includes(fileType) ? 'Video': 'Poster'}</span>
                         </a>
                       ) : null}
-
                       
                       {item.docs ? (
                         <a
