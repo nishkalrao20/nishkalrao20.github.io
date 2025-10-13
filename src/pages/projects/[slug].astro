@@ -245,7 +245,7 @@ const meta = project.frontmatter ?? {};
             src={meta.banner ?? `/projects/${slug}.jpg`}
             alt={`${meta.title ?? slug} banner`}
             class="w-full rounded-lg object-cover max-h-[420px]"
-            onerror="this.src='/assets/projects/placeholder.jpg'"
+            onerror="this.src='/projects/temp.jpg'"
             loading="lazy"
           />
         </div>
