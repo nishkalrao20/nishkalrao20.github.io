@@ -1,5 +1,5 @@
 ---
-title: "Quasi-Local Black Hole Horizons"
+title: "Quasi-Local $\mathscr{B}$lack Hole Horizons"
 skills: ["General Relativity", "Isolated Horizons"]
 ---
 
