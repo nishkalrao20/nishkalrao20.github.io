@@ -66,7 +66,7 @@ import { siteConfig } from "../config";
       display: block;
       margin-top: 0.15rem;
       font-family: var(--body-font);
-      font-size: clamp(1.0rem, 2.1vw, 1.2rem);
+      font-size: clamp(1.05rem, 2.1vw, 1.4rem);
       color: rgba(var(--muted-text-color), 1);
       height: 1.2em;
       position: relative;
@@ -84,16 +84,18 @@ import { siteConfig } from "../config";
       display: inline-flex;
       gap: 0.25rem;
       align-items: baseline;
+      font-size: 1em;
     }
     .name-variant.show {
       opacity: 1;
       transform: translateY(0);
     }
     
-    .name-variant[data-script="devanagari"] { font-family: var(--name-deva); }
-    .name-variant[data-script="kannada"]   { font-family: var(--name-kannada); }
-    .name-variant[data-script="tulu"]      { font-family: var(--name-tulu); }
+    .name-variant[data-script="devanagari"] { font-family: var(--name-deva); font-size: 1.05em; }
+    .name-variant[data-script="kannada"]   { font-family: var(--name-kannada); font-size: 1.1em; }
+    .name-variant[data-script="tulu"]      { font-family: var(--name-tulu); font-size: 1.05em; }
     
+    .hero-name .name-english { font-family: var(--name-font), var(--heading-font); }    
     .hero-subtitle { font-weight: 400; color: rgba(var(--text-color), .9); }
 
     .hero-bg {
@@ -153,8 +155,64 @@ import { siteConfig } from "../config";
   <div class="h-full mx-auto p-8 sm:p-12 md:p-24 flex items-center hero-content">
     <div>
       <h2 class="text-pretty text-xl sm:text-2xl md:text-5xl font-bold tracking-tight text-current animate-fade-in">
-        Hello! 👋
+        Hello!
+        <span id="heroWave" class="hero-wave" role="img" aria-hidden="false" aria-label="waving emoji">👋</span>
       </h2>
+      
+      <style>
+        .hero-wave {
+          display:inline-block;
+          margin-left:0.5rem;
+          transform-origin: 50% 60%;
+          transition: transform .18s ease;
+          will-change: transform;
+          font-size: 1.05em;
+          cursor:default;
+        }
+      
+        /* wiggle on hover / focus */
+        .hero-wave:hover,
+        .hero-wave:focus {
+          animation: wiggle 700ms ease-in-out;
+        }
+      
+        @keyframes wiggle {
+          0% { transform: rotate(0deg); }
+          15% { transform: rotate(-18deg); }
+          30% { transform: rotate(12deg); }
+          45% { transform: rotate(-10deg); }
+          60% { transform: rotate(6deg); }
+          75% { transform: rotate(-4deg); }
+          100% { transform: rotate(0deg); }
+        }
+      </style>
+      
+      <script is:inline>
+        (function dynamicHeroEmoji(){
+          try {
+            const E = ['👋','🤝','🙌','✋','🖐️','👋🏻','👋🏽','👋🏿'];
+            const el = document.getElementById('heroWave');
+            if(!el) return;
+            let idx = Math.floor(Math.random() * E.length);
+            el.textContent = E[idx];
+            // cycle every 3.5s
+            setInterval(() => {
+              idx = (idx + 1) % E.length;
+              el.textContent = E[idx];
+            }, 3500);
+            // allow keyboard focus wiggle
+            el.tabIndex = 0;
+            el.addEventListener('keydown', (ev) => {
+              if (ev.key === 'Enter' || ev.key === ' ') {
+                ev.preventDefault();
+                el.classList.remove('wiggle-trigger');
+                void el.offsetWidth; // reflow
+                el.classList.add('wiggle-trigger');
+              }
+            });
+          } catch (e) {}
+        })();
+      </script>
 
       <h1 class="mt-6 sm:mt-8 md:mt-10 hero-name animate-fade-in animation-delay-200" role="img" aria-label={`Name ${siteConfig.name}`}>
         <span class="name-english" data-lang="en" aria-hidden="false">
