@@ -69,7 +69,7 @@ export const siteConfig: SiteConfig = {
       skills: ["General Relativity", "Isolated Horizons"],
       date: "June 2025 - present",
       repo: "",
-      demo: "fullcv.pdf",
+      demo: "./thesis.pdf",
     },
     {
       name: "Overlapping Gravitational Wave Transients",
@@ -79,7 +79,7 @@ export const siteConfig: SiteConfig = {
       skills: ["Gravitational Wave Analysis"],
       date: "July 2022 - June 2025",
       repo: "https://github.com/nishkalrao20/git_overlap",
-      demo: "",
+      demo: "overlapping_gw_slides.pdf",
     },
     
     {
