@@ -136,7 +136,7 @@ export const siteConfig: SiteConfig = {
       school: "Mount Carmel Central School",
       degree: "Class XII CBSE",
       dateRange: "2021",
-      achievements: ["Percentage: 97.2%", "Physics: 98/100", "Mathematics: 99/100"],
+      achievements: ["Percentage: 97.2%", "Physics: 98/100 | Mathematics: 99/100"],
     },
     {
       school: "Sharada Vidyalaya",
