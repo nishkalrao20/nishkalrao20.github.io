@@ -10,46 +10,47 @@ const projects = siteConfig.projects ?? [];
   <head></head>
   <body>
     <Header />
-    <main class="max-w-6xl mx-auto px-6 py-12 pt-28">
-      <h1 class="mb-6 text-3xl">Projects</h1>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projects.map((p) => {
-          const slug = p.slug ?? p.name.toLowerCase().replace(/\s+/g,'-');
-          const banner = `/projects/${slug}.jpg`;
-          return (
-            <a href={`/projects/${slug}`} class="block rounded-lg overflow-hidden border transition-shadow duration-200 card-surface hover:shadow-lg" key={p.slug ?? p.name}>
-              <div class="h-40 sm:h-44 relative">
-                <img src={banner} loading="lazy" alt={`${p.name} banner`} class="w-full h-full object-cover bg-gray-100" onerror="this.style.filter='grayscale(40%)'; this.src='/assets/projects/placeholder.jpg'"/>
-              </div>
-
-              <div class="p-4">
-                <div class="flex items-start justify-between gap-4">
-                  <div class="flex-1">
-                    <div class="text-lg leading-tight" style="font-family: var(--heading-font); font-weight:400; color: rgba(var(--text-color),1)">{p.name}</div>
-                    <p class="mt-2 text-sm text-muted">{p.description ? p.description.slice(0,170) : ''}</p>
-                  </div>
-                  <div class="text-xs text-muted self-start">
-                    {p.date ?? ''}
-                  </div>
+    <section>
+      <main class="max-w-6xl mx-auto px-6 py-12 pt-28">
+        <h1 class="mb-6 text-3xl">Projects</h1>
+  
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((p) => {
+            const slug = p.slug ?? p.name.toLowerCase().replace(/\s+/g,'-');
+            const banner = `/projects/${slug}.jpg`;
+            return (
+              <a href={`/projects/${slug}`} class="block rounded-lg overflow-hidden border transition-shadow duration-200 card-surface hover:shadow-lg" key={p.slug ?? p.name}>
+                <div class="h-40 sm:h-44 relative">
+                  <img src={banner} loading="lazy" alt={`${p.name} banner`} class="w-full h-full object-cover bg-gray-100" onerror="this.style.filter='grayscale(40%)'; this.src='/assets/projects/placeholder.jpg'"/>
                 </div>
-
-                {p.skills && p.skills.length > 0 && (
-                  <div class="mt-3 flex flex-wrap gap-2">
-                    {p.skills.map(s => (
-                      <span class="px-2.5 py-1 rounded-md bg-gray-900 text-white text-xs sm:text-sm font-medium" style="font-family: var(--body-font);" key={s}>
-                        {s}
-                      </span>
-                    ))}
+  
+                <div class="p-4">
+                  <div class="flex items-start justify-between gap-4">
+                    <div class="flex-1">
+                      <div class="text-lg leading-tight" style="font-family: var(--heading-font); font-weight:400; color: rgba(var(--text-color),1)">{p.name}</div>
+                      <p class="mt-2 text-sm text-muted">{p.description ? p.description.slice(0,170) : ''}</p>
+                    </div>
+                    <div class="text-xs text-muted self-start">
+                      {p.date ?? ''}
+                    </div>
                   </div>
-                )}
-              </div>
-            </a>
-          );
-        })}
-      </div>
-    </main>
-
+  
+                  {p.skills && p.skills.length > 0 && (
+                    <div class="mt-3 flex flex-wrap gap-2">
+                      {p.skills.map(s => (
+                        <span class="px-2.5 py-1 rounded-md bg-gray-900 text-white text-xs sm:text-sm font-medium" style="font-family: var(--body-font);" key={s}>
+                          {s}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </a>
+            );
+          })}
+        </div>
+      </main>
+    </section>
     <Footer />
   </body>
 </html>
