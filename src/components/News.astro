@@ -31,31 +31,6 @@ const isYouTube = (url) => {
     return false;
   }
 };
-
-const getYouTubeId = (url) => {
-  if (!url) return null;
-  try {
-    const shortMatch = url.match(/youtu\.be\/([A-Za-z0-9_-]{6,})/);
-    if (shortMatch) return shortMatch[1];
-
-    const watchMatch = url.match(/[?&]v=([A-Za-z0-9_-]{6,})/);
-    if (watchMatch) return watchMatch[1];
-
-    const embedMatch = url.match(/youtube\.com\/embed\/([A-Za-z0-9_-]{6,})/);
-    if (embedMatch) return embedMatch[1];
-
-    const parts = url.split('/');
-    const last = parts.pop() || parts.pop();
-    if (last && /^[A-Za-z0-9_-]{6,}$/.test(last)) return last;
-
-    return null;
-  } catch (e) {
-    return null;
-  }
-};
-
-const getYouTubeEmbedUrl = (id) => id ? `https://www.youtube.com/embed/${id}?rel=0` : null;
-const getYouTubeThumb = (id) => id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : null;
 ---
 {news.length > 0 && (
   <section id="news" class="p-8 sm:p-12 md:p-16 lg:p-24">
@@ -80,46 +55,7 @@ const getYouTubeThumb = (id) => id ? `https://img.youtube.com/vi/${id}/hqdefault
                   {posterIsImage ? (
                     <img src={item.poster} alt={getFileName(item.poster)} loading="lazy"
                       class="w-full h-44 md:h-36 object-cover rounded-xl mb-4" />
-                  ) : (
-                    (item.poster && isYouTube(item.poster)) ? (() => {
-                      const ytId = getYouTubeId(item.poster);
-                      const embed = getYouTubeEmbedUrl(ytId);
-                      const thumb = getYouTubeThumb(ytId);
-                      return (
-                        <div class="w-full rounded-xl overflow-hidden mb-4 bg-black">
-                          {embed ? (
-                            <div class="relative" style="padding-top:56.25%; height:0;">
-                              <iframe
-                                src={embed}
-                                title={item.title || 'YouTube'}
-                                class="absolute inset-0 w-full h-full"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen
-                                loading="lazy"
-                              />
-                            </div>
-                          ) : (
-                            <img src={thumb || item.poster} alt={getFileName(item.poster)} loading="lazy" class="w-full h-44 md:h-36 object-cover rounded-xl" />
-                          )}
-                        </div>
-                      );
-                    })() : (
-                      (item.poster && ['mp4','webm','ogg'].includes(fileType)) ? (
-                        <div class="w-full h-44 md:h-36 rounded-xl overflow-hidden mb-4 bg-black">
-                          <video
-                            src={item.poster}
-                            controls
-                            preload="metadata"
-                            class="w-full h-full object-cover"
-                            poster={item.posterPoster ?? undefined} 
-                          >
-                            Sorry, your browser doesn't support embedded videos.
-                          </video>
-                        </div>
-                      ) : null
-                    )
-                  )}
+                  ) : null}
 
                   <div class="flex-1">
                     <h3 class="text-lg font-medium" style="font-family: var(--heading-font)">{item.title}</h3>
@@ -131,24 +67,38 @@ const getYouTubeThumb = (id) => id ? `https://img.youtube.com/vi/${id}/hqdefault
 
                     <div class="flex items-center gap-2">
                       {item.poster && !posterIsImage ? (
-                        <a
-                          href={item.poster}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="inline-flex items-center gap-2 text-xs font-mono px-2 py-1 rounded-md border card-surface shadow-sm max-w-[11rem] overflow-hidden transition-colors duration-200 ease-out hover:text-[var(--accent-color)] hover:border-[var(--accent-color)] hover:bg-[rgba(var(--accent-rgb),0.06)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)]/20"
-                          title={isYouTube(item.poster) ? `Watch on YouTube: ${item.title ?? getFileName(item.poster)}` : getFileName(item.poster)}
-                          aria-label={isYouTube(item.poster) ? `Watch video: ${item.title ?? getFileName(item.poster)}` : `Open poster: ${getFileName(item.poster)}`}
-                        >
-                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                            <path d="M14 2v6h6"></path>
-                          </svg>
-                      
-                        <span class="font-medium">{['mp4','webm','ogg'].includes(fileType) ? 'Video': 'Poster'}</span>                          
-                          <span class="font-medium">
-                            {isYouTube(item.poster) ? 'Watch' : (['mp4','webm','ogg'].includes(fileType) ? 'Video')}
-                          </span>
-                        </a>
+                        isYouTube(item.poster) ? (
+                          <a
+                            href={item.poster}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-flex items-center gap-2 text-xs font-mono px-2 py-1 rounded-md border card-surface shadow-sm max-w-[11rem] overflow-hidden transition-colors duration-200 ease-out hover:text-[var(--accent-color)] hover:border-[var(--accent-color)] hover:bg-[rgba(var(--accent-rgb),0.06)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)]/20"
+                            title={`Watch on YouTube: ${item.title ?? getFileName(item.poster)}`}
+                            aria-label={`Watch on YouTube: ${item.title ?? getFileName(item.poster)}`}
+                          >
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                              <path d="M22 9.5c0 0-0.2-1.6-0.8-2.3c-0.8-1-1.6-1-2-1.1C16.4 5.8 12 5.8 12 5.8h0s-4.4 0-6.9 0.3c-0.4 0-1.3 0-2 1.1C2.2 8 2 9.5 2 9.5S2 11.1 2 12.8v0c0 1.7 0.2 3.3 0.2 3.3s0.2 1.6 0.8 2.3c0.8 1 1.9 1 2.4 1.1 1.8 0.2 7.6 0.3 7.6 0.3s4.4 0 6.9-0.3c0.4 0 1.3 0 2-1.1c0.6-0.7 0.8-2.3 0.8-2.3s0.2-1.6 0.2-3.3v0c0-1.7-0.2-3.3-0.2-3.3z"></path>
+                              <path d="M10 15l5-3-5-3v6z"></path>
+                            </svg>
+
+                            <span class="font-medium">Watch</span>
+                          </a>
+                        ) : (
+                          <a
+                            href={item.poster}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-flex items-center gap-2 text-xs font-mono px-2 py-1 rounded-md border card-surface shadow-sm max-w-[11rem] overflow-hidden transition-colors duration-200 ease-out hover:text-[var(--accent-color)] hover:border-[var(--accent-color)] hover:bg-[rgba(var(--accent-rgb),0.06)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)]/20"
+                            title={getFileName(item.poster)}
+                            aria-label={`Open poster: ${getFileName(item.poster)}`}
+                          >
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                              <path d="M14 2v6h6"></path>
+                            </svg>
+                            <span class="font-medium">Poster</span>
+                          </a>
+                        )
                       ) : null}
 
                       {item.docs ? (
@@ -164,7 +114,7 @@ const getYouTubeThumb = (id) => id ? `https://img.youtube.com/vi/${id}/hqdefault
                             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                             <path d="M8 11h8M8 15h8M8 7h4"></path>
                           </svg>
-                      
+
                           <span class="font-medium">Notes</span>
                         </a>
                       ) : null}
@@ -202,18 +152,18 @@ const getYouTubeThumb = (id) => id ? `https://img.youtube.com/vi/${id}/hqdefault
           const prevBtn = document.getElementById('newsPrev');
           const nextBtn = document.getElementById('newsNext');
           if (!track || !prevBtn || !nextBtn) return;
-    
+
           const cards = Array.from(track.children);
           if (!cards.length) return;
-    
+
           track.style.transitionProperty = 'transform';
           track.style.transitionDuration = track.style.transitionDuration || '600ms';
           track.style.willChange = 'transform';
-    
+
           let idx = 0;
           let autoTimer = null;
           const AUTO_DELAY = 3500;
-    
+
           function scrollToIndex(i, smooth = true) {
             i = Math.max(0, Math.min(i, cards.length - 1));
             idx = i;
@@ -222,14 +172,13 @@ const getYouTubeThumb = (id) => id ? `https://img.youtube.com/vi/${id}/hqdefault
               const prevDuration = track.style.transitionDuration;
               track.style.transitionDuration = '0ms';
               track.style.transform = `translateX(-${left}px)`;
-              // force reflow then restore
               void track.offsetHeight;
               track.style.transitionDuration = prevDuration;
             } else {
               track.style.transform = `translateX(-${left}px)`;
             }
           }
-    
+
           function next() {
             idx = (idx + 1) % cards.length;
             scrollToIndex(idx);
@@ -238,7 +187,7 @@ const getYouTubeThumb = (id) => id ? `https://img.youtube.com/vi/${id}/hqdefault
             idx = (idx - 1 + cards.length) % cards.length;
             scrollToIndex(idx);
           }
-    
+
           function startAuto() {
             stopAuto();
             autoTimer = setInterval(next, AUTO_DELAY);
@@ -253,22 +202,22 @@ const getYouTubeThumb = (id) => id ? `https://img.youtube.com/vi/${id}/hqdefault
             stopAuto();
             startAuto();
           }
-    
+
           nextBtn.addEventListener('click', (e) => { e.preventDefault(); next(); resetAuto(); });
           prevBtn.addEventListener('click', (e) => { e.preventDefault(); prev(); resetAuto(); });
-    
+
           const slider = track.closest('.news-slider');
           if (slider) {
             slider.addEventListener('mouseenter', () => stopAuto());
             slider.addEventListener('mouseleave', () => startAuto());
           }
-    
+
           let resizeTimer = null;
           window.addEventListener('resize', () => {
             if (resizeTimer) clearTimeout(resizeTimer);
             resizeTimer = setTimeout(() => scrollToIndex(idx, false), 120);
           });
-    
+
           scrollToIndex(0, false);
           startAuto();
         });
