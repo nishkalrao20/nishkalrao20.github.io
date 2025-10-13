@@ -69,7 +69,7 @@ export const siteConfig: SiteConfig = {
       skills: ["General Relativity", "Isolated Horizons"],
       date: "June 2025 - present",
       repo: "",
-      demo: "./thesis.pdf",
+      demo: "ms_thesis.pdf",
     },
     {
       name: "Overlapping Gravitational Wave Transients",
@@ -90,7 +90,7 @@ export const siteConfig: SiteConfig = {
       skills: ["Gravitational Wave Analysis", "Ringdowns", "Numerical Relativity"],
       date: "Jan 2025 - present",
       repo: "https://github.com/GCArullo/bayRing/tree/nc_fits_nishkal",
-      demo: "",
+      demo: "nc_ringdown_slides.pdf",
     },
     
     {
@@ -101,7 +101,7 @@ export const siteConfig: SiteConfig = {
       skills: ["Black Hole Decoherence", "Quantum Field Theory", "General Relativity", "Quantum Foundations"],
       date: "Jan 2025 - present",
       repo: "",
-      demo: "",
+      demo: "bh_decoherence_slides.pdf",
     },
     
     {
@@ -124,6 +124,17 @@ export const siteConfig: SiteConfig = {
       date: "September 2023 - present",
       repo: "https://github.com/nishkalrao20/bilby/tree/time_domain_dev",
       demo: "",
+    },
+
+    {
+      name: "Reduced-order-quadrature model for binary neutron star merger parameter estimation",
+      slug: "roq-bns",
+      description:
+        "Improved reduced order quadrature method for parameter estimation in binary neutron star mergers.",
+      skills: ["Gravitational Wave Analysis"],
+      date: "May 2024 - July 2024",
+      repo: "https://github.com/nishkalrao20/bajes/tree/roq_inspiral",
+      demo: "roq_bns_report.pdf",
     },
     
   ],
