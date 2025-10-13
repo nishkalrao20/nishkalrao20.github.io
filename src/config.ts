@@ -74,7 +74,7 @@ export const siteConfig: SiteConfig = {
       demo: "",
     },
     {
-      name: "Comprehensive analysis of time-domain Overlapping Gravitational Wave Transients",
+      name: "Overlapping Gravitational Wave Transients",
       slug: "overlapping-gw",
       description:
         "Addressing challenges of overlapping compact binary coalescences in future gravitational wave detectors. Developing techniques for identification and characterization to enhance parameter estimation accuracy. Gained expertise in matched filtering (PyCBC), unmodeled analysis (cWB), and Bayesian parameter estimation (bilby).",
