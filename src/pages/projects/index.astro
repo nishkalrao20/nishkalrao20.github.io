@@ -53,10 +53,11 @@ const projects = siteConfig.projects ?? [];
                         {p.description ? p.description.slice(0,170) : ''}
                       </p>
                     </div>
-
-                    <div class="text-xs text-muted self-start" style="font-family: var(--body-font);">
-                      {p.date ?? ''}
-                    </div>
+                    {p.label ? (
+                      <div class="text-xs text-muted self-start" style="font-family: var(--body-font);">
+                        {p.label}
+                      </div>
+                    ) : null}
                   </div>
 
                   {p.skills && p.skills.length > 0 && (
@@ -72,6 +73,47 @@ const projects = siteConfig.projects ?? [];
                       ))}
                     </div>
                   )}
+
+                  <div class="mt-4 flex items-center justify-between">
+                    <div class="text-xs text-muted font-mono" style="font-family: var(--body-font);">
+                      {p.date ?? ''}
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                      {p.repo ? (
+                        <a
+                          href={p.repo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="inline-flex items-center gap-2 text-xs font-mono px-2 py-1 rounded-md border card-surface shadow-sm max-w-[11rem] overflow-hidden transition-colors duration-200 ease-out hover:text-[var(--accent-color)] hover:border-[var(--accent-color)] hover:bg-[rgba(var(--accent-rgb),0.06)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)]/20"
+                          title="View repository"
+                          aria-label="View repository"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.92.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.46-3.88-1.46-.53-1.36-1.3-1.72-1.3-1.72-1.06-.72.08-.7.08-.7 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.45.11-3.02 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 2.9-.39c.98.01 1.98.13 2.9.39 2.2-1.5 3.17-1.18 3.17-1.18.63 1.57.23 2.73.11 3.02.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.4-5.25 5.68.42.36.79 1.08.79 2.18 0 1.58-.01 2.85-.01 3.24 0 .31.21.68.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z"/>
+                          </svg>
+                          <span class="font-medium">Repo</span>
+                        </a>
+                      ) : null}
+
+                      {p.demo ? (
+                        <a
+                          href={p.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="inline-flex items-center gap-2 text-xs font-mono px-2 py-1 rounded-md border card-surface shadow-sm max-w-[11rem] overflow-hidden transition-colors duration-200 ease-out hover:text-[var(--accent-color)] hover:border-[var(--accent-color)] hover:bg-[rgba(var(--accent-rgb),0.06)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)]/20"
+                          title="Open demo"
+                          aria-label="Open demo"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <path d="M8 11h8M8 15h8M8 7h4"></path>
+                          </svg>
+                          <span class="font-medium">Demo</span>
+                        </a>
+                      ) : null}
+                    </div>
+                  </div>
                 </div>
               </a>
             );
