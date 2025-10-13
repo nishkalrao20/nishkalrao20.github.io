@@ -69,7 +69,7 @@ export const siteConfig: SiteConfig = {
       skills: ["General Relativity", "Isolated Horizons"],
       date: "June 2025 - present",
       repo: "",
-      demo: "ms_thesis.pdf",
+      demo: "msthesis.pdf",
     },
     {
       name: "Overlapping Gravitational Wave Transients",
@@ -144,7 +144,7 @@ export const siteConfig: SiteConfig = {
       school: "Indian Institute of Science Education and Research (IISER) Pune",
       degree: "BS-MS Dual Degree (5 year)",
       dateRange: "2021 - present",
-      achievements: ["Physics Major, Mathematics Minor", "GPA: 9.3/10"]
+      achievements: ["Physics Major | Mathematics Minor", "GPA: 9.3/10"]
     },
     {
       school: "Mount Carmel Central School",
@@ -163,11 +163,11 @@ export const siteConfig: SiteConfig = {
   news: [
     {
       date: "July 2025",
-      title: "ICTS Summer School on Gravitational-Wave Astronomy - ICTS-TIFR, Bangalore",
+      title: "ICTS Summer School on Gravitational-Wave Astronomy 2025 - ICTS-TIFR, Bangalore",
       description:
         "Attended ICTS Summer School on Gravitational-Wave Astronomy (July 2025). Participated in lectures and hands-on sessions on GW data analysis and modelling. Presented a poster summarizing work on non-circular binary merger ringdown and compiled detailed lecture notes.",
-      poster: "/assets/news/icts-2025-poster.pdf",
-      docs: "/assets/news/icts-2025-notes.pdf"
+      poster: "/updates/icts-2025-poster.pdf",
+      docs: "/updates/icts-2025-notes.pdf"
     },
 
     {
@@ -175,7 +175,7 @@ export const siteConfig: SiteConfig = {
       title: "Talk: 'Degeneracies between Overlapping and Lensing GWs' - LVK Lensing Group Meeting",
       description:
         "Presented work analysing degeneracies between overlapping gravitational-wave signals and lensing effects. Discussed identification strategies and implications for parameter inference.",
-      poster: "https://www.youtube.com/watch?v=GD7CZXRHXyA"
+      poster: "https://www.youtube.com/watch?v=GD7CZXRHXyA",
     },
 
     {
@@ -208,9 +208,10 @@ export const siteConfig: SiteConfig = {
 
     {
       date: "July 2023",
-      title: "ICTS Summer School on Gravitational-wave Astronomy (2023)",
+      title: "ICTS Summer School on Gravitational-Wave Astronomy 2023 - ICTS-TIFR, Bangalore",
       description:
-        "Attended ICTS Summer School on Gravitational-wave Astronomy (July 2023). Participated in lectures and practical sessions on GW data analysis and modelling."
+        "Attended ICTS Summer School on Gravitational-wave Astronomy (July 2023). Participated in lectures and practical sessions on GW data analysis and modelling.",
+      docs: "/updates/icts-2023-notes.pdf"
     },
 
     {
