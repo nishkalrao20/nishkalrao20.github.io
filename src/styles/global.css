@@ -6,7 +6,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap');
 
 :root {
-  --heading-font: "Crimson Text", serif;
+  --heading-font: "Playfair Display", serif;
   --body-font: "Crimson Text", serif;
   --mono-font: "Lato", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
 }
