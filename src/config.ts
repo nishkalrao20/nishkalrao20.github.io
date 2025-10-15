@@ -162,6 +162,15 @@ export const siteConfig: SiteConfig = {
 
   news: [
     {
+      date: "Oct 2025",
+      title: "Talk: 'Updates: Overlapping and Lensed GWs' - LVK Lensing Group Meeting",
+      description:
+        "Presented updates on our work regarding analysing degeneracies between overlapping gravitational-wave signals and lensing effects.",
+      poster: "https://youtu.be/b6Gn5agMtt8",
+      docs: "/updates/overlapping_gw_slides_2.pdf",
+    },
+    
+    {
       date: "July 2025",
       title: "ICTS Summer School on Gravitational-Wave Astronomy 2025 - ICTS-TIFR, Bangalore",
       description:
@@ -175,7 +184,8 @@ export const siteConfig: SiteConfig = {
       title: "Talk: 'Degeneracies between Overlapping and Lensing GWs' - LVK Lensing Group Meeting",
       description:
         "Presented work analysing degeneracies between overlapping gravitational-wave signals and lensing effects. Discussed identification strategies and implications for parameter inference.",
-      poster: "https://www.youtube.com/watch?v=GD7CZXRHXyA",
+      poster: "https://youtu.be/GD7CZXRHXyA",
+      docs: "/updates/overlapping_gw_slides_1.pdf",
     },
 
     {
