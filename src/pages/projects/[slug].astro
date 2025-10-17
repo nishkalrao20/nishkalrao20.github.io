@@ -64,6 +64,22 @@ const titleHtml = renderMathInText(meta.title ?? slug);
     <meta name="description" content={meta.summary ?? meta.description ?? Astro.site?.description ?? ''} />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
+    <script>
+      (function(){
+        try {
+          const stored = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          const theme = stored || (prefersDark ? 'dark' : 'light');
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+            document.documentElement.setAttribute('data-theme','dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.setAttribute('data-theme','light');
+          }
+        } catch(e){}
+      })();
+    </script>
     <style>
     :root { --project-text: rgba(var(--text-color), 1); --project-muted: rgba(var(--muted-text-color), 1); }
     
@@ -100,7 +116,6 @@ const titleHtml = renderMathInText(meta.title ?? slug);
       text-align: left;
     }
     
-    /* smaller H2 used as a replacement for h3 due to compatibility */
     .project-prose .prose h2,
     .project-prose h2 {
       font-size: 1.125rem;
@@ -213,7 +228,6 @@ const titleHtml = renderMathInText(meta.title ?? slug);
     .ref-panel h4 { font-weight: 600; margin-bottom: .45rem; color: rgba(var(--text-color),1); }
     .ref-entry { margin-bottom: .9rem; color: rgba(var(--text-color),0.95); }
 
-    /* keep references region removed — only hover panel will be used */
     @media (max-width: 1024px) {
       .ref-panel { position: fixed; left: 8px; right: 8px; top: 12vh; max-width: calc(100% - 16px); width: auto; }
     }
@@ -378,6 +392,61 @@ const titleHtml = renderMathInText(meta.title ?? slug);
       }
     });
 
+  })();
+  </script>
+
+  <script>
+  (function(){
+    const prefersDarkQuery = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+
+    function detectTheme() {
+      const html = document.documentElement;
+      if (html.hasAttribute('data-theme')) return html.getAttribute('data-theme');
+      if (html.classList.contains('dark')) return 'dark';
+      const ls = localStorage.getItem('theme');
+      if (ls) return ls;
+      return prefersDarkQuery && prefersDarkQuery.matches ? 'dark' : 'light';
+    }
+
+    function updatePictures(theme) {
+      document.querySelectorAll('picture').forEach(p => {
+        const img = p.querySelector('img');
+        if (!img) return;
+
+        const lightSrc = img.getAttribute('data-src-light') || p.getAttribute('data-light');
+        const darkSrc  = img.getAttribute('data-src-dark')  || p.getAttribute('data-dark');
+
+        const lightSrcset = img.getAttribute('data-srcset-light') || p.getAttribute('data-srcset-light');
+        const darkSrcset  = img.getAttribute('data-srcset-dark')  || p.getAttribute('data-srcset-dark');
+
+        if (theme === 'dark' && darkSrc) {
+          if (img.src !== darkSrc) img.src = darkSrc;
+          if (darkSrcset) img.setAttribute('srcset', darkSrcset);
+        } else if (theme === 'light' && lightSrc) {
+          if (img.src !== lightSrc) img.src = lightSrc;
+          if (lightSrcset) img.setAttribute('srcset', lightSrcset);
+        }
+      });
+    }
+
+    try { updatePictures(detectTheme()); } catch(e){}
+
+    const mo = new MutationObserver(() => {
+      try { updatePictures(detectTheme()); } catch(e){}
+    });
+    mo.observe(document.documentElement, { attributes: true, attributeFilter: ['class','data-theme'] });
+
+    window.addEventListener('theme-toggle', () => {
+      try { updatePictures(detectTheme()); } catch(e){}
+    });
+
+    if (prefersDarkQuery && typeof prefersDarkQuery.addEventListener === 'function') {
+      prefersDarkQuery.addEventListener('change', (ev) => {
+        if (!localStorage.getItem('theme')) {
+          updatePictures(ev.matches ? 'dark' : 'light');
+        }
+      });
+    }
   })();
   </script>
 
