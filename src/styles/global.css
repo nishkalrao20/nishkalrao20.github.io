@@ -70,27 +70,3 @@ code, pre, kbd {
   background-color: transparent;
   color: rgba(var(--text-color), 1);
 }
-
-.project-prose .section-figure {
-  margin: 1.25rem 0;
-  display: block;
-  max-width: 100%;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(2,6,23,0.06);
-  background: rgba(var(--card-bg-rgb, 255,255,255), 0.025);
-}
-
-@media (prefers-color-scheme: dark) {
-  .project-prose .section-figure {
-    box-shadow: 0 10px 28px rgba(2,6,23,0.18);
-    background: rgba(0,0,0,0.18);
-  }
-}
-
-.project-prose .section-figure img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-}
