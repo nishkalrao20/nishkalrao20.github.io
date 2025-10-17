@@ -144,6 +144,9 @@
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
       } catch (e) {}
       window.dispatchEvent(new Event('theme-toggle'));
+      if (window.__updateThemeImages) {
+        try { window.__updateThemeImages(isDark ? 'dark' : 'light'); } catch(e){}
+      }
       reflect();
     });
 
