@@ -11,16 +11,22 @@ A paradigm shift is through quasi-local definitions, specifically *isolated* and
 
 ## Preliminaries
 
+The richness of the causal structure of spacetime is enlightened through the Newman-Penrose (NP) formalism [<a class="cite" data-ref="r6">6</a>,<a class="cite" data-ref="r7">7</a>], which establishes a spinorial null basis for General Relativity (GR), revealing the symmetries of spacetime. This is a tetrad formalism that uses an orthonormal basis to define the local spacetime, analogous to that of special relativity. Special relativity is typically characterized using Minkowski coordinates in a Galilean frame of reference, which involves separating the physical spacetime into unphysical space and time through an arbitrary foliation. However, the NP tetrad is defined using a basis composed of four null vectors, of which only three are linearly independent, which reveals the spinorial structure of hyperbolic spacetime in special relativity. These vectors are specifically adapted to light geodesics, which are physically significant as they determine the conformal structure of spacetime, and therefore causality.
+
 <figure class="section-figure">
-  <picture>
-    <source srcset="/overlapping-gw/prelim-dark.png" media="(prefers-color-scheme: dark)">
-    <img src="/overlapping-gw/prelim-light.png"
-         alt="Newman–Penrose tetrad illustration: Null basis vectors"
-         loading="lazy" decoding="async" width="1200" height="600">
+  <picture data-light="/overlapping-gw/prelim-light.png" data-dark="/overlapping-gw/prelim-dark.png" aria-hidden="false">
+    <img
+      src="/overlapping-gw/prelim-light.png"
+      data-src-light="/overlapping-gw/prelim-light.png"
+      data-src-dark="/overlapping-gw/prelim-dark.png"
+      alt="Newman–Penrose tetrad illustration: Null basis vectors"
+      loading="lazy"
+      decoding="async"
+      width="1200"
+      height="600"
+    >
   </picture>
 </figure>
-
-The richness of the causal structure of spacetime is enlightened through the Newman-Penrose (NP) formalism [<a class="cite" data-ref="r6">6</a>,<a class="cite" data-ref="r7">7</a>], which establishes a spinorial null basis for General Relativity (GR), revealing the symmetries of spacetime. This is a tetrad formalism that uses an orthonormal basis to define the local spacetime, analogous to that of special relativity. Special relativity is typically characterized using Minkowski coordinates in a Galilean frame of reference, which involves separating the physical spacetime into unphysical space and time through an arbitrary foliation. However, the NP tetrad is defined using a basis composed of four null vectors, of which only three are linearly independent, which reveals the spinorial structure of hyperbolic spacetime in special relativity. These vectors are specifically adapted to light geodesics, which are physically significant as they determine the conformal structure of spacetime, and therefore causality.
 
 The light cone structure of the spacetime of the black hole solutions of GR makes the NP formalism effective for grasping the inherent symmetries of these spacetimes and revealing their analytic richness. We choose the null basis tetrad, consisting of real null vectors, $\boldsymbol{\ell}$ and $\boldsymbol{n}$, and complex conjugates $\boldsymbol{m},\bar{\boldsymbol{m}}$, with the orthonormal relations, $\boldsymbol{\ell\cdot m}=\boldsymbol{\ell\cdot \bar{m}}=\boldsymbol{n\cdot m}=\boldsymbol{n\cdot\bar{m}}=0$. We further introduce the following normalization conditions on the basis vectors as $\boldsymbol{\ell\cdot n}=1$, and $\boldsymbol{m\cdot \bar{m}}=-1$, such that the spacetime metric $\boldsymbol{g}$ can be written in terms of the complete basis as, $$\boldsymbol{g}=-\boldsymbol{\ell}\otimes\boldsymbol{n}-\boldsymbol{n}\otimes\boldsymbol{l}+\boldsymbol{m}\otimes\boldsymbol{\bar{m}}+\boldsymbol{\bar{m}}\otimes\boldsymbol{m}.$$
 
@@ -29,11 +35,17 @@ The nature of the tetrad vectors is primarily encoded in the *spin coefficients*
 ## Isolated Horizons
 
 <figure class="section-figure">
-  <picture>
-    <source srcset="/overlapping-gw/isolated-dark.png" media="(prefers-color-scheme: dark)">
-    <img src="/overlapping-gw/isolated-light.png"
-         alt="Schematic of an isolated horizon and its null generators"
-         loading="lazy" decoding="async" width="1200" height="600">
+  <picture data-light="/overlapping-gw/isolated-light.png" data-dark="/overlapping-gw/isolated-dark.png" aria-hidden="false">
+    <img
+      src="/overlapping-gw/isolated-light.png"
+      data-src-light="/overlapping-gw/isolated-light.png"
+      data-src-dark="/overlapping-gw/isolated-dark.png"
+      alt="Schematic of an isolated horizon and its null generators"
+      loading="lazy"
+      decoding="async"
+      width="1200"
+      height="600"
+    >
   </picture>
 </figure>
 
@@ -44,11 +56,17 @@ We build up to the idea of isolated horizons (IH), by first understanding non-ex
 ## Probing Near-Horizon Structure
 
 <figure class="section-figure">
-  <picture>
-    <source srcset="/overlapping-gw/probing-dark.png" media="(prefers-color-scheme: dark)">
-    <img src="/overlapping-gw/probing-light.png"
-         alt="Near-horizon cross-sections and characteristic initial data"
-         loading="lazy" decoding="async" width="1200" height="600">
+  <picture data-light="/overlapping-gw/probing-light.png" data-dark="/overlapping-gw/probing-dark.png" aria-hidden="false">
+    <img
+      src="/overlapping-gw/probing-light.png"
+      data-src-light="/overlapping-gw/probing-light.png"
+      data-src-dark="/overlapping-gw/probing-dark.png"
+      alt="Near-horizon cross-sections and characteristic initial data"
+      loading="lazy"
+      decoding="async"
+      width="1200"
+      height="600"
+    >
   </picture>
 </figure>
 
@@ -61,17 +79,23 @@ We examine the intrinsic geometry of the null surface $\mathscr{H}_0$, which is 
 ## Tidal Deformabilities
 
 <figure class="section-figure">
-  <picture>
-    <source srcset="/overlapping-gw/tidal-dark.png" media="(prefers-color-scheme: dark)">
-    <img src="/overlapping-gw/tidal-light.png"
-         alt="Tidal deformation of horizons"
-         loading="lazy" decoding="async" width="1200" height="600">
+  <picture data-light="/overlapping-gw/tidal-light.png" data-dark="/overlapping-gw/tidal-dark.png" aria-hidden="false">
+    <img
+      src="/overlapping-gw/tidal-light.png"
+      data-src-light="/overlapping-gw/tidal-light.png"
+      data-src-dark="/overlapping-gw/tidal-dark.png"
+      alt="Tidal deformation of horizons"
+      loading="lazy"
+      decoding="async"
+      width="1200"
+      height="600"
+    >
   </picture>
 </figure>
 
 In the presence of a tidal environment, a black hole can be influenced by an external gravitational field generated by nearby objects or by scalar or vector fields. Love numbers quantify how an object responds to tidal forces: if the external tidal field behaves like $\mathsf{r}^{\ell}$ at a large distance $\mathsf{r}$, where $\ell$ represents the relevant multipole moment, an object like a star that experiences tidal deformation will generate a response field that decays as $1/\mathsf{r}^{\ell+1}$ at large distances. The coefficient of this decay, normalized by the amplitude of the tidal field, is referred to as a Love number for the multipole. Analogous to gravitational Love numbers, we can define surficial Love numbers as the deformation of the body’s surface, also expanded in multipole moments.
 
-For a weak static tidal field, the problem reduces to studying static linear perturbations <a class="cite" data-ref="r10">[10]</a> around the object of interest. At leading order, tidally perturbed black hole horizons can be modeled as IHs, and the non-vanishing fluxes of infalling radiation can be calculated at linear order using perturbation theory. 
+For a weak static tidal field, the problem reduces to studying static linear perturbations [<a class="cite" data-ref="r10">10</a>] around the object of interest. At leading order, tidally perturbed black hole horizons can be modeled as IHs, and the non-vanishing fluxes of infalling radiation can be calculated at linear order using perturbation theory. 
 
 <div id="ref-r1" class="refdef" style="display:none">
   <div class="ref-entry">
