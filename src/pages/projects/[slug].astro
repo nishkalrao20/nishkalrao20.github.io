@@ -408,6 +408,18 @@ const titleHtml = renderMathInText(meta.title ?? slug);
       return prefersDarkQuery && prefersDarkQuery.matches ? 'dark' : 'light';
     }
 
+    async function setImgSource(img, src, srcset) {
+      try {
+        if (srcset) {
+          img.setAttribute('srcset', srcset);
+        } else {
+          img.removeAttribute('srcset');
+        }
+        if (img.src !== src) img.src = src;
+        if (img.decode) await img.decode();
+      } catch(e){}
+    }
+
     function updatePictures(theme) {
       document.querySelectorAll('picture').forEach(p => {
         const img = p.querySelector('img');
@@ -420,14 +432,16 @@ const titleHtml = renderMathInText(meta.title ?? slug);
         const darkSrcset  = img.getAttribute('data-srcset-dark')  || p.getAttribute('data-srcset-dark');
 
         if (theme === 'dark' && darkSrc) {
-          if (img.src !== darkSrc) img.src = darkSrc;
-          if (darkSrcset) img.setAttribute('srcset', darkSrcset);
+          setImgSource(img, darkSrc, darkSrcset);
         } else if (theme === 'light' && lightSrc) {
-          if (img.src !== lightSrc) img.src = lightSrc;
-          if (lightSrcset) img.setAttribute('srcset', lightSrcset);
+          setImgSource(img, lightSrc, lightSrcset);
         }
       });
     }
+
+    window.__updateThemeImages = function(theme) {
+      try { updatePictures(theme); } catch(e){}
+    };
 
     try { updatePictures(detectTheme()); } catch(e){}
 
