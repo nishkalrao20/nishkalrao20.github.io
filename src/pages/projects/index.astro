@@ -6,7 +6,6 @@ import '../../styles/global.css';
 
 const projects = siteConfig.projects ?? [];
 
-// collect unique categories (preserve order)
 const cats = [];
 projects.forEach(p => {
   const c = (p.category || 'Uncategorized').trim();
