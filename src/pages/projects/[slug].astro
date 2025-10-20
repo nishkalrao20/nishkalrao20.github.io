@@ -266,6 +266,11 @@ const titleHtml = renderMathInText(meta.title ?? slug);
       
       <header class="project-header mb-6">
         <h1 class="text-3xl md:text-4xl leading-tight font-normal" set:html={titleHtml}></h1>
+        {meta.category ? (
+            <div class="mt-2">
+              <span class="px-2 py-1 rounded-md text-xs font-medium" style="background: rgba(var(--card-bg-rgb),0.9);">{meta.category}</span>
+            </div>
+          ) : null}
         {meta.skills && meta.skills.length > 0 && (
           <div class="flex flex-wrap gap-2 mt-3">
             {meta.skills.map(s => (
