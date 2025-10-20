@@ -398,7 +398,7 @@ const titleHtml = renderMathInText(meta.title ?? slug);
   <script>
   (function(){
     const prefersDarkQuery = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
-
+  
     function detectTheme() {
       const html = document.documentElement;
       if (html.hasAttribute('data-theme')) return html.getAttribute('data-theme');
@@ -407,7 +407,7 @@ const titleHtml = renderMathInText(meta.title ?? slug);
       if (ls) return ls;
       return prefersDarkQuery && prefersDarkQuery.matches ? 'dark' : 'light';
     }
-
+  
     async function setImgSource(img, src, srcset) {
       try {
         if (srcset) {
@@ -419,41 +419,63 @@ const titleHtml = renderMathInText(meta.title ?? slug);
         if (img.decode) await img.decode();
       } catch(e){}
     }
-
+  
     function updatePictures(theme) {
       document.querySelectorAll('picture').forEach(p => {
-        const img = p.querySelector('img');
-        if (!img) return;
-
-        const lightSrc = img.getAttribute('data-src-light') || p.getAttribute('data-light');
-        const darkSrc  = img.getAttribute('data-src-dark')  || p.getAttribute('data-dark');
-
-        const lightSrcset = img.getAttribute('data-srcset-light') || p.getAttribute('data-srcset-light');
-        const darkSrcset  = img.getAttribute('data-srcset-dark')  || p.getAttribute('data-srcset-dark');
-
-        if (theme === 'dark' && darkSrc) {
-          setImgSource(img, darkSrc, darkSrcset);
-        } else if (theme === 'light' && lightSrc) {
-          setImgSource(img, lightSrc, lightSrcset);
-        }
+        try {
+          const img = p.querySelector('img');
+          if (!img) return;
+  
+          // support either: <picture data-light="..." data-dark="..."> OR img data attributes
+          const pLight = p.getAttribute('data-light');
+          const pDark  = p.getAttribute('data-dark');
+  
+          const imgLight = img.getAttribute('data-src-light') || pLight;
+          const imgDark  = img.getAttribute('data-src-dark')  || pDark;
+  
+          const imgLightSrcset = img.getAttribute('data-srcset-light') || p.getAttribute('data-srcset-light') || null;
+          const imgDarkSrcset  = img.getAttribute('data-srcset-dark')  || p.getAttribute('data-srcset-dark')  || null;
+  
+          if (theme === 'dark' && imgDark) {
+            setImgSource(img, imgDark, imgDarkSrcset);
+          } else if (theme === 'light' && imgLight) {
+            setImgSource(img, imgLight, imgLightSrcset);
+          }
+        } catch(e){}
+      });
+  
+      document.querySelectorAll('img[data-src-light], img[data-src-dark]').forEach(img => {
+        try {
+          const lightSrc = img.getAttribute('data-src-light');
+          const darkSrc  = img.getAttribute('data-src-dark');
+  
+          const lightSrcset = img.getAttribute('data-srcset-light');
+          const darkSrcset  = img.getAttribute('data-srcset-dark');
+  
+          if (theme === 'dark' && darkSrc) {
+            setImgSource(img, darkSrc, darkSrcset);
+          } else if (theme === 'light' && lightSrc) {
+            setImgSource(img, lightSrc, lightSrcset);
+          }
+        } catch(e){}
       });
     }
-
+  
     window.__updateThemeImages = function(theme) {
       try { updatePictures(theme); } catch(e){}
     };
-
+  
     try { updatePictures(detectTheme()); } catch(e){}
-
+  
     const mo = new MutationObserver(() => {
       try { updatePictures(detectTheme()); } catch(e){}
     });
     mo.observe(document.documentElement, { attributes: true, attributeFilter: ['class','data-theme'] });
-
+  
     window.addEventListener('theme-toggle', () => {
       try { updatePictures(detectTheme()); } catch(e){}
     });
-
+  
     if (prefersDarkQuery && typeof prefersDarkQuery.addEventListener === 'function') {
       prefersDarkQuery.addEventListener('change', (ev) => {
         if (!localStorage.getItem('theme')) {
@@ -462,7 +484,7 @@ const titleHtml = renderMathInText(meta.title ?? slug);
       });
     }
   })();
-  </script>
+</script>
 
   <Footer />
 </body>
