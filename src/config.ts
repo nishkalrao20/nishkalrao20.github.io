@@ -7,6 +7,7 @@ export interface Project {
   repo?: string;
   demo?: string;
   skills?: string[];
+  category?: string;
 }
 
 export interface Education {
