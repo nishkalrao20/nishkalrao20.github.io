@@ -181,8 +181,16 @@ const isYouTube = (url) => {
         })}
       </div>
 
-      <button id="newsPrev" aria-label="Previous update" class="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded bg-[rgba(var(--card-bg-rgb),0.85)]">‹</button>
-      <button id="newsNext" aria-label="Next update" class="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded bg-[rgba(var(--card-bg-rgb),0.85)]">›</button>
+      <button id="newsPrev" aria-label="Previous update"
+        class="news-nav-btn absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded">
+        ‹
+      </button>
+      
+      <button id="newsNext" aria-label="Next update"
+        class="news-nav-btn absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded">
+        ›
+      </button>
+
     </div>
 
     <script is:inline>
