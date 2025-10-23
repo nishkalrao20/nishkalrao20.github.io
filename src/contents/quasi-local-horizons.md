@@ -14,11 +14,11 @@ A paradigm shift is through quasi-local definitions, specifically *isolated* and
 The richness of the causal structure of spacetime is enlightened through the Newman-Penrose (NP) formalism [<a class="cite" data-ref="r6">6</a>,<a class="cite" data-ref="r7">7</a>], which establishes a spinorial null basis for General Relativity (GR), revealing the symmetries of spacetime. This is a tetrad formalism that uses an orthonormal basis to define the local spacetime, analogous to that of special relativity. Special relativity is typically characterized using Minkowski coordinates in a Galilean frame of reference, which involves separating the physical spacetime into unphysical space and time through an arbitrary foliation. However, the NP tetrad is defined using a basis composed of four null vectors, of which only three are linearly independent, which reveals the spinorial structure of hyperbolic spacetime in special relativity. These vectors are specifically adapted to light geodesics, which are physically significant as they determine the conformal structure of spacetime, and therefore causality.
 
 <figure class="section-figure">
-  <picture data-light="/overlapping-gw/prelim-light.png" data-dark="/overlapping-gw/prelim-dark.png" aria-hidden="false">
+  <picture data-light="/quasi-local-horizons/prelim-light.png" data-dark="/quasi-local-horizons/prelim-dark.png" aria-hidden="false">
     <img
-      src="/overlapping-gw/prelim-light.png"
-      data-src-light="/overlapping-gw/prelim-light.png"
-      data-src-dark="/overlapping-gw/prelim-dark.png"
+      src="/quasi-local-horizons/prelim-light.png"
+      data-src-light="/quasi-local-horizons/prelim-light.png"
+      data-src-dark="/quasi-local-horizons/prelim-dark.png"
       alt="Newman–Penrose tetrad illustration: Null basis vectors"
       loading="lazy"
       decoding="async"
@@ -39,11 +39,11 @@ It is customary to model horizons by globally stationary solutions, but physical
 We build up to the idea of isolated horizons (IH), by first understanding non-expanding horizons (NEHs), which are null hypersurfaces having a vanishing expansion along any null normal, which further induces an affine connection on the null horizon uniquely. We proceed to restrict the rotational scalar defined through the induced connection to remain constant on the horizon, to obtain a weakly isolated horizon (WIH). The intrinsic geometry of the IH is more restrictive than that of a WIH, and strengthens the notion of isolation by requiring the intrinsic metric and the full derivative operator to be time independent, thus constant on the horizon. The laws of black hole mechanics, initially proved for event horizons, are generalized to IHs.
 
 <figure class="section-figure">
-  <picture data-light="/overlapping-gw/isolated-light.png" data-dark="/overlapping-gw/isolated-dark.png" aria-hidden="false">
+  <picture data-light="/quasi-local-horizons/isolated-light.png" data-dark="/quasi-local-horizons/isolated-dark.png" aria-hidden="false">
     <img
-      src="/overlapping-gw/isolated-light.png"
-      data-src-light="/overlapping-gw/isolated-light.png"
-      data-src-dark="/overlapping-gw/isolated-dark.png"
+      src="/quasi-local-horizons/isolated-light.png"
+      data-src-light="/quasi-local-horizons/isolated-light.png"
+      data-src-dark="/quasi-local-horizons/isolated-dark.png"
       alt="Schematic of an isolated horizon and its null generators"
       loading="lazy"
       decoding="async"
@@ -58,11 +58,11 @@ We build up to the idea of isolated horizons (IH), by first understanding non-ex
 The construction of the near-horizon geometry follows by prescribing initial data on transverse null hypersurfaces and using the Einstein equations to obtain the spacetime metric in a neighborhood. For studying the geometry and specifying initial data, we apply the Characteristic Initial Value formulation [<a class="cite" data-ref="r8">8</a>,<a class="cite" data-ref="r9">9</a>], and further foliate the horizon, $\mathscr{H}_0$, into submanifolds which are spacelike, characterized as the cross sections, $\mathscr{N}$. 
 
 <figure class="section-figure">
-  <picture data-light="/overlapping-gw/probing-light.png" data-dark="/overlapping-gw/probing-dark.png" aria-hidden="false">
+  <picture data-light="/quasi-local-horizons/probing-light.png" data-dark="/quasi-local-horizons/probing-dark.png" aria-hidden="false">
     <img
-      src="/overlapping-gw/probing-light.png"
-      data-src-light="/overlapping-gw/probing-light.png"
-      data-src-dark="/overlapping-gw/probing-dark.png"
+      src="/quasi-local-horizons/probing-light.png"
+      data-src-light="/quasi-local-horizons/probing-light.png"
+      data-src-dark="/quasi-local-horizons/probing-dark.png"
       alt="Near-horizon cross-sections and characteristic initial data"
       loading="lazy"
       decoding="async"
@@ -81,11 +81,11 @@ We examine the intrinsic geometry of the null surface $\mathscr{H}_0$, which is 
 In the presence of a tidal environment, a black hole can be influenced by an external gravitational field generated by nearby objects or by scalar or vector fields. Love numbers quantify how an object responds to tidal forces: if the external tidal field behaves like $\mathsf{r}^{\ell}$ at a large distance $\mathsf{r}$, where $\ell$ represents the relevant multipole moment, an object like a star that experiences tidal deformation will generate a response field that decays as $1/\mathsf{r}^{\ell+1}$ at large distances. The coefficient of this decay, normalized by the amplitude of the tidal field, is referred to as a Love number for the multipole. Analogous to gravitational Love numbers, we can define surficial Love numbers as the deformation of the body’s surface, also expanded in multipole moments.
 
 <figure class="section-figure">
-  <picture data-light="/overlapping-gw/tidal-light.png" data-dark="/overlapping-gw/tidal-dark.png" aria-hidden="false">
+  <picture data-light="/quasi-local-horizons/tidal-light.png" data-dark="/quasi-local-horizons/tidal-dark.png" aria-hidden="false">
     <img
-      src="/overlapping-gw/tidal-light.png"
-      data-src-light="/overlapping-gw/tidal-light.png"
-      data-src-dark="/overlapping-gw/tidal-dark.png"
+      src="/quasi-local-horizons/tidal-light.png"
+      data-src-light="/quasi-local-horizons/tidal-light.png"
+      data-src-dark="/quasi-local-horizons/tidal-dark.png"
       alt="Tidal deformation of horizons"
       loading="lazy"
       decoding="async"
