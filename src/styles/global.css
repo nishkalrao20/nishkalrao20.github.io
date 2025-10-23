@@ -98,3 +98,30 @@ code, pre, kbd {
   .pub-filter, .project-filter { font-size: .85rem; padding: .35rem .6rem; }
   .icon-chip { padding: .3rem .45rem; }
 }
+
+.news-nav-btn {
+  background: var(--accent-color);
+  color: white;
+  border: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(var(--accent-rgb), 0.12);
+  transition: transform .12s ease, filter .12s ease, box-shadow .12s ease;
+  cursor: pointer;
+  min-width: 40px;
+  min-height: 40px;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.news-nav-btn:hover {
+  transform: translateY(-3px);
+  filter: brightness(0.95);
+  box-shadow: 0 12px 36px rgba(var(--accent-rgb), 0.16);
+}
+
+.news-nav-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 6px rgba(var(--accent-rgb), 0.12);
+}
