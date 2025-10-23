@@ -100,58 +100,51 @@ code, pre, kbd {
 }
 
 :root { --nav-size: 44px; --nav-offset: calc(var(--nav-size) / 2); }
-
-.news-slider {
+.news-slider-wrapper {
   position: relative;
   overflow: visible;
-  z-index: 0;
+}
+
+.news-slider {
+  overflow: hidden;
 }
 
 .news-nav-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: var(--nav-size, 44px);
-  height: var(--nav-size, 44px);
+  width: 46px;
+  height: 46px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 9999px;
-  background: rgba(var(--accent-rgb), 0.06);
-  color: rgba(var(--accent-rgb), 0.95);
   border: 0;
-  box-shadow: 0 6px 18px rgba(2,6,23,0.04);
-  transition: transform .12s ease, background .12s ease, box-shadow .12s ease, opacity .12s ease;
   cursor: pointer;
-  z-index: 60; /* important: above the track and cards */
+  z-index: 60;
   font-size: 1.25rem;
   line-height: 1;
-  backdrop-filter: blur(2px);
-  opacity: 0.95;
   pointer-events: auto;
+  background: rgba(var(--accent-rgb), 0.06);
+  color: rgba(var(--accent-rgb), 0.95);
+  opacity: 0.22;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  box-shadow: 0 6px 18px rgba(2,6,23,0.04);
+  transition: transform .12s ease, opacity .12s ease, background .12s ease;
 }
 
-.news-nav-prev { left: calc(-1 * (var(--nav-size, 44px) / 2)); }
-.news-nav-next { right: calc(-1 * (var(--nav-size, 44px) / 2)); }
+.news-nav-prev { left: -23px; }
+.news-nav-next { right: -23px; }
 
 .news-nav-btn:hover,
 .news-nav-btn:focus {
-  background: rgba(var(--accent-rgb), 0.12);
-  transform: translateY(-50%) translateY(-2px);
-  box-shadow: 0 12px 30px rgba(2,6,23,0.06);
-  opacity: 1;
-}
-
-.news-nav-btn:focus {
-  outline: none;
-  box-shadow: 0 0 0 6px rgba(var(--accent-rgb), 0.10);
+  opacity: 0.48;
+  transform: translateY(-50%) scale(1.03);
 }
 
 @media (max-width: 640px) {
-  :root { --nav-size: 36px; }
-  .news-nav-btn { font-size: 1rem; }
-  .news-nav-prev { left: calc(-1 * (var(--nav-size) / 2)); }
-  .news-nav-next { right: calc(-1 * (var(--nav-size) / 2)); }
+  .news-nav-btn { width: 40px; height: 40px; }
+  .news-nav-prev { left: -20px; }
+  .news-nav-next { right: -20px; }
 }
-
-.news-slider { position: relative; }
