@@ -34,7 +34,7 @@ const profiles = {
         </a>
       )}
       {profiles.ads && (
-        <a href={profiles.ads} target="_blank" rel="noopener noreferrer" aria-label="ADS" class="icon-chip" title="ADS">
+        <a href={profiles.ads} target="_blank" rel="noopener noreferrer" aria-label="NASA-ADS" class="icon-chip" title="ADS">
           <img src="/logos/ads-logo.svg" alt="ADS" class="h-5 w-5" />
         </a>
       )}
@@ -66,11 +66,11 @@ const profiles = {
           >
             <div class="flex items-start justify-between gap-3">
               <div class="flex-1">
-                <div class="leading-tight" style="font-family: var(--heading-font); font-weight:600; color: rgba(var(--text-color),1);">
+                <div class="leading-tight" style="font-family: var(--heading-font); font-weight:500; color: rgba(var(--text-color),1);">
                   {pub.title}
                 </div>
                 <div class="text-sm text-muted mt-1" style="font-family: var(--body-font);">
-                  {pub.authors}{pub.venue ? ` — ${pub.venue}` : ''}{pub.year ? `, ${pub.year}` : ''}
+                  {pub.authors}{pub.venue ? ` - ${pub.venue}` : ''}{pub.year ? `, ${pub.year}` : ''}
                 </div>
                 {pub.note && <div class="text-xs text-muted mt-1">{pub.note}</div>}
               </div>
