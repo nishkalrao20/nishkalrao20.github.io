@@ -2,7 +2,6 @@
 import { siteConfig } from "../config";
 
 const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
-const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 const hasUpdates = siteConfig.news && siteConfig.news.length > 0;
 ---
 <footer
@@ -98,9 +97,6 @@ const hasUpdates = siteConfig.news && siteConfig.news.length > 0;
           ) }
           { hasUpdates && (
             <a href="/#updates" class="text-sm transition-colors" style={`color: rgba(var(--muted-text-color), 1);`}>Updates</a>
-          ) }
-          { hasEducation && (
-            <a href="/#education" class="text-sm transition-colors" style={`color: rgba(var(--muted-text-color), 1);`}>Education</a>
           ) }
           <a href="https://drive.google.com/drive/folders/1w7-eAqVPWLUALg1ZREcdAiqZe89ZNQvC?usp=sharing" target="_blank" rel="noopener noreferrer" class="text-sm transition-colors" style={`color: rgba(var(--muted-text-color), 1);`}> Study Resources </a>
         </nav>
