@@ -91,7 +91,7 @@ export const siteConfig: SiteConfig = {
       category: "Preprint",
       arxiv: "2510.17787",
       doi: "10.48550/arXiv.2510.17787",
-      bibtex: "@article{Rao:2025poe,
+      bibtex: `@article{Rao:2025poe,
                 author = "Rao, Nishkal and Mishra, Anuj and Ganguly, Apratim and More, Anupreeta",
                 title = "{Comprehensive analysis of time-domain overlapping gravitational wave transients: A Lensing Study}",
                 eprint = "2510.17787",
@@ -99,7 +99,7 @@ export const siteConfig: SiteConfig = {
                 primaryClass = "gr-qc",
                 reportNumber = "LIGO-P2500640",
                 month = "10",
-                year = "2025"}",
+                year = "2025"}`,
       pdf: "",
       note: "Next-generation GW detectors will produce a high rate of temporally overlapping signals from unrelated compact binary coalescences. Such overlaps can bias parameter estimation (PE) and mimic signatures of other physical effects, such as gravitational lensing. In this work, we investigate how overlapping signals can be degenerate with gravitational lensing by focusing on two scenarios: Type-II strong lensing and microlensing by an isolated point-mass lens.",
       id: "overlapping-lensing-2025"
