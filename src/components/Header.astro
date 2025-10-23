@@ -3,7 +3,6 @@ import { siteConfig } from "../config";
 import ThemeIcon from './ThemeIcon.astro';
 
 const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
-const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 const hasUpdates = siteConfig.news && siteConfig.news.length > 0;
 ---
 
@@ -74,12 +73,6 @@ const hasUpdates = siteConfig.news && siteConfig.news.length > 0;
       { hasUpdates && (
         <li>
           <a href="/#news" style="color: rgba(var(--text-color), 1);" class="hover:opacity-85 transition-colors" onmouseover="this.style.color='var(--accent-color)'" onmouseout="this.style.color='rgba(var(--text-color),1)'">Updates</a>
-        </li>
-      ) }
-
-      { hasEducation && (
-        <li>
-          <a href="/#education" style="color: rgba(var(--text-color), 1);" class="hover:opacity-85 transition-colors" onmouseover="this.style.color='var(--accent-color)'" onmouseout="this.style.color='rgba(var(--text-color),1)'">Education</a>
         </li>
       ) }
 
