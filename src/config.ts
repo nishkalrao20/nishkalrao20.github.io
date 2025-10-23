@@ -10,6 +10,19 @@ export interface Project {
   category?: string;
 }
 
+export interface Publication {
+  title: string;
+  authors?: string;
+  venue?: string;
+  year?: string | number;
+  category?: 'published' | 'preprint' | string;
+  doi?: string;
+  arxiv?: string;
+  pdf?: string;
+  note?: string;
+  id?: string;
+}
+
 export interface Education {
   school: string;
   degree: string;
@@ -41,6 +54,7 @@ export interface SiteConfig {
   projects?: Project[];
   education?: Education[];
   news?: NewsItem[];
+  publications?: Publication[];
 }
 
 export const siteConfig: SiteConfig = {
@@ -51,7 +65,11 @@ export const siteConfig: SiteConfig = {
     email: "nishkal.rao@students.iiserpune.ac.in",
     github: "https://github.com/nishkalrao20",
     instagram: "https://instagram.com/nishkalrao",
-    blog: "https://nishkal20.wixsite.com/dream"
+    blog: "https://nishkal20.wixsite.com/dream",
+    googleScholar: "https://scholar.google.com/citations?user=mHprqWAAAAAJ&hl=en",
+    orcid: "https://orcid.org/0009-0006-4551-7312",
+    inspire: "https://inspirehep.net/authors/nishkalrao",
+    ads: "https://ui.adsabs.harvard.edu/search/q=orcid%3A0009-0006-4551-7312&sort=date+desc"
   },
   aboutMe:
     "I’m a 5th-year BS-MS student at IISER Pune. My research centers on general relativity, gravitational physics, black-hole horizons, ringdown physics, and mathematical aspects of general relativity.",
@@ -62,6 +80,19 @@ export const siteConfig: SiteConfig = {
     "Ringdown Physics",
     "Mathematical Physics",
     "Numerical Methods"
+  ],
+  publications: [
+    {
+      title: "Comprehensive analysis of time-domain overlapping gravitational wave transients: A Lensing Study",
+      authors: "N. Rao, A. Mishra, A. Ganguly, A. More",
+      venue: "Phys. Rev. D (in review)",
+      year: 2025,
+      category: "preprint",
+      arxiv: "2510.17787",
+      doi: "10.48550/arXiv.2510.17787",
+      pdf: "",
+      id: "overlapping-lensing-2025"
+    }
   ],
   projects: [
     {
