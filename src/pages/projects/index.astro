@@ -1,5 +1,4 @@
 ---
-// src/pages/projects/index.astro
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { siteConfig } from '../../config';
@@ -25,7 +24,6 @@ projects.forEach(p => {
           Projects
         </h1>
 
-        <!-- Category filters -->
         <div class="mb-6 flex flex-wrap gap-3 items-center">
           <button class="project-filter active px-3 py-1 rounded-md border card-surface text-sm" data-cat="All">All</button>
           {cats.map(cat => (
