@@ -27,14 +27,6 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
                         {edu.school}
                       </p>
                     </div>
-
-                    {edu.logo ? (
-                      <img src={edu.logo} alt={`${edu.school} logo`} class="w-12 h-12 object-contain rounded" loading="lazy" />
-                    ) : (
-                      <div class="w-12 h-12 rounded bg-[rgba(var(--accent-rgb),0.08)] flex items-center justify-center text-xs font-semibold" aria-hidden="true">
-                        {edu.dateRange ? edu.dateRange.split('–')[0] : ''}
-                      </div>
-                    )}
                   </div>
 
                   {edu.achievements && edu.achievements.length > 0 && (
