@@ -64,6 +64,7 @@ const titleHtml = renderMathInText(meta.title ?? slug);
     <meta name="description" content={meta.summary ?? meta.description ?? Astro.site?.description ?? ''} />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <script>
       (function(){
         try {
@@ -377,7 +378,17 @@ const titleHtml = renderMathInText(meta.title ?? slug);
           activeCite = null;
         }, 250);
       }, true);
-    
+
+      // handle touch taps: open the reference panel on tap (mobile)
+      document.addEventListener('touchstart', function(ev) {
+        const el = ev.target.closest && ev.target.closest('a.cite[data-ref]');
+        if (!el) return;
+        ev.preventDefault();
+        ev.stopPropagation();
+        openForEl(el);
+      }, { passive: false });
+
+      // click toggles the panel (desktop / keyboard)
       document.addEventListener('click', (e) => {
         const el = e.target.closest && e.target.closest('a.cite[data-ref]');
         if (!el) {
