@@ -1,5 +1,4 @@
 ---
-// src/components/Publications.astro
 import { siteConfig } from "../config";
 const pubs = siteConfig.publications ?? [];
 
@@ -56,6 +55,7 @@ const profiles = {
         const hasPdf = !!(pub.pdf && pub.pdf.trim());
         const hasArxiv = !!(pub.arxiv && pub.arxiv.trim());
         const hasBib = !!(pub.bibtex && pub.bibtex.trim());
+        const hasDoi = !!(pub.doi && pub.doi.trim());
         const openArxivOnCard = (!hasPdf && hasArxiv);
         return (
           <article
@@ -72,6 +72,21 @@ const profiles = {
                 <div class="text-sm text-muted mt-1" style="font-family: var(--body-font);">
                   {pub.authors}{pub.venue ? ` - ${pub.venue}` : ''}{pub.year ? `, ${pub.year}` : ''}
                 </div>
+
+                {hasDoi && (
+                  <div class="text-xs mt-1" style="font-family: var(--body-font);">
+                    <a
+                      href={`https://doi.org/${pub.doi.replace(/^doi:\s*/i,'')}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-xs"
+                      style="color: var(--accent-color); text-decoration: none;"
+                    >
+                      doi: {pub.doi.replace(/^doi:\s*/i,'')}
+                    </a>
+                  </div>
+                )}
+
                 {pub.note && <div class="text-xs text-muted mt-1">{pub.note}</div>}
               </div>
 
@@ -86,8 +101,13 @@ const profiles = {
                   ) : null}
 
                   {hasBib ? (
-                    <button type="button" class="icon-chip bib-copy-btn" title="Copy BibTeX" aria-label="Copy BibTeX" onClick={(e) => { e.stopPropagation(); copyBibtex(event, pub.bibtex); }}>
-                      <!-- small bib icon -->
+                    <button
+                      type="button"
+                      class="icon-chip bib-open-btn"
+                      title="Open BibTeX"
+                      aria-label="Open BibTeX"
+                      onClick={(e) => { e.stopPropagation(); openBibModal(pub.bibtex ?? '', pub.title ?? 'BibTeX'); }}
+                    >
                       <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.6">
                         <path d="M4 4h8v16H4z" />
                         <path d="M12 8h4M12 12h4M12 16h4" />
@@ -107,6 +127,25 @@ const profiles = {
         );
       })
     )}
+  </div>
+
+  <div id="bibModal" class="bib-modal" aria-hidden="true" role="dialog" aria-modal="true" style="display:none;">
+    <div class="bib-overlay" data-bib-close>
+      <div class="bib-panel" role="document" aria-labelledby="bibTitle">
+        <div class="bib-header">
+          <h3 id="bibTitle" class="text-lg" style="font-family:var(--heading-font); font-weight:500;">BibTeX</h3>
+          <button type="button" class="bib-close-btn" aria-label="Close BibTeX" data-bib-close>&times;</button>
+        </div>
+        <div class="bib-body">
+          <textarea id="bibContent" readonly rows="10" style="width:100%; font-family: var(--mono-font); font-size:0.95rem; padding:0.6rem; border-radius:8px; border:1px solid rgba(var(--muted-text-color),0.06)"></textarea>
+        </div>
+        <div class="bib-actions" style="display:flex; gap:0.5rem; margin-top:0.65rem;">
+          <button type="button" id="bibSelectBtn" class="icon-chip" aria-label="Select all BibTeX">Select</button>
+          <button type="button" id="bibCopyBtn" class="icon-chip" aria-label="Copy BibTeX">Copy</button>
+          <a id="bibDownloadLink" class="icon-chip" style="margin-left:auto;" download="publication.bib">Download</a>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script is:inline>
@@ -135,29 +174,110 @@ const profiles = {
         const arxiv = article.getAttribute('data-arxiv');
         if (!arxiv) return;
         article.addEventListener('click', (ev) => {
-          // if user clicked an anchor or button inside, let anchor handle it
           if (ev.target.closest && (ev.target.closest('a') || ev.target.closest('button'))) return;
           window.open(arxiv, '_blank');
         });
       });
 
-      window.copyBibtex = function(ev, bib) {
+      // BibTeX modal functionality
+      const modal = document.getElementById('bibModal');
+      const overlay = modal && modal.querySelector('.bib-overlay');
+      const bibContent = document.getElementById('bibContent');
+      const copyBtn = document.getElementById('bibCopyBtn');
+      const selectBtn = document.getElementById('bibSelectBtn');
+      const downloadLink = document.getElementById('bibDownloadLink');
+
+      window.openBibModal = function(bib, title) {
         try {
-          if (!bib) return;
-          navigator.clipboard.writeText(bib).then(() => {
-            // show ephemeral tooltip in button
-            const btn = ev.target.closest && ev.target.closest('.bib-copy-btn');
-            if (!btn) return;
-            const original = btn.innerHTML;
-            btn.innerHTML = 'Copied';
-            setTimeout(() => { btn.innerHTML = original; }, 1200);
-          }).catch(() => {
-            alert('Could not copy to clipboard. You can select and copy the BibTeX manually.');
-          });
-        } catch (e) {
-          console.error(e);
-        }
+          if (!modal) return;
+          bibContent.value = bib || '';
+          modal.style.display = 'block';
+          modal.setAttribute('aria-hidden', 'false');
+          // download link content
+          const blob = new Blob([bib || ''], { type: 'text/plain' });
+          const url = URL.createObjectURL(blob);
+          downloadLink.href = url;
+          downloadLink.download = (title ? title.replace(/\s+/g,'_') : 'publication') + '.bib';
+          // focus textarea
+          setTimeout(() => {
+            bibContent.focus();
+            bibContent.select();
+          }, 40);
+        } catch(e){}
       };
+
+      function closeModal() {
+        try {
+          if (!modal) return;
+          modal.style.display = 'none';
+          modal.setAttribute('aria-hidden', 'true');
+          // revoke URL created for download
+          if (downloadLink && downloadLink.href && downloadLink.href.startsWith('blob:')) {
+            URL.revokeObjectURL(downloadLink.href);
+            downloadLink.href = '';
+          }
+        } catch(e){}
+      }
+
+      document.addEventListener('click', (ev) => {
+        const closeBtn = ev.target.closest && ev.target.closest('[data-bib-close]');
+        if (closeBtn) {
+          ev.preventDefault();
+          closeModal();
+          return;
+        }
+        if (modal && modal.style.display === 'block') {
+          const inside = ev.target.closest && ev.target.closest('.bib-panel');
+          if (!inside && ev.target.closest && ev.target.closest('.bib-overlay')) {
+            closeModal();
+          }
+        }
+      });
+
+      document.addEventListener('keydown', (ev) => {
+        if (ev.key === 'Escape') {
+          closeModal();
+        }
+      });
+
+      if (selectBtn) {
+        selectBtn.addEventListener('click', () => {
+          bibContent.focus();
+          bibContent.select();
+        });
+      }
+      if (copyBtn) {
+        copyBtn.addEventListener('click', async () => {
+          try {
+            const txt = bibContent.value || '';
+            if (!txt) return;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              await navigator.clipboard.writeText(txt);
+              const orig = copyBtn.innerHTML;
+              copyBtn.innerHTML = 'Copied';
+              setTimeout(() => { copyBtn.innerHTML = orig; }, 1200);
+            } else {
+              bibContent.select();
+              document.execCommand && document.execCommand('copy');
+              const orig = copyBtn.innerHTML;
+              copyBtn.innerHTML = 'Copied';
+              setTimeout(() => { copyBtn.innerHTML = orig; }, 1200);
+            }
+          } catch(e){
+            alert('Copy failed — select the BibTeX manually and copy.');
+          }
+        });
+      }
+
+      document.addEventListener('focus', function(ev){
+        if (!modal) return;
+        if (modal.style.display !== 'block') return;
+        const inside = ev.target.closest && ev.target.closest('.bib-panel');
+        if (!inside) {
+          bibContent.focus();
+        }
+      }, true);
+
     })();
   </script>
 </section>
@@ -181,5 +301,18 @@ const profiles = {
 .pub-article.is-clickable:hover { box-shadow: 0 10px 30px rgba(2,6,23,0.06); transform: translateY(-2px); }
 
 .icon-chip img { display: block; height: 1rem; width: 1rem; object-fit: contain; }
-.bib-copy-btn { cursor: pointer; border: 1px solid rgba(var(--muted-text-color),0.08); background: rgba(var(--card-bg-rgb),0.94); }
+.bib-open-btn { cursor: pointer; border: 1px solid rgba(var(--muted-text-color),0.08); background: rgba(var(--card-bg-rgb),0.94); }
+
+.bib-modal { position: fixed; inset: 0; z-index: 9999; display:flex; align-items:center; justify-content:center; }
+.bib-overlay { position: absolute; inset:0; background: rgba(2,6,23,0.45); display:flex; align-items:center; justify-content:center; padding: 1.25rem; }
+.bib-panel { position: relative; width: min(900px, 96%); background: rgba(var(--card-bg-rgb), 0.98); border-radius: 12px; padding: 1rem; box-shadow: 0 20px 60px rgba(2,6,23,0.3); border: 1px solid rgba(var(--muted-text-color),0.08); }
+.bib-header { display:flex; align-items:center; gap:0.75rem; }
+.bib-close-btn { margin-left:auto; font-size:1.25rem; background:transparent; border:0; cursor:pointer; color: rgba(var(--text-color),0.8); }
+.bib-body { margin-top:0.6rem; max-height: 60vh; overflow:auto; }
+.bib-actions .icon-chip { padding: 0.45rem 0.7rem; }
+
+@media (max-width:640px) {
+  .bib-panel { width: 96%; padding: 0.8rem; }
+  .icon-chip img { height: 1.05rem; width: 1.05rem; }
+}
 </style>
