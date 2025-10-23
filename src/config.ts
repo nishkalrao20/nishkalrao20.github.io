@@ -60,7 +60,7 @@ export interface SiteConfig {
 
 export const siteConfig: SiteConfig = {
   name: "Nishkal Rao",
-  title: "Graduate Researcher",
+  title: "Graduate Researcher, IISER Pune",
   description: "Personal website - Research, Projects, and Resources",
   social: {
     email: "nishkal.rao@students.iiserpune.ac.in",
