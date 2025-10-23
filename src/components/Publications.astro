@@ -1,0 +1,142 @@
+---
+// src/components/Publications.astro
+import { siteConfig } from "../config";
+const pubs = siteConfig.publications ?? [];
+
+const profiles = {
+  scholar: siteConfig.social?.googleScholar || null,
+  orcid: siteConfig.social?.orcid || null,
+  inspire: siteConfig.social?.inspire || null,
+  ads: siteConfig.social?.ads || null,
+};
+
+---
+<section id="publications" class="max-w-6xl mx-auto px-6 py-12">
+  <header class="flex items-center justify-between mb-6">
+    <div>
+      <h2 class="text-2xl" style="font-family:var(--heading-font); font-weight:400; color: rgba(var(--text-color),1);">Publications</h2>
+      <p class="text-sm text-muted" style="font-family:var(--body-font);">Selected papers, preprints and published work.</p>
+    </div>
+
+    <div class="flex items-center gap-3">
+      {profiles.scholar && (
+        <a href={profiles.scholar} target="_blank" rel="noopener noreferrer" aria-label="Google Scholar" class="icon-chip" title="Google Scholar">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+            <path d="M12 2v20" />
+            <path d="M6 7h6" />
+            <path d="M6 12h6" />
+            <path d="M6 17h6" />
+          </svg>
+          <span class="sr-only">Google Scholar</span>
+        </a>
+      )}
+      {profiles.orcid && (
+        <a href={profiles.orcid} target="_blank" rel="noopener noreferrer" aria-label="ORCID" class="icon-chip" title="ORCID">
+          <svg viewBox="0 0 24 24" class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7a5 5 0 0 1 0 10"/></svg>
+        </a>
+      )}
+      {profiles.inspire && (
+        <a href={profiles.inspire} target="_blank" rel="noopener noreferrer" aria-label="InspireHEP" class="icon-chip" title="InspireHEP">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l4 7h-8l4-7z"/><circle cx="12" cy="16" r="4"/></svg>
+        </a>
+      )}
+      {profiles.ads && (
+        <a href={profiles.ads} target="_blank" rel="noopener noreferrer" aria-label="ADS" class="icon-chip" title="ADS">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 9h10M7 13h6" /></svg>
+        </a>
+      )}
+    </div>
+  </header>
+
+  <div class="mb-4 flex gap-3">
+    <button class="pub-filter active px-3 py-1 rounded-md border card-surface text-sm" data-cat="All">All</button>
+    <button class="pub-filter px-3 py-1 rounded-md border card-surface text-sm" data-cat="published">Published</button>
+    <button class="pub-filter px-3 py-1 rounded-md border card-surface text-sm" data-cat="preprint">Preprint</button>
+  </div>
+
+  <div id="pubList" class="space-y-4">
+    {pubs.length === 0 ? (
+      <div class="text-muted">No publications added in <code>src/config.ts</code>. Add them under <code>siteConfig.publications</code>.</div>
+    ) : (
+      pubs.map(pub => {
+        const cat = (pub.category || 'preprint').toLowerCase();
+        return (
+          <article data-category={cat} class="p-4 rounded-lg border card-surface">
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex-1">
+                <div class="leading-tight" style="font-family: var(--heading-font); font-weight:600; color: rgba(var(--text-color),1);">
+                  {pub.title}
+                </div>
+                <div class="text-sm text-muted mt-1" style="font-family: var(--body-font);">
+                  {pub.authors}{pub.venue ? ` — ${pub.venue}` : ''}{pub.year ? `, ${pub.year}` : ''}
+                </div>
+                {pub.note && <div class="text-xs text-muted mt-1">{pub.note}</div>}
+              </div>
+
+              <div class="flex flex-col items-end gap-2">
+                <span class="px-2 py-1 rounded-md text-xs" style="background: rgba(var(--card-bg-rgb),0.9); font-family:var(--body-font);">{pub.category ?? 'preprint'}</span>
+                <div class="flex items-center gap-2">
+                  {pub.pdf && (
+                    <a href={pub.pdf} target="_blank" rel="noopener noreferrer" class="icon-chip" aria-label="PDF">
+                      <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6" /></svg>
+                    </a>
+                  )}
+                  {pub.doi && (
+                    <a href={`https://doi.org/${pub.doi}`} target="_blank" rel="noopener noreferrer" class="icon-chip" aria-label="DOI">
+                      <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M10 14l4-4"/><path d="M7 17a5 5 0 0 0 7 0l3-3a5 5 0 0 0 0-7"/></svg>
+                    </a>
+                  )}
+                  {pub.arxiv && (
+                    <a href={`https://arxiv.org/abs/${pub.arxiv}`} target="_blank" rel="noopener noreferrer" class="icon-chip" aria-label="arXiv">
+                      <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h18M12 3v18" /></svg>
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          </article>
+        );
+      })
+    )}
+  </div>
+
+  <script is:inline>
+    (function(){
+      const buttons = Array.from(document.querySelectorAll('.pub-filter'));
+      const items = Array.from(document.querySelectorAll('#pubList > article[data-category]'));
+      function setActive(btn) {
+        buttons.forEach(b => b.classList.toggle('active', b === btn));
+      }
+      function filter(cat) {
+        items.forEach(it => {
+          if (cat === 'All' || it.getAttribute('data-category') === cat.toLowerCase()) it.style.display = '';
+          else it.style.display = 'none';
+        });
+      }
+      buttons.forEach(b => {
+        b.addEventListener('click', () => {
+          setActive(b);
+          filter(b.getAttribute('data-cat'));
+        });
+      });
+    })();
+  </script>
+</section>
+
+<style>
+.icon-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .4rem;
+  padding: .35rem .45rem;
+  border-radius: .5rem;
+  border: 1px solid rgba(var(--muted-text-color), 0.08);
+  background: rgba(var(--card-bg-rgb), 0.92);
+  font-size: .85rem;
+  text-decoration: none;
+  color: rgba(var(--text-color), 1);
+}
+.icon-chip:hover { transform: translateY(-1px); }
+.pub-filter.active { box-shadow: 0 8px 24px rgba(2,6,23,0.06); }
+</style>
