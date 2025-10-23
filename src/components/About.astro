@@ -2,24 +2,24 @@
 import { siteConfig } from "../config";
 const skills = siteConfig.skills ?? [];
 ---
-<section id="about" class="max-w-4xl mx-auto px-6 py-12">
+<section id="about" class="max-w-6xl mx-auto px-6 py-12">
   <div class="grid md:grid-cols-3 gap-8 items-start">
     <div class="md:col-span-2">
-      <h2 class="text-3xl font-bold mb-4">About</h2>
-      <p class="text-lg text-gray-700 leading-relaxed">{siteConfig.aboutMe}</p>
+      <h2 class="text-3xl font-bold mb-4" style="font-family:var(--heading-font);">About</h2>
+      <p class="text-lg text-gray-700 leading-relaxed" style="font-family:var(--body-font);">{siteConfig.aboutMe}</p>
 
-      <div class="mt-6">
-        <a class="inline-block px-4 py-2 rounded border font-family:var(--body-font) hover:text-[var(--accent-color)]" href="/fullcv.pdf" target="_blank" rel="noopener">
+      <div class="mt-6 flex gap-3">
+        <a class="inline-block px-4 py-2 rounded border" href="/fullcv.pdf" target="_blank" rel="noopener" style="font-family:var(--body-font);">
           Curriculum Vitae
         </a>
-        <a class="inline-block px-4 py-2 rounded border font-family:var(--body-font) hover:text-[var(--accent-color)]" href="/projects" target="_blank" rel="noopener">
+        <a class="inline-block px-4 py-2 rounded border" href="/projects" rel="noopener" style="font-family:var(--body-font);">
           Projects
         </a>
       </div>
     </div>
 
     <aside class="p-6 border rounded-md card-surface">
-      <h4 class="text-sm text-gray-500 mb-2 font-family:var(--body-font)">Interests</h4>
+      <h4 class="text-sm text-gray-500 mb-2" style="font-family:var(--body-font);">Interests</h4>
       <div class="flex flex-wrap gap-2">
         {skills.map(s => (
           <span class="text-xs font-medium px-2.5 py-1 rounded bg-gray-900 text-white">{s}</span>
