@@ -101,12 +101,18 @@ code, pre, kbd {
 
 :root { --nav-size: 44px; --nav-offset: calc(var(--nav-size) / 2); }
 
+.news-slider {
+  position: relative;
+  overflow: visible;
+  z-index: 0;
+}
+
 .news-nav-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: var(--nav-size);
-  height: var(--nav-size);
+  width: var(--nav-size, 44px);
+  height: var(--nav-size, 44px);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -117,15 +123,16 @@ code, pre, kbd {
   box-shadow: 0 6px 18px rgba(2,6,23,0.04);
   transition: transform .12s ease, background .12s ease, box-shadow .12s ease, opacity .12s ease;
   cursor: pointer;
-  z-index: 60;
+  z-index: 60; /* important: above the track and cards */
   font-size: 1.25rem;
   line-height: 1;
   backdrop-filter: blur(2px);
   opacity: 0.95;
+  pointer-events: auto;
 }
 
-.news-nav-prev { left: calc(-1 * var(--nav-offset)); }
-.news-nav-next { right: calc(-1 * var(--nav-offset)); }
+.news-nav-prev { left: calc(-1 * (var(--nav-size, 44px) / 2)); }
+.news-nav-next { right: calc(-1 * (var(--nav-size, 44px) / 2)); }
 
 .news-nav-btn:hover,
 .news-nav-btn:focus {
@@ -135,7 +142,6 @@ code, pre, kbd {
   opacity: 1;
 }
 
-/* subtle focus ring for keyboard users */
 .news-nav-btn:focus {
   outline: none;
   box-shadow: 0 0 0 6px rgba(var(--accent-rgb), 0.10);
