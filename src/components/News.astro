@@ -36,8 +36,8 @@ const isYouTube = (url) => {
   <section id="news" class="max-w-6xl mx-auto px-6 py-12">
     <h2 class="text-2xl sm:text-3xl font-bold" style="font-family:var(--heading-font); color: rgba(var(--text-color),1);">Updates</h2>
 
-    <div class="news-slider relative overflow-visible">
-      <div id="newsTrack" class="flex gap-6 transition-transform duration-600 will-change-transform">
+    <div class="news-slider relative overflow-hidden">
+        <div id="newsTrack" class="flex gap-6 transition-transform duration-600 will-change-transform">
         {news.map((item, idx) => {
           const href = item.program ?? item.url ?? null;
           const linkProps = href && href.startsWith('http') ? { href, target: "_blank", rel: "noopener noreferrer" } : { href };
@@ -180,9 +180,8 @@ const isYouTube = (url) => {
           );
         })}
       </div>
-    
-    <button id="newsPrev" aria-label="Previous update" class="news-nav-btn news-nav-prev">‹</button>
-    <button id="newsNext" aria-label="Next update" class="news-nav-btn news-nav-next">›</button>
+        <button id="newsPrev" aria-label="Previous update" class="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded bg-[rgba(var(--card-bg-rgb),0.85)]">‹</button>
+        <button id="newsNext" aria-label="Next update" class="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded bg-[rgba(var(--card-bg-rgb),0.85)]">›</button>
 
     </div>
 
