@@ -70,3 +70,19 @@ code, pre, kbd {
   background-color: transparent;
   color: rgba(var(--text-color), 1);
 }
+
+.icon-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .4rem;
+  padding: .35rem .5rem;
+  border-radius: .5rem;
+  border: 1px solid rgba(var(--muted-text-color), 0.08);
+  background: rgba(var(--card-bg-rgb), 0.94);
+  font-size: .85rem;
+  text-decoration: none;
+  color: rgba(var(--text-color), 1);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.icon-chip:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(2,6,23,0.06); }
