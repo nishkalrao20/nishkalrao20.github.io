@@ -33,163 +33,159 @@ const isYouTube = (url) => {
 };
 ---
 {news.length > 0 && (
-  <section id="news" class="p-8 sm:p-12 md:p-16 lg:p-24">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-      <div class="lg:col-span-4">
-        <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">Updates</h2>
-        <div class="w-[75px] h-[5px] mt-2 rounded-full" style="background-color: var(--accent-color);"></div>
-      </div>
+  <section id="news" class="max-w-6xl mx-auto px-6 py-12">
+    <header class="text-center mb-8">
+      <h2 class="text-2xl sm:text-3xl font-bold" style="font-family:var(--heading-font); color: rgba(var(--text-color),1);">Updates</h2>
+      <div class="mx-auto mt-3 rounded-full" style="width:56px;height:6px;background:var(--accent-color);"></div>
+    </header>
 
-      <div class="lg:col-span-8">
-        <div class="news-slider relative overflow-hidden">
-          <div id="newsTrack" class="flex gap-6 transition-transform duration-600 will-change-transform">
-            {news.map((item, idx) => {
-              const href = item.program ?? item.url ?? null;
-              const linkProps = href && href.startsWith('http') ? { href, target: "_blank", rel: "noopener noreferrer" } : { href };
-              const posterIsImage = !!item.poster && isImage(item.poster);
-              const fileType = item.poster ? getFileType(item.poster) : (item.document ? getFileType(item.document) : "");
-              const fileLabel = fileType ? fileType.toUpperCase() : "FILE";
+    <div class="news-slider relative overflow-hidden">
+      <div id="newsTrack" class="flex gap-6 transition-transform duration-600 will-change-transform">
+        {news.map((item, idx) => {
+          const href = item.program ?? item.url ?? null;
+          const linkProps = href && href.startsWith('http') ? { href, target: "_blank", rel: "noopener noreferrer" } : { href };
+          const posterIsImage = !!item.poster && isImage(item.poster);
+          const fileType = item.poster ? getFileType(item.poster) : (item.document ? getFileType(item.document) : "");
+          const fileLabel = fileType ? fileType.toUpperCase() : "FILE";
 
-              const cardContent = (
-                <div class="flex flex-col h-full">
-                  {posterIsImage ? (
-                    <img src={item.poster} alt={getFileName(item.poster)} loading="lazy"
-                      class="w-full h-44 md:h-36 object-cover rounded-xl mb-4" />
+          const cardContent = (
+            <div class="flex flex-col h-full">
+              {posterIsImage ? (
+                <img src={item.poster} alt={getFileName(item.poster)} loading="lazy"
+                  class="w-full h-44 md:h-36 object-cover rounded-xl mb-4" />
+              ) : null}
+
+              <div class="flex-1">
+                <h3 class="text-lg font-medium" style="font-family: var(--heading-font)">{item.title}</h3>
+                <p class="text-sm text-muted mt-1" style="font-family:var(--body-font)">{item.description}</p>
+              </div>
+
+              <div class="mt-4 flex items-center justify-between">
+                <div class="text-xs text-muted font-mono" style="font-family:var(--body-font)">{item.date}</div>
+
+                <div class="flex items-center gap-2">
+                  {item.poster && !posterIsImage ? (
+                    <a
+                      href={item.poster}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-2 text-xs font-mono px-2 py-1 rounded-md border card-surface shadow-sm max-w-[11rem] overflow-hidden transition-colors duration-200 ease-out hover:text-[var(--accent-color)] hover:border-[var(--accent-color)] hover:bg-[rgba(var(--accent-rgb),0.06)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)]/20"
+                      title={getFileName(item.poster)}
+                      aria-label={`Open poster: ${getFileName(item.poster)}`}
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <path d="M14 2v6h6"></path>
+                      </svg>
+                      <span class="font-medium">Poster</span>
+                    </a>
                   ) : null}
 
-                  <div class="flex-1">
-                    <h3 class="text-lg font-medium" style="font-family: var(--heading-font)">{item.title}</h3>
-                    <p class="text-sm text-muted mt-1">{item.description}</p>
-                  </div>
+                  {item.video ? (
+                    isYouTube(item.video) ? (
+                      <a
+                        href={item.video}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-2 text-xs font-mono px-2 py-1 rounded-md border card-surface shadow-sm max-w-[11rem] overflow-hidden transition-colors duration-200 ease-out hover:text-[var(--accent-color)] hover:border-[var(--accent-color)] hover:bg-[rgba(var(--accent-rgb),0.06)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)]/20"
+                        title={`YouTube: ${item.title ?? getFileName(item.video)}`}
+                        aria-label={`Open video: ${item.title ?? getFileName(item.video)}`}
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                          <rect x="2" y="6" width="20" height="12" rx="3" ry="3" stroke="currentColor" stroke-width="1.5" fill="none"></rect>
+                          <path d="M10 9.5 L15 12 L10 14.5 Z" fill="currentColor"></path>
+                        </svg>
+                        <span class="font-medium">Video</span>
+                      </a>
+                    ) : (
+                      <a
+                        href={item.video}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-2 text-xs font-mono px-2 py-1 rounded-md border card-surface shadow-sm max-w-[11rem] overflow-hidden transition-colors duration-200 ease-out hover:text-[var(--accent-color)] hover:border-[var(--accent-color)] hover:bg-[rgba(var(--accent-rgb),0.06)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)]/20"
+                        title={getFileName(item.video)}
+                        aria-label={`Open video: ${getFileName(item.video)}`}
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                        <span class="font-medium">Media</span>
+                      </a>
+                    )
+                  ) : null}
 
-                  <div class="mt-4 flex items-center justify-between">
-                    <div class="text-xs text-muted font-mono">{item.date}</div>
-
-                    <div class="flex items-center gap-2">
-                      {item.poster && !posterIsImage ? (
-                        <a
-                          href={item.poster}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="inline-flex items-center gap-2 text-xs font-mono px-2 py-1 rounded-md border card-surface shadow-sm max-w-[11rem] overflow-hidden transition-colors duration-200 ease-out hover:text-[var(--accent-color)] hover:border-[var(--accent-color)] hover:bg-[rgba(var(--accent-rgb),0.06)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)]/20"
-                          title={getFileName(item.poster)}
-                          aria-label={`Open poster: ${getFileName(item.poster)}`}
-                        >
-                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                            <path d="M14 2v6h6"></path>
-                          </svg>
-                          <span class="font-medium">Poster</span>
-                        </a>
-                      ) : null}
-
-                      {item.video ? (
-                        isYouTube(item.video) ? (
-                          <a
-                            href={item.video}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="inline-flex items-center gap-2 text-xs font-mono px-2 py-1 rounded-md border card-surface shadow-sm max-w-[11rem] overflow-hidden transition-colors duration-200 ease-out hover:text-[var(--accent-color)] hover:border-[var(--accent-color)] hover:bg-[rgba(var(--accent-rgb),0.06)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)]/20"
-                            title={`YouTube: ${item.title ?? getFileName(item.video)}`}
-                            aria-label={`Open video: ${item.title ?? getFileName(item.video)}`}
-                          >
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                              <rect x="2" y="6" width="20" height="12" rx="3" ry="3" stroke="currentColor" stroke-width="1.5" fill="none"></rect>
-                              <path d="M10 9.5 L15 12 L10 14.5 Z" fill="currentColor"></path>
-                            </svg>
-                            <span class="font-medium">Video</span>
-                          </a>
-                        ) : (
-                          <a
-                            href={item.video}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="inline-flex items-center gap-2 text-xs font-mono px-2 py-1 rounded-md border card-surface shadow-sm max-w-[11rem] overflow-hidden transition-colors duration-200 ease-out hover:text-[var(--accent-color)] hover:border-[var(--accent-color)] hover:bg-[rgba(var(--accent-rgb),0.06)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)]/20"
-                            title={getFileName(item.video)}
-                            aria-label={`Open video: ${getFileName(item.video)}`}
-                          >
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                            </svg>
-                            <span class="font-medium">Media</span>
-                          </a>
-                        )
-                      ) : null}
-
-                      {item.document ? (
-                        <a
-                          href={item.document}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="inline-flex items-center gap-2 text-xs font-mono px-2 py-1 rounded-md border card-surface shadow-sm max-w-[11rem] overflow-hidden transition-colors duration-200 ease-out hover:text-[var(--accent-color)] hover:border-[var(--accent-color)] hover:bg-[rgba(var(--accent-rgb),0.06)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)]/20"
-                          title={getFileName(item.document)}
-                          aria-label={`Open document: ${getFileName(item.document)}`}
-                        >
-                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                            <path d="M14 2v6h6"></path>
-                          </svg>
-                          <span class="font-medium">Document</span>
-                        </a>
-                      ) : null}
-
-                      {item.notes ? (
-                        <a
-                          href={item.notes}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="inline-flex items-center gap-2 text-xs font-mono px-2 py-1 rounded-md border card-surface shadow-sm max-w-[11rem] overflow-hidden transition-colors duration-200 ease-out hover:text-[var(--accent-color)] hover:border-[var(--accent-color)] hover:bg-[rgba(var(--accent-rgb),0.06)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)]/20"
-                          title={getFileName(item.notes)}
-                          aria-label={`Open notes: ${getFileName(item.notes)}`}
-                        >
-                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                            <path d="M8 11h8M8 15h8M8 7h4"></path>
-                          </svg>
-                          <span class="font-medium">Notes</span>
-                        </a>
-                      ) : null}
-
-                      {item.slides ? (
-                        <a
-                          href={item.slides}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="inline-flex items-center gap-2 text-xs font-mono px-2 py-1 rounded-md border card-surface shadow-sm max-w-[11rem] overflow-hidden transition-colors duration-200 ease-out hover:text-[var(--accent-color)] hover:border-[var(--accent-color)] hover:bg-[rgba(var(--accent-rgb),0.06)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)]/20"
-                          title={getFileName(item.slides)}
-                          aria-label={`Open slides: ${getFileName(item.slides)}`}
-                        >
-                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <rect x="2" y="4" width="20" height="16" rx="2" ry="2" stroke="currentColor" stroke-width="1.5"></rect>
-                          </svg>
-                          <span class="font-medium">Slides</span>
-                        </a>
-                      ) : null}
-                    </div>
-                  </div>
-                </div>
-              );
-
-              return (
-                <article class="w-full min-w-full sm:min-w-[60%] md:min-w-[50%] lg:min-w-[33.333%] rounded-2xl border card-surface p-5 shadow-sm transition-all duration-250" key={item.title}>
-                  {href ? (
-                    <a {...linkProps} class="block h-full">
-                      {cardContent}
+                  {item.document ? (
+                    <a
+                      href={item.document}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-2 text-xs font-mono px-2 py-1 rounded-md border card-surface shadow-sm max-w-[11rem] overflow-hidden transition-colors duration-200 ease-out hover:text-[var(--accent-color)] hover:border-[var(--accent-color)] hover:bg-[rgba(var(--accent-rgb),0.06)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)]/20"
+                      title={getFileName(item.document)}
+                      aria-label={`Open document: ${getFileName(item.document)}`}
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <path d="M14 2v6h6"></path>
+                      </svg>
+                      <span class="font-medium">Document</span>
                     </a>
-                  ) : (
-                    <div class="block h-full">
-                      {cardContent}
-                    </div>
-                  )}
-                </article>
-              );
-            })}
-          </div>
+                  ) : null}
 
-          <button id="newsPrev" aria-label="Previous update" class="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded bg-[rgba(var(--card-bg-rgb),0.85)]">‹</button>
-          <button id="newsNext" aria-label="Next update" class="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded bg-[rgba(var(--card-bg-rgb),0.85)]">›</button>
-        </div>
+                  {item.notes ? (
+                    <a
+                      href={item.notes}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-2 text-xs font-mono px-2 py-1 rounded-md border card-surface shadow-sm max-w-[11rem] overflow-hidden transition-colors duration-200 ease-out hover:text-[var(--accent-color)] hover:border-[var(--accent-color)] hover:bg-[rgba(var(--accent-rgb),0.06)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)]/20"
+                      title={getFileName(item.notes)}
+                      aria-label={`Open notes: ${getFileName(item.notes)}`}
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <path d="M8 11h8M8 15h8M8 7h4"></path>
+                      </svg>
+                      <span class="font-medium">Notes</span>
+                    </a>
+                  ) : null}
+
+                  {item.slides ? (
+                    <a
+                      href={item.slides}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-2 text-xs font-mono px-2 py-1 rounded-md border card-surface shadow-sm max-w-[11rem] overflow-hidden transition-colors duration-200 ease-out hover:text-[var(--accent-color)] hover:border-[var(--accent-color)] hover:bg-[rgba(var(--accent-rgb),0.06)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)]/20"
+                      title={getFileName(item.slides)}
+                      aria-label={`Open slides: ${getFileName(item.slides)}`}
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="2" y="4" width="20" height="16" rx="2" ry="2" stroke="currentColor" stroke-width="1.5"></rect>
+                      </svg>
+                      <span class="font-medium">Slides</span>
+                    </a>
+                  ) : null}
+                </div>
+              </div>
+            </div>
+          );
+
+          return (
+            <article class="w-full min-w-full sm:min-w-[60%] md:min-w-[50%] lg:min-w-[33.333%] rounded-2xl border card-surface p-5 shadow-sm transition-all duration-250" key={item.title}>
+              {href ? (
+                <a {...linkProps} class="block h-full">
+                  {cardContent}
+                </a>
+              ) : (
+                <div class="block h-full">
+                  {cardContent}
+                </div>
+              )}
+            </article>
+          );
+        })}
       </div>
+
+      <button id="newsPrev" aria-label="Previous update" class="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded bg-[rgba(var(--card-bg-rgb),0.85)]">‹</button>
+      <button id="newsNext" aria-label="Next update" class="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded bg-[rgba(var(--card-bg-rgb),0.85)]">›</button>
     </div>
 
     <script is:inline>
