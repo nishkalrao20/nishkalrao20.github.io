@@ -36,7 +36,7 @@ const isYouTube = (url) => {
   <section id="news" class="max-w-6xl mx-auto px-6 py-12">
     <h2 class="text-2xl sm:text-3xl font-bold" style="font-family:var(--heading-font); color: rgba(var(--text-color),1);">Updates</h2>
 
-    <div class="news-slider relative overflow-hidden">
+    <div class="news-slider relative overflow-visible">
       <div id="newsTrack" class="flex gap-6 transition-transform duration-600 will-change-transform">
         {news.map((item, idx) => {
           const href = item.program ?? item.url ?? null;
