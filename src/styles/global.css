@@ -85,4 +85,16 @@ code, pre, kbd {
   color: rgba(var(--text-color), 1);
   transition: transform .12s ease, box-shadow .12s ease;
 }
-.icon-chip:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(2,6,23,0.06); }
+.icon-chip:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(2,6,23,0.06); }
+
+.pub-article.is-clickable { cursor: pointer; }
+
+.page-content {
+  padding-top: calc(var(--header-height, 3.5rem) + 1rem);
+  padding-bottom: calc(var(--footer-height, 3.5rem) + 1rem);
+}
+
+@media (max-width: 640px) {
+  .pub-filter, .project-filter { font-size: .85rem; padding: .35rem .6rem; }
+  .icon-chip { padding: .3rem .45rem; }
+}
