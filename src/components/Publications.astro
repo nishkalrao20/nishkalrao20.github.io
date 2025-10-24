@@ -6,6 +6,7 @@ const profiles = {
   scholar: siteConfig.social?.googleScholar || null,
   orcid: siteConfig.social?.orcid || null,
   inspire: siteConfig.social?.inspire || null,
+  semantic: siteConfig.social?.semantic || null,
   ads: siteConfig.social?.ads || null,
 };
 ---
@@ -32,9 +33,14 @@ const profiles = {
           <img src="/logos/inspire-logo.svg" alt="Inspire HEP" class="h-5 w-5" />
         </a>
       )}
+      {profiles.semantic && (
+        <a href={profiles.semantic} target="_blank" rel="noopener noreferrer" aria-label="SemanticScholar" class="icon-chip" title="SemanticScholar">
+          <img src="/logos/semantic-logo.svg" alt="Semantic Scholar" class="h-5 w-5" />
+        </a>
+      )}
       {profiles.ads && (
         <a href={profiles.ads} target="_blank" rel="noopener noreferrer" aria-label="NASA-ADS" class="icon-chip" title="ADS">
-          <img src="/logos/ads-logo.svg" alt="ADS" class="h-5 w-5" />
+          <img src="/logos/ads-logo.svg" alt="NASA-ADS" class="h-5 w-5" />
         </a>
       )}
     </div>
