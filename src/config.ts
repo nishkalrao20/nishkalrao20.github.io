@@ -69,7 +69,7 @@ export const siteConfig: SiteConfig = {
     blog: "https://nishkal20.wixsite.com/dream",
     googleScholar: "https://scholar.google.com/citations?user=mHprqWAAAAAJ&hl=en",
     orcid: "https://orcid.org/0009-0006-4551-7312",
-    inspire: "https://inspirehep.net/authors/nishkalrao",
+    inspire: "https://inspirehep.net/authors/3072511",
     ads: "https://ui.adsabs.harvard.edu/search/q=orcid%3A0009-0006-4551-7312&sort=date+desc"
   },
   aboutMe:
