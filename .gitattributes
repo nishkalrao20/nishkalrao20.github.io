@@ -1,0 +1,2 @@
+public/updates/fgwa-2025-poster.pdf filter=lfs diff=lfs merge=lfs -text
+*.pdf filter=lfs diff=lfs merge=lfs -text
