@@ -13,6 +13,8 @@ As detectors grow more sensitive and surveys become deeper and longer, new chall
 
 Overlap can bias our conclusions if not addressed properly. Studies have shown that when one signal is recovered while ignoring a coincident or nearby signal, it can lead to distorted parameter estimates, decreased detection efficiency, and misleading confidence intervals. To tackle this issue, researchers are developing higher-dimensional joint-inference techniques that aim to model multiple overlapping sources simultaneously. They are also implementing practical strategies such as global-fit approaches, targeted subtraction of strong transients, and new search pipelines and machine-learning tools designed for dense populations of signals. These efforts are crucial: as detector technology improves and the rate of events increases, robust statistical and computational methods will ensure that we can reliably transform faint signals into valuable insights about the universe's most extreme events.
 
+_Drafting is currently in progress. Sorry for any inconvenience. Please check back soon!_
+
 <div id="ref-r1" class="refdef" style="display:none">
   <div class="ref-entry">
     <strong>Rao, N. et al.,</strong> Comprehensive analysis of time-domain overlapping gravitational wave transients I: A Lensing Study. arXiv, 2025.
