@@ -8,6 +8,7 @@ const profiles = {
   inspire: siteConfig.social?.inspire || null,
   semantic: siteConfig.social?.semantic || null,
   ads: siteConfig.social?.ads || null,
+  researchgate: siteConfig.social?.ads || researchgate,
 };
 ---
 <section id="publications" class="max-w-6xl mx-auto px-6 py-12">
@@ -34,13 +35,18 @@ const profiles = {
         </a>
       )}
       {profiles.semantic && (
-        <a href={profiles.semantic} target="_blank" rel="noopener noreferrer" aria-label="SemanticScholar" class="icon-chip" title="SemanticScholar">
+        <a href={profiles.semantic} target="_blank" rel="noopener noreferrer" aria-label="Semantic Scholar" class="icon-chip" title="Semantic Scholar">
           <img src="/logos/semantic-logo.svg" alt="Semantic Scholar" class="h-5 w-5" />
         </a>
       )}
       {profiles.ads && (
         <a href={profiles.ads} target="_blank" rel="noopener noreferrer" aria-label="NASA-ADS" class="icon-chip" title="ADS">
           <img src="/logos/ads-logo.svg" alt="NASA-ADS" class="h-5 w-5" />
+        </a>
+      )}
+      {profiles.researchgate && (
+        <a href={profiles.researchgate} target="_blank" rel="noopener noreferrer" aria-label="Research Gate" class="icon-chip" title="Research Gate">
+          <img src="/logos/researchgate-logo.svg" alt="Research Gate" class="h-5 w-5" />
         </a>
       )}
     </div>
