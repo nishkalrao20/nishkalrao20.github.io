@@ -71,7 +71,8 @@ export const siteConfig: SiteConfig = {
     orcid: "https://orcid.org/0009-0006-4551-7312",
     inspire: "https://inspirehep.net/authors/3072511",
     semantic: "https://www.semanticscholar.org/author/Nishkal-Rao/2386621417",
-    ads: "https://ui.adsabs.harvard.edu/search/q=orcid%3A0009-0006-4551-7312&sort=date+desc"
+    ads: "https://ui.adsabs.harvard.edu/search/q=orcid%3A0009-0006-4551-7312&sort=date+desc",
+    researchgate: "https://www.researchgate.net/profile/Nishkal-Rao"
   },
   aboutMe:
     "I’m a 5th-year BS-MS student at IISER Pune. My research centers on general relativity, gravitational physics, black-hole horizons, ringdown physics, and mathematical aspects of general relativity.",
