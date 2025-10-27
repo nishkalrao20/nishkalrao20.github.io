@@ -9,4 +9,4 @@ Well, that's not it. Suppose there is an adversary who wants to destroy the cohe
 
 We expect that if a massive body is put in a quantum superposition of spatially separated states, the mere presence of a causal horizon in the vicinity of the body will eventually destroy the coherence of the superposition. This occurs because, in effect, the gravitational field of the body radiates soft gravitons into the horizon, allowing the black hole to acquire the differential information about the superposition. 
 
-Drafting is currently in progress. Sorry for any inconvenience. Please check back soon!
+_Drafting is currently in progress. Sorry for any inconvenience. Please check back soon!_
