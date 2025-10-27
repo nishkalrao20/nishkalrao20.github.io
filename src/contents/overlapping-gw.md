@@ -11,6 +11,14 @@ What began with that first whisper has grown into a chorus. Since GW150914, obse
 
 As detectors grow more sensitive and surveys become deeper and longer, new challenges appear alongside new opportunities. One key challenge is **overlapping signals** [<a class="cite" data-ref="r1">1</a>,<a class="cite" data-ref="r2">2</a>,<a class="cite" data-ref="r3">3</a>,<a class="cite" data-ref="r4">4</a>]: when two (or more) gravitational-wave strains arrive at close times and in similar frequency bands, their signals superpose in the detector output.
 
+<iframe
+  src="https://molab.marimo.io/notebooks/nb_s4zzgEJG9sBBBMbidUjjJf"
+  width="100%"
+  height="600px" 
+  style="border:1px solid #ddd; border-radius: 4px;"
+  title="Overlapping Gravitational Waves"
+></iframe>
+
 Overlap can bias our conclusions if not addressed properly. Studies have shown that when one signal is recovered while ignoring a coincident or nearby signal, it can lead to distorted parameter estimates, decreased detection efficiency, and misleading confidence intervals. To tackle this issue, researchers are developing higher-dimensional joint-inference techniques that aim to model multiple overlapping sources simultaneously. They are also implementing practical strategies such as global-fit approaches, targeted subtraction of strong transients, and new search pipelines and machine-learning tools designed for dense populations of signals. These efforts are crucial: as detector technology improves and the rate of events increases, robust statistical and computational methods will ensure that we can reliably transform faint signals into valuable insights about the universe's most extreme events.
 
 _Drafting is currently in progress. Sorry for any inconvenience. Please check back soon!_
