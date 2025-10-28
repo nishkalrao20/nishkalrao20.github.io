@@ -12,12 +12,13 @@ What began with that first whisper has grown into a chorus. Since GW150914, obse
 As detectors grow more sensitive and surveys become deeper and longer, new challenges appear alongside new opportunities. One key challenge is **overlapping signals** [<a class="cite" data-ref="r1">1</a>,<a class="cite" data-ref="r2">2</a>,<a class="cite" data-ref="r3">3</a>,<a class="cite" data-ref="r4">4</a>]: when two (or more) gravitational-wave strains arrive at close times and in similar frequency bands, their signals superpose in the detector output.
 
 <iframe
-  src=https://marimo.io/notebooks/nb_s4zzgEJG9sBBBMbidUjjJf/app
+  id="marimo-iframe"
+  src="https://marimo.io/notebooks/nb_s4zzgEJG9sBBBMbidUjjJf/app"
   sandbox="allow-scripts allow-same-origin allow-downloads allow-popups"
   allow="microphone"
   allowfullscreen
   width="100%"
-  height="600px" 
+  height="600px"
   style="border: 1px solid #ddd; border-radius: 8px;"
   title="Overlapping Gravitational Waves"
 ></iframe>
