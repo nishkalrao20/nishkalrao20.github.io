@@ -13,9 +13,12 @@ As detectors grow more sensitive and surveys become deeper and longer, new chall
 
 <iframe
   src="https://molab.marimo.io/notebooks/nb_s4zzgEJG9sBBBMbidUjjJf"
+  sandbox="allow-scripts allow-same-origin allow-downloads allow-popups"
+  allow="microphone"
+  allowfullscreen
   width="100%"
   height="600px" 
-  style="border:1px solid #ddd; border-radius: 4px;"
+  style="border: 1px solid #ddd; border-radius: 8px;"
   title="Overlapping Gravitational Waves"
 ></iframe>
 
