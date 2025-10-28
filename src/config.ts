@@ -119,7 +119,7 @@ export const siteConfig: SiteConfig = {
       date: "June 2025 - present",
       repo: "",
       demo: "msthesis.pdf",
-      imageCredit: "Kip Thorne, _Interstellar_"
+      imageCredit: "Kip Thorne, Interstellar"
     },
     {
       name: "Overlapping Gravitational Wave Transients",
@@ -131,7 +131,7 @@ export const siteConfig: SiteConfig = {
       date: "July 2022 - June 2025",
       repo: "https://github.com/nishkalrao20/git_overlap",
       demo: "overlapping_gw_slides.pdf",
-      imageCredit: "Olena Shmahalo, _Quanta Magazine_"
+      imageCredit: "Olena Shmahalo, Quanta Magazine"
     },
     {
       name: "Post-merger emission of non-circular binary mergers",
@@ -143,7 +143,7 @@ export const siteConfig: SiteConfig = {
       date: "Jan 2025 - present",
       repo: "https://github.com/GCArullo/bayRing/tree/nc_fits_nishkal",
       demo: "nc_ringdown_slides.pdf",
-      imageCredit: "Olena Shmahalo, _Institute for Advanced Study_"
+      imageCredit: "Olena Shmahalo, Institute for Advanced Study"
     },
     {
       name: "Quantum Superpositions: Entanglement and Decoherence through Black Holes",
@@ -155,7 +155,7 @@ export const siteConfig: SiteConfig = {
       date: "Jan 2025 - present",
       repo: "",
       demo: "bh_decoherence_slides.pdf",
-      imageCredit: "Kristina Armitage, _Quanta Magazine_"
+      imageCredit: "Kristina Armitage, Quanta Magazine"
     },
     {
       name: "On detectability of non-linear modes in ringdown through Parameter Estimation",
@@ -167,7 +167,7 @@ export const siteConfig: SiteConfig = {
       date: "Dec 2024 - present",
       repo: "http://github.com/nishkalrao20/pycbc/tree/quadtratic_modes",
       demo: "",
-      imageCredit: "Nils Siemonsen, _Phys.org_"
+      imageCredit: "Nils Siemonsen, Phys.org"
     },
     {
       name: "Enhancing IMR Consistency Tests for Gravitational Wave Transients",
@@ -179,7 +179,7 @@ export const siteConfig: SiteConfig = {
       date: "September 2023 - present",
       repo: "https://github.com/nishkalrao20/bilby/tree/time_domain_dev",
       demo: "",
-      imageCredit: "Kristina Armitage, _Quanta Magazine_"
+      imageCredit: "Kristina Armitage, Quanta Magazine"
     },
     {
       name: "Reduced-order-quadrature model for binary neutron star merger parameter estimation",
@@ -191,7 +191,7 @@ export const siteConfig: SiteConfig = {
       date: "May 2024 - July 2024",
       repo: "https://github.com/nishkalrao20/bajes/tree/roq_inspiral",
       demo: "roq_bns_report.pdf",
-      imageCredit: "Robert Hurt, _Caltech JPL_"
+      imageCredit: "Robert Hurt, Caltech JPL"
     }
   ],
   education: [
