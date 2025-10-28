@@ -21,7 +21,7 @@ Overlap can bias our conclusions if not addressed properly. Studies have shown t
   allow="microphone"
   allowfullscreen
   width="100%"
-  height="600px"
+  height="600"
   style="border: 1px solid #ddd; border-radius: 8px;"
   title="Overlapping Gravitational Waves"
 ></iframe>
