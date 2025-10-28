@@ -558,53 +558,5 @@ const imageCredit = projectConfig?.imageCredit ?? null;
 </script>
 <Footer />
 
-  <script>
-    (function() {
-      function setupMarimoThemeSync() {
-        const iframe = document.getElementById('marimo-iframe');
-        
-        if (!iframe) {
-          return;
-        }
-
-        const baseUrl = iframe.src.split('?')[0];
-        function updateIframeTheme() {
-          const isDarkMode = document.documentElement.classList.contains('dark');
-          const currentTheme = isDarkMode ? 'dark' : 'light';
-
-          const url = new URL(baseUrl);
-          url.searchParams.set('theme', currentTheme);
-
-          if (iframe.src !== url.href) {
-            iframe.src = url.href;
-          }
-        }
-
-        updateIframeTheme();
-
-        const observer = new MutationObserver((mutations) => {
-          for (const mutation of mutations) {
-            if (mutation.attributeName === 'class' || mutation.attributeName === 'data-theme') {
-              updateIframeTheme();
-              return;
-            }
-          }
-        });
-
-        observer.observe(document.documentElement, {
-          attributes: true,
-          attributeFilter: ['class', 'data-theme']
-        });
-        
-        window.addEventListener('theme-toggle', updateIframeTheme);
-      }
-
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', setupMarimoThemeSync);
-      } else {
-        setupMarimoThemeSync();
-      }
-    })();
-  </script>
 </body>
 </html>
