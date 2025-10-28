@@ -18,7 +18,7 @@ As detectors grow more sensitive and surveys become deeper and longer, new chall
   allow="microphone"
   allowfullscreen
   width="100%"
-  height="600px"
+  height="60%"
   style="border: 1px solid #ddd; border-radius: 8px;"
   title="Overlapping Gravitational Waves"
 ></iframe>
