@@ -388,7 +388,6 @@ const imageCredit = projectConfig?.imageCredit ?? null;
         }, 250);
       }, true);
 
-      // handle touch taps: open the reference panel on tap (mobile)
       document.addEventListener('touchstart', function(ev) {
         const el = ev.target.closest && ev.target.closest('a.cite[data-ref]');
         if (!el) return;
@@ -397,11 +396,9 @@ const imageCredit = projectConfig?.imageCredit ?? null;
         openForEl(el);
       }, { passive: false });
 
-      // click toggles the panel (desktop / keyboard)
       document.addEventListener('click', (e) => {
         const el = e.target.closest && e.target.closest('a.cite[data-ref]');
         if (!el) {
-          // if click outside and panel open, close it
           if (refPanel && refPanel.classList.contains('open')) {
             refPanel.classList.remove('open');
             refPanel.setAttribute('aria-hidden', 'true');
@@ -414,7 +411,6 @@ const imageCredit = projectConfig?.imageCredit ?? null;
         e.preventDefault();
         e.stopPropagation();
         if (el.classList.contains('cite-active')) {
-          // close
           el.classList.remove('cite-active');
           if (refPanel) {
             refPanel.classList.remove('open');
@@ -502,7 +498,6 @@ const imageCredit = projectConfig?.imageCredit ?? null;
           const img = p.querySelector('img');
           if (!img) return;
   
-          // support either: <picture data-light="..." data-dark="..."> OR img data attributes
           const pLight = p.getAttribute('data-light');
           const pDark  = p.getAttribute('data-dark');
   
@@ -563,5 +558,46 @@ const imageCredit = projectConfig?.imageCredit ?? null;
 </script>
 
   <Footer />
+
+  <script>
+    document.addEventListener('astro:page-load', () => {
+      const iframe = document.getElementById('marimo-iframe');
+      if (!iframe) {
+        return;
+      }
+
+      const baseUrl = iframe.src.split('?')[0];
+
+      function updateIframeTheme() {
+        const isDarkMode = document.documentElement.classList.contains('dark');
+        const currentTheme = isDarkMode ? 'dark' : 'light';
+
+        const url = new URL(baseUrl);
+        url.searchParams.set('theme', currentTheme);
+
+        if (iframe.src !== url.href) {
+          iframe.src = url.href;
+        }
+      }
+
+      updateIframeTheme();
+
+      const observer = new MutationObserver((mutations) => {
+        for (const mutation of mutations) {
+          if (mutation.attributeName === 'class' || mutation.attributeName === 'data-theme') {
+            updateIframeTheme();
+            return;
+          }
+        }
+      });
+
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class', 'data-theme']
+      });
+      
+      window.addEventListener('theme-toggle', updateIframeTheme);
+    });
+  </script>
 </body>
 </html>
