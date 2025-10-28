@@ -55,6 +55,9 @@ function renderMathInText(text) {
 }
 
 const titleHtml = renderMathInText(meta.title ?? slug);
+
+const projectConfig = siteConfig.projects?.find(p => p.slug === slug);
+const imageCredit = projectConfig?.imageCredit ?? null;
 ---
 <!doctype html>
 <html lang="en">
@@ -294,6 +297,12 @@ const titleHtml = renderMathInText(meta.title ?? slug);
           />
         </div>
       ) : null}
+
+      {imageCredit && ( /* Conditionally render caption */
+            <figcaption class="text-right text-xs mt-1 text-muted" style="font-family: var(--body-font);">
+              {imageCredit}
+            </figcaption>
+        )}
 
       <article class="project-prose">
         <article class="prose prose-lg lg:prose-xl max-w-none mx-auto dark:prose-invert"><ProjectContent /></article>
