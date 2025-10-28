@@ -118,7 +118,8 @@ export const siteConfig: SiteConfig = {
       skills: ["General Relativity", "Isolated Horizons"],
       date: "June 2025 - present",
       repo: "",
-      demo: "msthesis.pdf"
+      demo: "msthesis.pdf",
+      imageCredit: "Nishkal"
     },
     {
       name: "Overlapping Gravitational Wave Transients",
