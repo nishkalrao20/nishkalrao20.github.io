@@ -69,6 +69,7 @@ export const siteConfig: SiteConfig = {
     blog: "https://nishkal20.wixsite.com/dream",
     googleScholar: "https://scholar.google.com/citations?user=mHprqWAAAAAJ&hl=en",
     orcid: "https://orcid.org/0009-0006-4551-7312",
+    arxiv: "https://arxiv.org/search/gr-qc?searchtype=author&query=Rao,+N",
     inspire: "https://inspirehep.net/authors/3072511",
     semantic: "https://www.semanticscholar.org/author/Nishkal-Rao/2386621417",
     ads: "https://ui.adsabs.harvard.edu/search/q=orcid%3A0009-0006-4551-7312&sort=date+desc",
