@@ -17,6 +17,7 @@ Overlap can bias our conclusions if not addressed properly. Studies have shown t
 
 <iframe
   src="https://marimo.io/notebooks/nb_s4zzgEJG9sBBBMbidUjjJf/app"
+  loading="lazy"
   sandbox="allow-scripts allow-same-origin allow-downloads allow-popups"
   allow="microphone"
   allowfullscreen
