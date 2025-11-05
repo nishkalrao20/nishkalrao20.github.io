@@ -19,7 +19,7 @@ const profiles = {
       <p class="text-sm text-muted" style="font-family:var(--body-font);">Selected papers, preprints and published work.</p>
     </div>
 
-    <div class="flex items-center gap-3">
+    <div class="flex flex-wrap items-center justify-start sm:justify-end gap-3 mt-4 sm:mt-0">
       {profiles.scholar && (
         <a href={profiles.scholar} target="_blank" rel="noopener noreferrer" aria-label="Google Scholar" class="icon-chip" title="Google Scholar">
           <img src="/logos/scholar-logo.svg" alt="Google Scholar" class="h-5 w-5" />
