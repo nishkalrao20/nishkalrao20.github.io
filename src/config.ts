@@ -218,7 +218,7 @@ export const siteConfig: SiteConfig = {
   news: [
     {
       date: "Nov 2025",
-      title: "Talk: '' - LVK Lensing Group Meeting",
+      title: "Talk: 'Overview: Gravitational Wave Projects' - LIGO-India Scientific Collaboration (LISC) MOU",
       description:
         "Presented updates on my work for the LIGO India MOU regarding analysing degeneracies between overlapping gravitational-wave signals and lensing effects, and tests of general relativity.",
       video: "https://youtu.be/x2Vpyx5Ay74",
