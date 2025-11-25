@@ -217,6 +217,15 @@ export const siteConfig: SiteConfig = {
   ],
   news: [
     {
+      date: "Nov 2025",
+      title: "Talk: '' - LVK Lensing Group Meeting",
+      description:
+        "Presented updates on my work for the LIGO India MOU regarding analysing degeneracies between overlapping gravitational-wave signals and lensing effects, and tests of general relativity.",
+      video: "https://youtu.be/x2Vpyx5Ay74",
+      notes: "/updates/overlapping_gw_slides_3.pdf",
+      slides: "/updates/imrct_gw.pdf"
+    },
+    {
       date: "Oct 2025",
       title: "Talk: 'Updates: Overlapping and Lensed GWs' - LVK Lensing Group Meeting",
       description:
