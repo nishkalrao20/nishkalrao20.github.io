@@ -13,7 +13,7 @@ const profiles = {
 };
 ---
 <section id="publications" class="max-w-6xl mx-auto px-6 py-12">
- <header class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6">
+  <header class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6">
     <div>
       <h2 class="text-2xl" style="font-family:var(--heading-font); font-weight:400; color: rgba(var(--text-color),1);">Publications</h2>
       <p class="text-sm text-muted" style="font-family:var(--body-font);">Selected papers, preprints and published work.</p>
@@ -73,6 +73,7 @@ const profiles = {
         const hasPdf = !!(pub.pdf && pub.pdf.trim());
         const hasArxiv = !!(pub.arxiv && pub.arxiv.trim());
         const hasDoi = !!(pub.doi && pub.doi.trim());
+        const hasPrd = !!(pub.prd && pub.prd.trim());
         const openArxivOnCard = (!hasPdf && hasArxiv);
         return (
           <article
@@ -117,6 +118,12 @@ const profiles = {
                     </a>
                   ) : null}
 
+                  {hasPrd && (
+                    <a href={`https://doi.org/${pub.prd}`} target="_blank" rel="noopener noreferrer" class="icon-chip" aria-label="PRD" title="View on PRD" onClick={(e) => e.stopPropagation()}>
+                      <img src="/logos/prd-logo.svg" alt="PRD" class="h-4 w-4" />
+                    </a>
+                  )}
+
                   {hasArxiv && (
                     <a href={`https://arxiv.org/abs/${pub.arxiv}`} target="_blank" rel="noopener noreferrer" class="icon-chip" aria-label="arXiv" title="View on arXiv" onClick={(e) => e.stopPropagation()}>
                       <img src="/logos/arxiv-logo.svg" alt="arXiv" class="h-4 w-4" />
@@ -152,7 +159,6 @@ const profiles = {
         });
       });
 
-      // Card -> open arXiv when no PDF
       document.querySelectorAll('.pub-article.is-clickable').forEach(article => {
         article.style.cursor = 'pointer';
         const arxiv = article.getAttribute('data-arxiv');
