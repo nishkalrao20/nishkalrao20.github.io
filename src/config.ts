@@ -17,6 +17,7 @@ export interface Publication {
   year?: string | number;
   category?: 'Published' | 'Preprint' | string;
   doi?: string;
+  prd?: string;
   arxiv?: string;
   pdf?: string;
   bibtex?: string;
@@ -94,6 +95,7 @@ export const siteConfig: SiteConfig = {
       category: "Published",
       arxiv: "2510.17787",
       doi: "10.1103/tflq-2xsd",
+      prd: "10.1103/tflq-2xsd",
       bibtex: `@article{Rao:2025poe,
                   author = "Rao, Nishkal and Mishra, Anuj and Ganguly, Apratim and More, Anupreeta",
                   title = "{Comprehensive analysis of time-domain overlapping gravitational wave transients: A Lensing Study}",
