@@ -5,7 +5,6 @@ import About from "../components/About.astro";
 import Publications from "../components/Publications.astro";
 import News from "../components/News.astro";
 import Footer from "../components/Footer.astro";
-import GoogleAnalytics from "../components/GoogleAnalytics.astro"; //
 import { siteConfig } from "../config";
 import "../styles/global.css";
 
@@ -15,8 +14,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 <html lang="en">
   <head>
-    <GoogleAnalytics id="G-933S5M5HMF" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-933S5M5HMF"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
+      gtag('config', 'G-933S5M5HMF');
+    </script>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
