@@ -62,6 +62,15 @@ const imageCredit = projectConfig?.imageCredit ?? null;
 <!doctype html>
 <html lang="en">
   <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-933S5M5HMF"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-933S5M5HMF');
+    </script>
+
     <meta charset="utf-8" />
     <title>{meta.title ?? slug} — {Astro.site?.title}</title>
     <meta name="description" content={meta.summary ?? meta.description ?? Astro.site?.description ?? ''} />
