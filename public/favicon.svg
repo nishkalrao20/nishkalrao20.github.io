@@ -1,77 +1,96 @@
-<?xml version="1.0" encoding="utf-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Binary black hole collision favicon" preserveAspectRatio="xMidYMid meet">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" shape-rendering="geometricPrecision">
   <defs>
-    <!-- rim gradient for accretion/edge -->
-    <radialGradient id="rim" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#0af" stop-opacity="0.85"/>
-      <stop offset="45%" stop-color="#06f" stop-opacity="0.6"/>
-      <stop offset="100%" stop-color="#001018" stop-opacity="0.0"/>
+    <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0f172a" stop-opacity="0.45"/>
+      <stop offset="65%" stop-color="#020617" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
     </radialGradient>
 
-    <!-- bright merger flash -->
-    <linearGradient id="flash" x1="0" x2="1">
-      <stop offset="0" stop-color="#9bf"/>
-      <stop offset="0.5" stop-color="#3cf"/>
-      <stop offset="1" stop-color="#08f"/>
+    <radialGradient id="diskGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff3c4" stop-opacity="0.95"/>
+      <stop offset="18%" stop-color="#ffd36a" stop-opacity="0.95"/>
+      <stop offset="45%" stop-color="#ff8a00" stop-opacity="0.9"/>
+      <stop offset="72%" stop-color="#ff4d00" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#ff4d00" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="ringStroke" x1="12" y1="28" x2="52" y2="36" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#fff1b8"/>
+      <stop offset="22%" stop-color="#ffb84d"/>
+      <stop offset="55%" stop-color="#ff6a00"/>
+      <stop offset="100%" stop-color="#ffd66b"/>
     </linearGradient>
 
-    <!-- soft blue glow filter -->
-    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="2.2" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
+    <filter id="softBlur" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="1.2"/>
     </filter>
 
-    <!-- subtle vignette to favor dark mode -->
-    <radialGradient id="vignette" cx="50%" cy="50%">
-      <stop offset="0%" stop-color="#000" stop-opacity="0.0"/>
-      <stop offset="100%" stop-color="#000" stop-opacity="0.50"/>
-    </radialGradient>
-
-    <!-- thin ripple style -->
-    <path id="wave" d="M10 36 Q18 28 26 36 T42 36 T58 36" />
+    <filter id="haloBlur" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="3.4"/>
+    </filter>
   </defs>
 
-  <!-- Transparent background: nothing drawn as a rectangle so the favicon stays transparent -->
+  <!-- subtle space glow -->
+  <circle cx="32" cy="32" r="30" fill="url(#bgGlow)"/>
 
-  <!-- subtle vignette ring (very faint, to frame the scene on dark backgrounds) -->
-  <circle cx="32" cy="32" r="30" fill="none" stroke="url(#vignette)" stroke-opacity="0.06" stroke-width="4"/>
+  <!-- outer accretion halo -->
+  <ellipse cx="32" cy="32" rx="20.5" ry="9.2"
+           transform="rotate(-18 32 32)"
+           fill="none"
+           stroke="url(#ringStroke)"
+           stroke-width="5.2"
+           stroke-linecap="round"
+           stroke-dasharray="26 7 11 8 18 9"
+           stroke-dashoffset="2"
+           filter="url(#haloBlur)"
+           opacity="0.95"/>
 
-  <!-- left black hole: core (pure black), rim glow -->
-  <g filter="url(#glow)">
-    <circle cx="22" cy="32" r="8.8" fill="#000"/>
-    <circle cx="22" cy="32" r="12.6" fill="none" stroke="url(#rim)" stroke-width="2.6" stroke-linecap="round"/>
-  </g>
+  <!-- sharper main ring -->
+  <ellipse cx="32" cy="32" rx="20.5" ry="9.2"
+           transform="rotate(-18 32 32)"
+           fill="none"
+           stroke="url(#ringStroke)"
+           stroke-width="1.8"
+           stroke-linecap="round"
+           stroke-dasharray="22 8 9 7 15 10"
+           stroke-dashoffset="2"/>
 
-  <!-- right black hole: core and rim -->
-  <g filter="url(#glow)">
-    <circle cx="42" cy="32" r="8.8" fill="#000"/>
-    <circle cx="42" cy="32" r="12.6" fill="none" stroke="url(#rim)" stroke-width="2.6" stroke-linecap="round"/>
-  </g>
+  <!-- front-side bright arc -->
+  <path d="M14.5 29.4
+           C20.1 24.2, 28.2 22.0, 35.8 23.0
+           C40.8 23.7, 45.2 25.7, 48.8 28.8"
+        stroke="#fff4c9"
+        stroke-width="1.3"
+        stroke-linecap="round"
+        opacity="0.7"
+        filter="url(#softBlur)"/>
 
-  <!-- accretion arcs (minimal) -->
-  <path d="M14 28 A10 10 0 0 1 26 26" fill="none" stroke="#07223a" stroke-width="1.4" stroke-linecap="round" opacity="0.8"/>
-  <path d="M50 28 A10 10 0 0 0 38 26" fill="none" stroke="#07223a" stroke-width="1.4" stroke-linecap="round" opacity="0.8"/>
+  <!-- back-side faint arc -->
+  <path d="M15.2 36.1
+           C20.6 41.0, 28.0 42.8, 35.4 42.0
+           C40.9 41.4, 45.6 39.5, 49.0 36.5"
+        stroke="#ff8d1f"
+        stroke-width="1.1"
+        stroke-linecap="round"
+        opacity="0.28"
+        filter="url(#softBlur)"/>
 
-  <!-- collision bridge / bright merger streak -->
-  <g filter="url(#glow)">
-    <path d="M26 32 C29 28, 35 28, 38 32" fill="none" stroke="url(#flash)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
-    <!-- small flash point at center -->
-    <circle cx="32" cy="32" r="2.2" fill="#9cf" opacity="0.95"/>
-  </g>
+  <!-- event horizon shadow -->
+  <circle cx="32" cy="32" r="10.8" fill="#02020a"/>
+  <circle cx="32" cy="32" r="8.3" fill="#000000"/>
 
-  <!-- gravitational ripple: thin wave in foreground -->
-  <use href="#wave" fill="none" stroke="#0bf" stroke-opacity="0.35" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- subtle gravitational lens highlight -->
+  <path d="M24.7 27.6
+           C27.0 25.8, 29.8 24.9, 32.6 24.8"
+        stroke="#ffffff"
+        stroke-opacity="0.12"
+        stroke-width="1.2"
+        stroke-linecap="round"
+        filter="url(#softBlur)"/>
 
-  <!-- tiny sparse star specks (very minimal) -->
-  <g fill="#0af" opacity="0.08">
-    <circle cx="8" cy="10" r="0.9"/>
-    <circle cx="56" cy="12" r="0.9"/>
-    <circle cx="52" cy="50" r="0.7"/>
-  </g>
-
-  <!-- accessibility: title (already provided via aria-label) -->
+  <!-- tiny stars -->
+  <circle cx="12" cy="18" r="0.8" fill="#ffffff" opacity="0.55"/>
+  <circle cx="51" cy="15" r="0.6" fill="#ffffff" opacity="0.45"/>
+  <circle cx="54" cy="48" r="0.7" fill="#ffffff" opacity="0.4"/>
+  <circle cx="15" cy="50" r="0.5" fill="#ffffff" opacity="0.35"/>
 </svg>
-
