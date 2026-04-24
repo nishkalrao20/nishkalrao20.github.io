@@ -12,6 +12,11 @@ const profiles = {
   researchgate: siteConfig.social?.researchgate || null,
 };
 ---
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsEw09228Kz8h0DPx0rxkn0igO/30P1iQ//ZJNdUvsNqX0P0I1k8kPq1L" crossorigin="anonymous">
+<script is:inline src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Gl1mBvQ8hD1yZQ6A/NcNcHqB2Q0RGOw1I1I2N1Qj" crossorigin="anonymous"></script>
+<script is:inline src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbOxyj0O1QzD+NDWASF831m4Q5" crossorigin="anonymous"></script>
+
 <section id="publications" class="max-w-6xl mx-auto px-6 py-12">
   <header class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6">
     <div>
@@ -168,6 +173,17 @@ const profiles = {
           window.open(arxiv, '_blank');
         });
       });
+
+      // Render Math via KaTeX
+      if (window.renderMathInElement) {
+        renderMathInElement(document.getElementById('publications'), {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
     })();
   </script>
 </section>
