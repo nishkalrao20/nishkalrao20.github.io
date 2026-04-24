@@ -110,6 +110,26 @@ export const siteConfig: SiteConfig = {
       pdf: "",
       note: "Next-generation GW detectors will produce a high rate of temporally overlapping signals from unrelated compact binary coalescences. Such overlaps can bias parameter estimation (PE) and mimic signatures of other physical effects, such as gravitational lensing. In this work, we investigate how overlapping signals can be degenerate with gravitational lensing by focusing on two scenarios: Type-II strong lensing and microlensing by an isolated point-mass lens.",
       id: "overlapping-lensing-2025"
+    },
+    {
+      title: "Highly eccentric non-spinning binary black hole mergers: quadrupolar post-merger waveforms",
+      authors: "N. Rao, G. Carullo",
+      year: 2025,
+      category: "Preprint",
+      arxiv: "2604.15431",
+      bibtex: `@article{Rao:2026lmz,
+                author = "Rao, Nishkal and Carullo, Gregorio",
+                title = "{Highly eccentric non-spinning binary black hole mergers: quadrupolar post-merger waveforms}",
+                eprint = "2604.15431",
+                archivePrefix = "arXiv",
+                primaryClass = "gr-qc",
+                reportNumber = "LIGO Document Number P2600148",
+                month = "4",
+                year = "2026"
+            }`,
+      pdf: "",
+      note: "We present numerically-informed closed-form expressions for the dominant $$(\ell, m) = (2, 2)$$ waveform harmonic of the post-merger emission from mergers of non-spinning binary black holes with comparable masses on highly eccentric orbits. Using 233 non-spinning eccentric simulations from the RIT catalog, we construct time-dependent complex quasinormal mode amplitudes via a Bayesian procedure. We build multivariate polynomial models, represented as functions of the symmetric mass ratio $$\nu$$ and two dynamics parameters evaluated at merger: the mass-rescaled effective energy $$\hat{E}_{\mathrm{eff}}^{\mathrm{mrg}}$$ and angular momentum $$j_{\mathrm{mrg}}$$. We further validate the post-merger non-circular waveform model by comparing it against simulations from the SXS catalog. Our models achieve mismatches around $$\sim10^{-3}$$, including for near-extreme eccentricities. The model can be directly combined with effective-one-body and phenomenological inspiral waveforms to produce accurate inspiral-merger-ringdown waveforms, essential for parameter estimation of both astrophysical and fundamental physics properties of the signals' sources.",
+      id: "nc-ringdown-2026"
     }
   ],
   projects: [
