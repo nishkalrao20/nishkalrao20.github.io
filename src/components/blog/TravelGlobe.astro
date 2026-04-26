@@ -2,7 +2,7 @@
 const { routes } = Astro.props;
 ---
 
-<div id="globe-container" class="w-full h-full cursor-grab active:cursor-grabbing"></div>
+<div id="globe-container" class="w-full h-full cursor-grab active:cursor-grabbing rounded-2xl overflow-hidden"></div>
 
 <script is:inline define:vars={{ routes }}>
   window.travelRoutes = routes;
@@ -13,19 +13,18 @@ const { routes } = Astro.props;
   document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('globe-container');
     
-    // Format data for Globe.gl arcs
+    const getIsDark = () => document.documentElement.classList.contains('dark');
+
     const arcData = window.travelRoutes.map(route => ({
       startLat: route.start.lat,
       startLng: route.start.lng,
       endLat: route.end.lat,
       endLng: route.end.lng,
-      color: ['#1d4ed8', '#60a5fa'], // Using your theme accent colors
+      color: ['#1d4ed8', '#60a5fa'],
       label: route.description
     }));
 
-    const world = Globe()
-      (container)
-      .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-dark.jpg') // Dark theme base
+    const world = Globe()(container)
       .arcsData(arcData)
       .arcColor('color')
       .arcDashLength(0.4)
@@ -34,7 +33,23 @@ const { routes } = Astro.props;
       .arcAltitudeAutoScale(0.3)
       .pointOfView({ lat: 20, lng: 0, altitude: 2.5 });
 
-    // Handle Window Resize
+    const applyThemeToGlobe = (isDark) => {
+      const imgUrl = isDark 
+        ? 'https://unpkg.com/three-globe/example/img/earth-dark.jpg' 
+        : 'https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg'; // Light mode texture
+      
+      const bgColor = isDark ? 'rgba(7, 10, 17, 1)' : 'rgba(250, 251, 253, 1)'; 
+
+      world.globeImageUrl(imgUrl);
+      world.backgroundColor(bgColor);
+    };
+
+    applyThemeToGlobe(getIsDark());
+
+    window.addEventListener('theme-toggle', () => {
+      applyThemeToGlobe(getIsDark());
+    });
+
     window.addEventListener('resize', () => {
       world.width(container.clientWidth);
       world.height(container.clientHeight);
