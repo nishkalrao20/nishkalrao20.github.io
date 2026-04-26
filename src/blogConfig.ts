@@ -27,12 +27,12 @@ export interface BlogConfig {
 }
 
 export const blogConfig: BlogConfig = {
-  title: "Nishkal's Travel Journal",
-  description: "Exploring the world, one coordinate at a time.",
+  title: "Living the Dream!",
+  description: "Embark on an enthralling ride!",
   trips: [
     {
       id: "germany-2023",
-      title: "Germany & Europe",
+      title: "Germany",
       date: "Summer 2023",
       coverImage: "https://static.wixstatic.com/media/8dfc39_11a26cbfea224282bd208bfd4266161a~mv2.jpg/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
       arcColors: ['#1d4ed8', '#60a5fa'],
