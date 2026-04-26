@@ -1,0 +1,43 @@
+---
+const { routes } = Astro.props;
+---
+
+<div id="globe-container" class="w-full h-full cursor-grab active:cursor-grabbing"></div>
+
+<script is:inline define:vars={{ routes }}>
+  window.travelRoutes = routes;
+</script>
+
+<script is:inline src="https://unpkg.com/globe.gl"></script>
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('globe-container');
+    
+    // Format data for Globe.gl arcs
+    const arcData = window.travelRoutes.map(route => ({
+      startLat: route.start.lat,
+      startLng: route.start.lng,
+      endLat: route.end.lat,
+      endLng: route.end.lng,
+      color: ['#1d4ed8', '#60a5fa'], // Using your theme accent colors
+      label: route.description
+    }));
+
+    const world = Globe()
+      (container)
+      .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-dark.jpg') // Dark theme base
+      .arcsData(arcData)
+      .arcColor('color')
+      .arcDashLength(0.4)
+      .arcDashGap(0.2)
+      .arcDashAnimateTime(1500)
+      .arcAltitudeAutoScale(0.3)
+      .pointOfView({ lat: 20, lng: 0, altitude: 2.5 });
+
+    // Handle Window Resize
+    window.addEventListener('resize', () => {
+      world.width(container.clientWidth);
+      world.height(container.clientHeight);
+    });
+  });
+</script>
