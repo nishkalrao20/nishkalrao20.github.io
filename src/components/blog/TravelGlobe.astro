@@ -2,7 +2,7 @@
 const { trips } = Astro.props;
 ---
 
-<div id="globe-container" class="w-full h-full cursor-grab active:cursor-grabbing rounded-2xl overflow-hidden border border-[rgba(var(--muted-text-color),0.1)] shadow-xl"></div>
+<div id="globe-container" class="w-full h-full cursor-grab active:cursor-grabbing"></div>
 
 <script is:inline define:vars={{ trips }}>
   window.travelTrips = trips;
@@ -20,8 +20,9 @@ const { trips } = Astro.props;
         startLng: route.start.lng,
         endLat: route.end.lat,
         endLng: route.end.lng,
-        color: trip.arcColors,
-        label: route.description
+        color: trip.arcColors, 
+        label: route.description,
+        tripId: trip.id
       }))
     );
 
@@ -32,7 +33,9 @@ const { trips } = Astro.props;
       .arcDashGap(0.2)
       .arcDashAnimateTime(1500)
       .arcAltitudeAutoScale(0.3)
-      .pointOfView({ lat: 30, lng: 40, altitude: 2.2 });
+      .pointOfView({ lat: 30, lng: 40, altitude: 2.2 })
+      .onArcClick(arc => window.location.href = `/blog/trip/${arc.tripId}`)
+      .onArcHover(arc => container.style.cursor = arc ? 'pointer' : 'grab');
 
     const applyThemeToGlobe = (isDark) => {
       const imgUrl = isDark 
