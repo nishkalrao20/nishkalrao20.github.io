@@ -5,33 +5,123 @@ import TravelGlobe from "../../components/blog/TravelGlobe.astro";
 import { blogConfig } from "../../blogConfig";
 import "../../styles/global.css";
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const allPosts = await Astro.glob('../../contents/blog/*.md');
+
+const getSlug = (path) => {
+  const fileName = path.split('/').pop();
+  return fileName ? fileName.replace('.md', '') : '';
+};
 ---
+
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>{blogConfig.title}</title>
+    <title>{blogConfig.title} - Nishkal Rao</title>
     <meta name="description" content={blogConfig.description} />
   </head>
-  <body class="bg-page">
+  <body class="bg-page transition-colors duration-300">
     <Header />
+    
     <main class="page-content">
-      <section class="relative w-full h-[80vh] flex items-center justify-center overflow-hidden">
-        <div class="absolute z-10 top-10 left-10 text-white">
-          <h1 class="text-4xl font-bold" style="font-family: var(--heading-font);">{blogConfig.title}</h1>
-          <p class="text-lg text-muted">{blogConfig.description}</p>
+      <section class="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row gap-8 items-center h-auto md:h-[80vh]">
+        <div class="w-full md:w-1/3 z-10 flex flex-col gap-4">
+          <h1 class="text-5xl font-bold leading-tight" style="font-family: var(--heading-font); color: rgba(var(--text-color),1);">
+            {blogConfig.title}
+          </h1>
+          <p class="text-lg text-muted" style="font-family: var(--body-font);">
+            {blogConfig.description}
+          </p>
         </div>
         
-        <TravelGlobe routes={blogConfig.routes} />
+        <div class="w-full md:w-2/3 h-[50vh] md:h-full relative">
+          <TravelGlobe trips={blogConfig.trips} />
+        </div>
       </section>
 
-      <section class="max-w-6xl mx-auto px-6 py-12">
-        <h2 class="text-3xl font-bold mb-6" style="font-family: var(--heading-font);">Latest Adventures</h2>
-        <div id="blog-grid">
-            </div>
+      <section class="max-w-6xl mx-auto px-6 py-20">
+        <h2 class="text-3xl font-bold mb-10 text-center" style="font-family: var(--heading-font); color: rgba(var(--text-color),1);">
+          Latest Adventures
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {blogConfig.trips.map(trip => {
+            // Filter global posts to only those belonging to this trip
+            const tripPosts = allPosts.filter(post => {
+              const slug = getSlug(post.file);
+              return trip.postSlugs.includes(slug);
+            });
+
+            return (
+              <div class="group relative w-full h-[450px] rounded-2xl overflow-hidden shadow-lg border card-surface isolate">
+                
+                <img 
+                  src={trip.coverImage} 
+                  alt={trip.title}
+                  class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 -z-20"
+                />
+                
+                <div class="absolute inset-0 bg-black/30 transition-colors duration-500 group-hover:bg-black/80 -z-10"></div>
+
+                <div class="absolute inset-0 p-8 flex flex-col justify-end transition-all duration-500 group-hover:justify-start">
+                  
+                  <div class="transform transition-transform duration-500 group-hover:-translate-y-2">
+                    <span class="inline-block px-3 py-1 mb-3 text-xs font-semibold rounded-full tracking-wider text-white" style={`background: linear-gradient(to right, ${trip.arcColors}, ${trip.arcColors[1]})`}>
+                      {trip.date}
+                    </span>
+                    <h3 class="text-3xl font-bold text-white mb-2" style="font-family: var(--heading-font);">
+                      {trip.title}
+                    </h3>
+                  </div>
+
+                  <div class="opacity-0 translate-y-4 transition-all duration-500 delay-100 group-hover:opacity-100 group-hover:translate-y-0 h-0 group-hover:h-auto overflow-hidden mt-4">
+                    {tripPosts.length > 0 ? (
+                      <ul class="flex flex-col gap-3 overflow-y-auto max-h-[250px] pr-2 custom-scrollbar">
+                        {tripPosts.map(post => {
+                          const slug = getSlug(post.file);
+                          return (
+                            <li>
+                              <a href={`/blog/${slug}`} class="block group/link border-l-2 border-white/20 pl-4 py-1 hover:border-white transition-colors">
+                                <h4 class="text-white font-medium text-lg leading-tight group-hover/link:text-[var(--accent-color)] transition-colors" style="font-family: var(--heading-font);">
+                                  {post.frontmatter.title}
+                                </h4>
+                                <time class="text-white/60 text-xs" style="font-family: var(--body-font);">
+                                  {new Date(post.frontmatter.pubDate).toDateString()}
+                                </time>
+                              </a>
+                            </li>
+                          )
+                        })}
+                      </ul>
+                    ) : (
+                      <p class="text-white/70 italic" style="font-family: var(--body-font);">Adventures are currently being written. Stay tuned!</p>
+                    )}
+                  </div>
+
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </section>
     </main>
     <Footer />
   </body>
 </html>
+
+<style>
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.7);
+  }
+</style>
