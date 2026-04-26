@@ -4,7 +4,6 @@ import Footer from '../../../components/Footer.astro';
 import { blogConfig } from '../../../blogConfig';
 import '../../../styles/global.css';
 
-// 1. Generate paths for all trips defined in blogConfig.ts
 export async function getStaticPaths() {
   return blogConfig.trips.map(trip => ({
     params: { tripId: trip.id },
@@ -14,7 +13,6 @@ export async function getStaticPaths() {
 
 const { trip } = Astro.props;
 
-// 2. Fetch all global markdown posts
 const allPosts = await Astro.glob('../../../contents/blog/*.md');
 
 const getSlug = (path) => {
@@ -22,10 +20,8 @@ const getSlug = (path) => {
   return fileName ? fileName.replace('.md', '') : '';
 };
 
-// 3. Filter only the posts assigned to this specific trip
 const tripPosts = allPosts.filter(post => trip.postSlugs.includes(getSlug(post.file)));
 
-// Sort by date descending (newest first)
 tripPosts.sort((a, b) => new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime());
 ---
 
