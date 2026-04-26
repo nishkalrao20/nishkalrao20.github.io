@@ -1,28 +1,29 @@
 ---
-const { routes } = Astro.props;
+const { trips } = Astro.props;
 ---
 
-<div id="globe-container" class="w-full h-full cursor-grab active:cursor-grabbing rounded-2xl overflow-hidden"></div>
+<div id="globe-container" class="w-full h-full cursor-grab active:cursor-grabbing rounded-2xl overflow-hidden border border-[rgba(var(--muted-text-color),0.1)] shadow-xl"></div>
 
-<script is:inline define:vars={{ routes }}>
-  window.travelRoutes = routes;
+<script is:inline define:vars={{ trips }}>
+  window.travelTrips = trips;
 </script>
 
 <script is:inline src="https://unpkg.com/globe.gl"></script>
 <script is:inline>
   document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('globe-container');
-    
     const getIsDark = () => document.documentElement.classList.contains('dark');
 
-    const arcData = window.travelRoutes.map(route => ({
-      startLat: route.start.lat,
-      startLng: route.start.lng,
-      endLat: route.end.lat,
-      endLng: route.end.lng,
-      color: ['#1d4ed8', '#60a5fa'],
-      label: route.description
-    }));
+    const arcData = window.travelTrips.flatMap(trip => 
+      trip.routes.map(route => ({
+        startLat: route.start.lat,
+        startLng: route.start.lng,
+        endLat: route.end.lat,
+        endLng: route.end.lng,
+        color: trip.arcColors,
+        label: route.description
+      }))
+    );
 
     const world = Globe()(container)
       .arcsData(arcData)
@@ -31,12 +32,12 @@ const { routes } = Astro.props;
       .arcDashGap(0.2)
       .arcDashAnimateTime(1500)
       .arcAltitudeAutoScale(0.3)
-      .pointOfView({ lat: 20, lng: 0, altitude: 2.5 });
+      .pointOfView({ lat: 30, lng: 40, altitude: 2.2 });
 
     const applyThemeToGlobe = (isDark) => {
       const imgUrl = isDark 
         ? 'https://unpkg.com/three-globe/example/img/earth-dark.jpg' 
-        : 'https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg'; // Light mode texture
+        : 'https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg'; 
       
       const bgColor = isDark ? 'rgba(7, 10, 17, 1)' : 'rgba(250, 251, 253, 1)'; 
 
