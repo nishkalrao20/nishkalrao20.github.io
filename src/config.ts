@@ -242,6 +242,28 @@ export const siteConfig: SiteConfig = {
   ],
   news: [
     {
+      date: "April 2026",
+      title: "Talk: 'Eccentric non-spinning Ringdown' - LVK Waveform Group Meeting",
+      description:
+        "Presented updates on our work regarding highly eccentric non-spinning binary black hole ringdowns.",
+      slides: "/updates/nc_ringdown.pdf"
+    },
+    {
+      date: "March 2026",
+      title: "Talk: 'Enigmatic Nature of Black Holes' - BIMSA Relativistic Physics Seminar",
+      description:
+        "Presented firstly on my master's thesis work on quasi-local definitions of black holes. Moving to the observable, the second half of the talk explored my phenomenological and data-analysis projects.",
+      video: "https://youtu.be/zuSj-aGw58A",
+      notes: "https://bimsa.net/talk.html?id=68378",
+      slides: "/updates/black_holes.pdf"
+    },
+    {
+      date: "March 2026",
+      title: "GWnext 2026 - BIMSA, Beijing, China",
+      description:
+        "Attended the GWnext discussion meeting on gravitational wave physics from young researchers for young researchers.",
+    },
+    {
       date: "Nov 2025",
       title: "Talk: 'Overview: Gravitational Wave Projects' - LIGO-India Scientific Collaboration (LISC) MOU",
       description:
