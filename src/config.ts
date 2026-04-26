@@ -117,7 +117,7 @@ export const siteConfig: SiteConfig = {
       year: 2025,
       category: "Preprint",
       arxiv: "2604.15431",
-      doi: "10.48550/arXiv.2604.15431"
+      doi: "10.48550/arXiv.2604.15431",
       bibtex: `@article{Rao:2026lmz,
                 author = "Rao, Nishkal and Carullo, Gregorio",
                 title = "{Highly eccentric non-spinning binary black hole mergers: quadrupolar post-merger waveforms}",
