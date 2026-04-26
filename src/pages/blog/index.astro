@@ -1,0 +1,37 @@
+--
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import TravelGlobe from "../../components/blog/TravelGlobe.astro";
+import { blogConfig } from "../../blogConfig";
+import "../../styles/global.css";
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+--
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{blogConfig.title}</title>
+    <meta name="description" content={blogConfig.description} />
+  </head>
+  <body class="bg-page">
+    <Header />
+    <main class="page-content">
+      <section class="relative w-full h-[80vh] flex items-center justify-center overflow-hidden">
+        <div class="absolute z-10 top-10 left-10 text-white">
+          <h1 class="text-4xl font-bold" style="font-family: var(--heading-font);">{blogConfig.title}</h1>
+          <p class="text-lg text-muted">{blogConfig.description}</p>
+        </div>
+        
+        <TravelGlobe routes={blogConfig.routes} />
+      </section>
+
+      <section class="max-w-6xl mx-auto px-6 py-12">
+        <h2 class="text-3xl font-bold mb-6" style="font-family: var(--heading-font);">Latest Adventures</h2>
+        <div id="blog-grid">
+            </div>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
