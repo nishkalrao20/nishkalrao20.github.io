@@ -1,0 +1,69 @@
+---
+import { getCollection } from 'astro:content';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import '../../styles/global.css';
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog');
+  return blogEntries.map(entry => ({
+    params: { slug: entry.slug }, 
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{entry.data.title} - Nishkal Rao</title>
+    <meta name="description" content={entry.data.description} />
+  </head>
+  <body class="bg-page transition-colors duration-300">
+    <Header />
+    
+    <main class="page-content max-w-3xl mx-auto px-6 py-12 md:py-20 mt-12">
+      <article>
+        <header class="mb-10 text-center">
+          <h1 class="text-3xl md:text-5xl font-bold mb-4" style="font-family: var(--heading-font); color: rgba(var(--text-color),1);">
+            {entry.data.title}
+          </h1>
+          <div class="text-muted flex items-center justify-center gap-2 text-sm" style="font-family: var(--body-font);">
+            <span>{entry.data.author}</span>
+            <span>&bull;</span>
+            <time>{entry.data.pubDate.toDateString()}</time>
+          </div>
+        </header>
+
+        {entry.data.coverImage && (
+          <img 
+            src={entry.data.coverImage} 
+            alt={`Cover image for ${entry.data.title}`} 
+            class="w-full h-auto max-h-[500px] object-cover rounded-2xl mb-10 shadow-lg border border-[rgba(var(--muted-text-color),0.1)]" 
+          />
+        )}
+
+        <div class="prose-container text-lg leading-relaxed" style="font-family: var(--body-font); color: rgba(var(--text-color), 0.95);">
+          <Content />
+        </div>
+      </article>
+    </main>
+
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  /* Basic styling for the markdown content so it looks clean */
+  .prose-container p { margin-bottom: 1.5em; }
+  .prose-container h2 { margin-top: 2em; margin-bottom: 0.75em; font-size: 1.8rem; }
+  .prose-container h3 { margin-top: 1.5em; margin-bottom: 0.75em; font-size: 1.4rem; }
+  .prose-container a { color: var(--accent-color); text-decoration: underline; text-underline-offset: 4px; }
+  .prose-container a:hover { opacity: 0.8; }
+  .prose-container blockquote { border-left: 4px solid var(--accent-color); padding-left: 1rem; font-style: italic; opacity: 0.9; }
+  .prose-container img { border-radius: 0.5rem; margin: 2rem auto; }
+</style>
