@@ -114,7 +114,7 @@ export const siteConfig: SiteConfig = {
     {
       title: "Highly eccentric non-spinning binary black hole mergers: quadrupolar post-merger waveforms",
       authors: "N. Rao, G. Carullo",
-      year: 2025,
+      year: 2026,
       category: "Preprint",
       arxiv: "2604.15431",
       doi: "10.48550/arXiv.2604.15431",
