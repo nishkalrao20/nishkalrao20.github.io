@@ -61,7 +61,7 @@ export interface SiteConfig {
 
 export const siteConfig: SiteConfig = {
   name: "Nishkal Rao",
-  title: "Graduate Researcher, IISER Pune",
+  title: "Graduate Researcher, Johns Hopkins University",
   description: "Personal website - Research, Projects, and Resources",
   social: {
     email: "nishkal.rao@students.iiserpune.ac.in",
@@ -77,7 +77,7 @@ export const siteConfig: SiteConfig = {
     researchgate: "https://www.researchgate.net/profile/Nishkal-Rao"
   },
   aboutMe:
-    "I’m a 5th-year BS-MS student at IISER Pune. My research centers on general relativity, gravitational physics, black-hole horizons, ringdown physics, and mathematical aspects of general relativity.",
+    "I’m an incoming PhD student at Johns Hopkins University. My research centers on general relativity, gravitational physics, black-hole horizons, ringdown physics, and mathematical aspects of general relativity.",
   skills: [
     "Gravitational Waves",
     "General Relativity",
